@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Categories on guying</title>
+    <link>/categories/</link>
+    <description>Recent content in Categories on guying</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <managingEditor>2739218253@qq.com (孤影)</managingEditor>
+    <webMaster>2739218253@qq.com (孤影)</webMaster>
+    <copyright>© 2021 &lt;a href=&#34;https://sukoshi.xyz&#34;&gt;Sukoshi&lt;/a&gt;.</copyright>
+    <lastBuildDate>Wed, 23 Jun 2021 09:52:08 +0800</lastBuildDate><atom:link href="/categories/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>doc</title>
+      <link>/categories/doc/</link>
+      <pubDate>Wed, 23 Jun 2021 09:52:08 +0800</pubDate>
+      <author>2739218253@qq.com (孤影)</author>
+      <guid>/categories/doc/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>unit test</title>
+      <link>/categories/test/</link>
+      <pubDate>Wed, 26 May 2021 11:32:04 +0800</pubDate>
+      <author>2739218253@qq.com (孤影)</author>
+      <guid>/categories/test/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>syntax</title>
+      <link>/categories/syntax/</link>
+      <pubDate>Mon, 11 Mar 2019 00:00:00 +0000</pubDate>
+      <author>2739218253@qq.com (孤影)</author>
+      <guid>/categories/syntax/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>themes</title>
+      <link>/categories/themes/</link>
+      <pubDate>Mon, 11 Mar 2019 00:00:00 +0000</pubDate>
+      <author>2739218253@qq.com (孤影)</author>
+      <guid>/categories/themes/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

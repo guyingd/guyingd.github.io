@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>i18n on guying</title>
+    <link>/tags/i18n/</link>
+    <description>Recent content in i18n on guying</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <managingEditor>2739218253@qq.com (孤影)</managingEditor>
+    <webMaster>2739218253@qq.com (孤影)</webMaster>
+    <copyright>© 2021 &lt;a href=&#34;https://sukoshi.xyz&#34;&gt;Sukoshi&lt;/a&gt;.</copyright>
+    <lastBuildDate>Tue, 22 Jun 2021 17:51:58 +0800</lastBuildDate><atom:link href="/tags/i18n/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>i18n多语言配置</title>
+      <link>/posts/202106221751/</link>
+      <pubDate>Tue, 22 Jun 2021 17:51:58 +0800</pubDate>
+      <author>2739218253@qq.com (孤影)</author>
+      <guid>/posts/202106221751/</guid>
+      <description>Hugo多语言配置相关官方文档：Multilingual Mode kagome默认只有较少的单词实现了多语言配置 (准不准我也不敢保证) 且只配置了简体</description>
+    </item>
+    
+  </channel>
+</rss>

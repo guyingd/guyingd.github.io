@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html><head>
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+   
+    <meta name="author" content="孤影">
+  
+
+   
+    
+    
+    
+    
+    
+    
+    <meta name="keywords" content="hugo,theme,kikyo,kagome,个人博客,主题">
+  
+
+   
+    <meta name="description" content="Hugo主题Kagome演示站点">
+  
+
+  <meta name="generator" content="Hugo 0.101.0" />
+  
+  
+  
+  
+  
+  
+  <title>Front Matter 相关参数说明 🌟 guying</title>
+
+  <meta property="og:title" content="Front Matter 相关参数说明" />
+<meta property="og:description" content="Front Matter Front Matter一般放在文章的最顶部，Hugo支持三种书写格式， TOML使用&#43;&#43;&#43;来包裹内容 YAML使用---来包裹内容 JSON使用{和}" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/posts/202106180929/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2021-06-18T09:29:58+08:00" />
+<meta property="article:modified_time" content="2021-06-18T09:29:58+08:00" />
+
+
+  <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Front Matter 相关参数说明"/>
+<meta name="twitter:description" content="Front Matter Front Matter一般放在文章的最顶部，Hugo支持三种书写格式， TOML使用&#43;&#43;&#43;来包裹内容 YAML使用---来包裹内容 JSON使用{和}"/>
+
+
+  
+  
+  
+  
+  <link rel="stylesheet" href="/assets/css/style.min.699f46622e3574a7f9ecca4c5877067845fe89ffcd9c4335df2dff23ddae215e.css" integrity="sha256-aZ9GYi41dKf57MpMWHcGeEX&#43;if/NnEM13y3/I92uIV4=">
+
+  <script src="/assets/js/main.min.182da266209851bc7c828aa7377f98f914e1e76c8decdd53a6cbe9bffea92cde.js" integrity="sha256-GC2iZiCYUbx8goqnN3&#43;Y&#43;RTh52yN7N1Tpsvpv/6pLN4="></script>
+  
+  </head><body><header class="header-container layout-block layout-padding">
+  <div class="header-inner content-padding-large soft-size--large soft-style--box">
+    <div class="header-logo">
+      <a href="/"><h1>guying</h1></a>
+    </div>
+    <nav class="header-nav">
+      <div class="header-nav--btn">
+        <div class="btn-item"></div>
+        <div class="btn-item"></div>
+        <div class="btn-item"></div>
+      </div>
+      <div class="header-nav--list">
+        <div>
+          
+          <a class="list-item soft-size--small soft-style--hover soft-style--active" href="/" title="HOME">🏠 首页</a>
+          
+          <a class="list-item soft-size--small soft-style--hover soft-style--active" href="/posts" title="POSTS">🗂️ POSTS</a>
+          
+          <a class="list-item soft-size--small soft-style--hover soft-style--active" href="/about" title="ABOUT">🥀 关于</a>
+          
+          <a class="list-item soft-size--small soft-style--hover soft-style--active" href="/link" title="LINK">🦾 友链</a>
+          
+          <a class="list-item soft-size--small soft-style--hover soft-style--active" href="/tags" title="TAGS">💫 标签</a>
+          
+        </div>
+      </div>
+    </nav>
+  </div>
+</header><main id="content">
+    
+
+    <div class="single-container layout-block">
+      <div class="article-info">
+        <div class="article-header layout-padding">
+          <div class="article-cover card-container content-padding-large soft-size--large soft-style--box ">
+
+  <div class="card-cover">
+    
+  </div>
+
+  <div class="card-text">
+    <h1 class="card-text--title">Front Matter 相关参数说明</h1>
+    
+      <p class="card-text--row">2021-06-18 09:29</p>
+      
+      
+      
+        <ul class="card-text--tag">
+          
+            <li><a href="/categories/doc/">doc</a></li></ul>
+      
+
+      
+      
+    
+  </div>
+
+</div>
+        </div>
+
+        <div class="article-content">
+          <div class="markdown-body content-padding-large soft-size--large soft-style--box">
+            <h2 id="front-matter">Front Matter</h2>
+<p><code>Front Matter</code>一般放在文章的最顶部，Hugo支持三种书写格式，</p>
+<ol>
+<li>
+<p><code>TOML</code>使用<code>+++</code>来包裹内容</p>
+</li>
+<li>
+<p><code>YAML</code>使用<code>---</code>来包裹内容</p>
+</li>
+<li>
+<p><code>JSON</code>使用<code>{</code>和<code>}</code>来包裹内容</p>
+</li>
+</ol>
+<p>可配置的内容见Hugo官方文档: <a href="https://gohugo.io/content-management/front-matter/" target="_blank" rel="noopener">front-matter</a>。</p>
+<h2 id="archetypes">Archetypes</h2>
+<p>在使用<code>hugo new</code>来创建文章时，会查找<code>archetypes</code>下的内容并填充到文章内容，查找<code>archetypes</code>原型内容的顺序如下:</p>
+<ol>
+<li>
+<p>archetypes/posts.md</p>
+</li>
+<li>
+<p>archetypes/default.md</p>
+</li>
+<li>
+<p>themes/my-theme/archetypes/posts.md</p>
+</li>
+<li>
+<p>themes/my-theme/archetypes/default.md</p>
+</li>
+</ol>
+<p>建议修改原型中的内容为自己需要的内容，这样不用每次创建文章都需要手动去<code>Front Matter</code>中添加或删除一下字段属性。</p>
+<p>更多的相关操作请查阅Hugo官方文档: <a href="https://gohugo.io/content-management/archetypes/" target="_blank" rel="noopener">archetypes</a>。</p>
+<h2 id="自定义字段">自定义字段</h2>
+<p>在使用<code>kagome</code>主题时，<code>Front Matter</code>添加了如下些字段属性:</p>
+<h3 id="disable_comment">disable_comment</h3>
+<p>boolean类型，表示当前文章是否显示<code>disqus</code>评论，优先级最高，大于<code>config.toml</code>中的配置</p>
+<p>如在<code>config.toml</code>中全局禁用了<code>disqus</code>评论系统:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-toml" data-lang="toml"><span style="display:flex;"><span>[<span style="color:#a6e22e">privacy</span>]
+</span></span><span style="display:flex;"><span>  [<span style="color:#a6e22e">privacy</span>.<span style="color:#a6e22e">disqus</span>]
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">disable</span> = <span style="color:#66d9ef">true</span>
+</span></span></code></pre></div><p>但是在某一篇文章我们想单独打开<code>disqus</code>评论，只需要在<code>Front Matter</code>中添加:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-toml" data-lang="toml"><span style="display:flex;"><span><span style="color:#a6e22e">disable_comment</span> = <span style="color:#66d9ef">false</span>
+</span></span></code></pre></div><p><strong>注意的是，Disqus配置只作用于<code>section</code>下的文章<code>(/posts/a.md)</code>，如果你创建的有自定义单页面如：about(关于)，link(友联)等页面是无效的。</strong></p>
+<p><strong>只有<code>layout</code>为<code>message</code>的单页面受控于<code>Front Matter</code>中的<code>disable_comment</code>。</strong></p>
+<p><strong>并且<code>config</code>中的相关<code>privacy.disqus</code>设置对它也无效</strong></p>
+<h3 id="aplery">aplery</h3>
+<p>boolean类型，表示是否启用aplayer播放器，只有设置为<code>true</code>以后，文章中插入的aplayer代码才会正常生效。</p>
+<h3 id="dplayer">dplayer</h3>
+<p>boolean类型，表示是否启用dplayer播放器，只有设置为<code>true</code>以后，文章中插入的dplayer代码才会正常生效。</p>
+<h3 id="toc">toc</h3>
+<p>boolean类型，表示是否启用TOC目录Widget组件，只有设置为<code>true</code>并且只在文章页(在sections下的文章)才会显示TOC小部件。</p>
+<h3 id="cover">cover</h3>
+<p>string类型，文章的封面图地址，默认没有不显示</p>
+<h3 id="grow">grow</h3>
+<p>string类型，在列表页显示当前卡片的大小，可选值有<code>large | full</code>，<code>large</code>表示独占两个卡片内容宽度，<code>full</code>表示独占一行内容宽度。</p>
+
+          </div>
+        </div>
+                 
+      
+  
+  
+  
+  
+
+  
+
+  <div class="article-paging">
+    
+      <section class="post-paging--item card-container content-padding-primary soft-size--primary soft-style--box">
+  <div class="card-cover" background-image-lazy data-img="https://cloud.miiiku.xyz/src/images/cover/cover-14.jpg?x-oss-process=style/webp"></div>
+  <div class="card-text">
+    <a href="/posts/202106221751/"><h4 class="card-text--title text-ellipsis">i18n多语言配置</h4></a>
+    <p class="card-text--row">2021-06-22 17:51</p>
+  </div>
+</section>
+    
+    
+      <section class="post-paging--item card-container content-padding-primary soft-size--primary soft-style--box">
+  <div class="card-cover" ></div>
+  <div class="card-text">
+    <a href="/posts/202106091132/"><h4 class="card-text--title text-ellipsis">config.toml配置</h4></a>
+    <p class="card-text--row">2021-06-09 11:32</p>
+  </div>
+</section>
+    
+  </div>
+</div>
+  <aside class="widget-info">
+    
+<section class="aside-widget widget-author content-padding-large soft-size--large soft-style--box">
+  <div class="widget-body">
+    <div class="author-box avatar">
+      
+      <img class="author-avatar soft-size--round soft-style--box" src="https://cloud.miiiku.xyz/src/images/cover/cover-14.jpg?x-oss-process=style/webp" alt="孤影">
+      
+      <h2 class="author-name text-ellipsis">孤影</h2>
+      
+      <p class="author-desc text-ellipsis">梅花鹿的角叫鹿角</p>
+      
+    </div>
+  </div>
+</section>
+
+
+    
+
+<section class="aside-widget widget-toc content-padding-large soft-size--large soft-style--box">
+  <h2 class="widget-header">
+    <div class="title">
+      <span></span>
+    </div>
+  </h2>
+  <div class="widget-body">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#front-matter">Front Matter</a></li>
+    <li><a href="#archetypes">Archetypes</a></li>
+    <li><a href="#自定义字段">自定义字段</a>
+      <ul>
+        <li><a href="#disable_comment">disable_comment</a></li>
+        <li><a href="#aplery">aplery</a></li>
+        <li><a href="#dplayer">dplayer</a></li>
+        <li><a href="#toc">toc</a></li>
+        <li><a href="#cover">cover</a></li>
+        <li><a href="#grow">grow</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</section>
+
+
+    
+
+
+
+
+
+
+<section class="aside-widget widget-articles content-padding-large soft-size--large soft-style--box">
+  <h2 class="widget-header">
+    <div class="title">
+      <span></span>
+    </div>
+  </h2>
+  <div class="widget-body">
+    <ul class="post-list">
+      
+      
+        <li class="post-item"><a href="/posts/202106230952/">如何丰富Banner信息</a></li>
+      
+        <li class="post-item"><a href="/posts/202106221751/">i18n多语言配置</a></li>
+      
+        <li class="post-item"><a href="/posts/202106091132/">config.toml配置</a></li>
+      
+        <li class="post-item"><a href="/posts/202105261132/">播放音频与视频，shortcode使用说明</a></li>
+      
+        <li class="post-item"><a href="/posts/202105251659/">插入公式，图片与Widget目录显示</a></li>
+      
+    </ul>
+  </div>
+</section>
+
+
+    
+
+
+
+
+<section class="aside-widget widget-categories content-padding-large soft-size--large soft-style--box">
+  <h2 class="widget-header">
+    <div class="title">
+      <span></span>
+    </div>
+  </h2>
+  <div class="widget-body">
+    <ul class="categories-list">
+      
+        <li>
+          <a href="/categories/doc/">doc</a>
+          <span>6</span>
+        </li>
+      
+        <li>
+          <a href="/categories/syntax/">syntax</a>
+          <span>1</span>
+        </li>
+      
+        <li>
+          <a href="/categories/test/">test</a>
+          <span>1</span>
+        </li>
+      
+        <li>
+          <a href="/categories/themes/">themes</a>
+          <span>1</span>
+        </li>
+      
+    </ul>
+  </div>
+
+  
+</section>
+
+
+    
+
+
+
+
+<section class="aside-widget widget-tags content-padding-large soft-size--large soft-style--box">
+  <h2 class="widget-header">
+    <div class="title">
+      <span></span>
+    </div>
+  </h2>
+  <div class="widget-body">
+    <div class="tags-list">
+      
+        <a href="/tags/hugo/" data-count="3" class="soft-size--small soft-style--hover soft-style--active">hugo</a>
+      
+        <a href="/tags/markdown/" data-count="2" class="soft-size--small soft-style--hover soft-style--active">markdown</a>
+      
+        <a href="/tags/config/" data-count="1" class="soft-size--small soft-style--hover soft-style--active">config</a>
+      
+        <a href="/tags/css/" data-count="1" class="soft-size--small soft-style--hover soft-style--active">css</a>
+      
+        <a href="/tags/emoji/" data-count="1" class="soft-size--small soft-style--hover soft-style--active">emoji</a>
+      
+        <a href="/tags/html/" data-count="1" class="soft-size--small soft-style--hover soft-style--active">html</a>
+      
+        <a href="/tags/i18n/" data-count="1" class="soft-size--small soft-style--hover soft-style--active">i18n</a>
+      
+        <a href="/tags/image/" data-count="1" class="soft-size--small soft-style--hover soft-style--active">image</a>
+      
+        <a href="/tags/math/" data-count="1" class="soft-size--small soft-style--hover soft-style--active">math</a>
+      
+        <a href="/tags/music/" data-count="1" class="soft-size--small soft-style--hover soft-style--active">music</a>
+      
+        <a href="/tags/privacy/" data-count="1" class="soft-size--small soft-style--hover soft-style--active">privacy</a>
+      
+        <a href="/tags/shortcodes/" data-count="1" class="soft-size--small soft-style--hover soft-style--active">shortcodes</a>
+      
+    </div>
+  </div>
+
+  
+    
+    <div class="widget-footer">
+      <a href="/tags/" class="more-link center">
+        
+        <svg class="icon icon-more" width="16" height="16" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+          <path d="M60.928 247.808c-13.824-13.824-36.352-13.824-50.688 0-13.824 13.824-13.824 36.352 0 50.688L224.256 512 10.24 725.504c-13.824 13.824-13.824 36.352 0 50.688 7.168 7.168 15.872 10.24 25.088 10.24s18.432-3.584 25.088-10.24l239.104-239.104c13.824-13.824 13.824-36.352 0-50.688L60.928 247.808zM417.792 247.808c-13.824-13.824-36.352-13.824-50.688 0-13.824 13.824-13.824 36.352 0 50.688l213.504 213.504-213.504 213.504c-13.824 13.824-13.824 36.352 0 50.688 7.168 7.168 15.872 10.24 25.088 10.24s18.432-3.584 25.088-10.24l239.104-239.104c13.824-13.824 13.824-36.352 0-50.688L417.792 247.808zM1013.76 486.912l-239.104-239.104c-13.824-13.824-36.352-13.824-50.688 0-13.824 13.824-13.824 36.352 0 50.688l213.504 213.504-213.504 213.504c-13.824 13.824-13.824 36.352 0 50.688 7.168 7.168 15.872 10.24 25.088 10.24s18.432-3.584 25.088-10.24l239.104-239.104c14.336-13.824 14.336-36.352 0.512-50.176z"></path>
+        </svg>
+      </a>
+    </div>
+  
+</section>
+
+  </aside>
+</div>
+  </main><footer class="footer-container layout-block">
+  
+  <div class="social-icons">
+    
+      <a class="soft-size--primary soft-style--box" href="https://github.com/guyingd" target="_blank" rel="noopener noreferrer">
+          
+        <svg class="icon icon-github" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+          <path d="M64.6 512c0 195.6 125.4 361.9 300.1 422.9 23.5 5.9 19.9-10.8 19.9-22.2v-77.6c-135.8 15.9-141.3-74-150.5-89-18.5-31.5-61.9-39.5-49-54.5 31-15.9 62.5 4 98.9 58 26.4 39.1 77.9 32.5 104.1 26 5.7-23.5 17.9-44.5 34.7-60.9-140.7-25.2-199.4-111.1-199.4-213.3 0-49.5 16.4-95.1 48.4-131.8-20.4-60.6 1.9-112.4 4.9-120.1 58.2-5.2 118.5 41.6 123.3 45.3 33.1-8.9 70.8-13.7 112.9-13.7 42.4 0 80.3 4.9 113.5 13.9 11.3-8.6 67.3-48.8 121.4-43.9 2.9 7.7 24.7 58.3 5.5 118.1 32.5 36.8 49 82.8 49 132.4 0 102.3-59 188.3-200.2 213.2 23.5 23.3 38.1 55.5 38.1 91.1v112.7c0.8 9 0 17.9 15.1 17.9C832.7 877 960.4 709.4 960.4 512.1c0-247.5-200.6-447.9-447.9-447.9C265 64.1 64.6 264.5 64.6 512z"></path>
+        </svg>
+        
+
+        
+
+        
+
+        
+
+        
+      </a>
+    
+  </div>
+  
+
+  <div class="colour-bar"></div>
+  
+  
+  <p>© 2021 <a href="https://sukoshi.xyz">Sukoshi</a>.</p>
+  
+
+  
+
+  <p>
+    Powered by
+    <a href="https://gohugo.io/" target="_blank" rel="noopener noreferrer">Hugo</a>
+    Theme - 
+    <a href="https://github.com/miiiku/hugo-theme-kagome" target="_blank" rel="noopener noreferrer author">kagome</a>
+  </p>
+
+  <p>
+    <a href="javascript:;" id="theme-light">🌞 </a>
+    <a href="javascript:;" id="theme-dark">🌛 </a>
+    <a href="javascript:;" id="theme-auto">🤖️ </a>
+  </p>
+</footer>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-X01K8ZYRKC"></script>
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'G-X01K8ZYRKC', { 'anonymize_ip': false });
+}
+</script>
+
+
+<script type="application/javascript">
+  var _hmt = _hmt || [];
+  (function() {
+    if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+      return console.log("本地调试，未加载analytics代码")
+    }
+    var hm = document.createElement("script");
+    hm.src = "https://hm.baidu.com/hm.js?ce6f52295ca4633af0237491d4810283";
+    var s = document.getElementsByTagName("script")[0]; 
+    s.parentNode.insertBefore(hm, s);
+  })();
+</script>
+
+
+
+
+
+
+
+</body>
+
+</html>

@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Tags on guying</title>
+    <link>/tags/</link>
+    <description>Recent content in Tags on guying</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <managingEditor>2739218253@qq.com (孤影)</managingEditor>
+    <webMaster>2739218253@qq.com (孤影)</webMaster>
+    <copyright>© 2021 &lt;a href=&#34;https://sukoshi.xyz&#34;&gt;Sukoshi&lt;/a&gt;.</copyright>
+    <lastBuildDate>Wed, 23 Jun 2021 09:52:08 +0800</lastBuildDate><atom:link href="/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>hugo</title>
+      <link>/tags/hugo/</link>
+      <pubDate>Wed, 23 Jun 2021 09:52:08 +0800</pubDate>
+      <author>2739218253@qq.com (孤影)</author>
+      <guid>/tags/hugo/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>i18n</title>
+      <link>/tags/i18n/</link>
+      <pubDate>Tue, 22 Jun 2021 17:51:58 +0800</pubDate>
+      <author>2739218253@qq.com (孤影)</author>
+      <guid>/tags/i18n/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>config</title>
+      <link>/tags/config/</link>
+      <pubDate>Wed, 09 Jun 2021 11:32:04 +0800</pubDate>
+      <author>2739218253@qq.com (孤影)</author>
+      <guid>/tags/config/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>music</title>
+      <link>/tags/music/</link>
+      <pubDate>Wed, 26 May 2021 11:32:04 +0800</pubDate>
+      <author>2739218253@qq.com (孤影)</author>
+      <guid>/tags/music/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>video</title>
+      <link>/tags/video/</link>
+      <pubDate>Wed, 26 May 2021 11:32:04 +0800</pubDate>
+      <author>2739218253@qq.com (孤影)</author>
+      <guid>/tags/video/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>image</title>
+      <link>/tags/image/</link>
+      <pubDate>Tue, 25 May 2021 16:59:09 +0800</pubDate>
+      <author>2739218253@qq.com (孤影)</author>
+      <guid>/tags/image/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>math</title>
+      <link>/tags/math/</link>
+      <pubDate>Tue, 25 May 2021 16:59:09 +0800</pubDate>
+      <author>2739218253@qq.com (孤影)</author>
+      <guid>/tags/math/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>toc</title>
+      <link>/tags/toc/</link>
+      <pubDate>Tue, 25 May 2021 16:59:09 +0800</pubDate>
+      <author>2739218253@qq.com (孤影)</author>
+      <guid>/tags/toc/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>css</title>
+      <link>/tags/css/</link>
+      <pubDate>Mon, 11 Mar 2019 00:00:00 +0000</pubDate>
+      <author>2739218253@qq.com (孤影)</author>
+      <guid>/tags/css/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>html</title>
+      <link>/tags/html/</link>
+      <pubDate>Mon, 11 Mar 2019 00:00:00 +0000</pubDate>
+      <author>2739218253@qq.com (孤影)</author>
+      <guid>/tags/html/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>markdown</title>
+      <link>/tags/markdown/</link>
+      <pubDate>Mon, 11 Mar 2019 00:00:00 +0000</pubDate>
+      <author>2739218253@qq.com (孤影)</author>
+      <guid>/tags/markdown/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>privacy</title>
+      <link>/tags/privacy/</link>
+      <pubDate>Sun, 10 Mar 2019 00:00:00 +0000</pubDate>
+      <author>2739218253@qq.com (孤影)</author>
+      <guid>/tags/privacy/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>shortcodes</title>
+      <link>/tags/shortcodes/</link>
+      <pubDate>Sun, 10 Mar 2019 00:00:00 +0000</pubDate>
+      <author>2739218253@qq.com (孤影)</author>
+      <guid>/tags/shortcodes/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>text</title>
+      <link>/tags/text/</link>
+      <pubDate>Sat, 09 Mar 2019 00:00:00 +0000</pubDate>
+      <author>2739218253@qq.com (孤影)</author>
+      <guid>/tags/text/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>emoji</title>
+      <link>/tags/emoji/</link>
+      <pubDate>Tue, 05 Mar 2019 00:00:00 +0000</pubDate>
+      <author>2739218253@qq.com (孤影)</author>
+      <guid>/tags/emoji/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

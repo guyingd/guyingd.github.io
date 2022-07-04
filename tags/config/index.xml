@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>config on guying</title>
+    <link>/tags/config/</link>
+    <description>Recent content in config on guying</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <managingEditor>2739218253@qq.com (孤影)</managingEditor>
+    <webMaster>2739218253@qq.com (孤影)</webMaster>
+    <copyright>© 2021 &lt;a href=&#34;https://sukoshi.xyz&#34;&gt;Sukoshi&lt;/a&gt;.</copyright>
+    <lastBuildDate>Wed, 09 Jun 2021 11:32:04 +0800</lastBuildDate><atom:link href="/tags/config/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>config.toml配置</title>
+      <link>/posts/202106091132/</link>
+      <pubDate>Wed, 09 Jun 2021 11:32:04 +0800</pubDate>
+      <author>2739218253@qq.com (孤影)</author>
+      <guid>/posts/202106091132/</guid>
+      <description>config配置文件中配置可参考Hugo官方文档: Configure Hugo 这里主要补充kagome中所需要的一些配置项: kagome所需的配置项都在config</description>
+    </item>
+    
+  </channel>
+</rss>

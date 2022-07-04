@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>doc on guying</title>
+    <link>/categories/doc/</link>
+    <description>Recent content in doc on guying</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <managingEditor>2739218253@qq.com (孤影)</managingEditor>
+    <webMaster>2739218253@qq.com (孤影)</webMaster>
+    <copyright>© 2021 &lt;a href=&#34;https://sukoshi.xyz&#34;&gt;Sukoshi&lt;/a&gt;.</copyright>
+    <lastBuildDate>Wed, 23 Jun 2021 09:52:08 +0800</lastBuildDate><atom:link href="/categories/doc/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>如何丰富Banner信息</title>
+      <link>/posts/202106230952/</link>
+      <pubDate>Wed, 23 Jun 2021 09:52:08 +0800</pubDate>
+      <author>2739218253@qq.com (孤影)</author>
+      <guid>/posts/202106230952/</guid>
+      <description>在文章页里，在banner中会展示Front Matter中的如下字段: title 标题 date 发布时间 categories 分类 没有则不展示 tags 标签 没有则不展示 cover 封面(背景图) 没</description>
+    </item>
+    
+    <item>
+      <title>i18n多语言配置</title>
+      <link>/posts/202106221751/</link>
+      <pubDate>Tue, 22 Jun 2021 17:51:58 +0800</pubDate>
+      <author>2739218253@qq.com (孤影)</author>
+      <guid>/posts/202106221751/</guid>
+      <description>Hugo多语言配置相关官方文档：Multilingual Mode kagome默认只有较少的单词实现了多语言配置 (准不准我也不敢保证) 且只配置了简体</description>
+    </item>
+    
+    <item>
+      <title>Front Matter 相关参数说明</title>
+      <link>/posts/202106180929/</link>
+      <pubDate>Fri, 18 Jun 2021 09:29:58 +0800</pubDate>
+      <author>2739218253@qq.com (孤影)</author>
+      <guid>/posts/202106180929/</guid>
+      <description>Front Matter Front Matter一般放在文章的最顶部，Hugo支持三种书写格式， TOML使用+++来包裹内容 YAML使用---来包裹内容 JSON使用{和}</description>
+    </item>
+    
+    <item>
+      <title>config.toml配置</title>
+      <link>/posts/202106091132/</link>
+      <pubDate>Wed, 09 Jun 2021 11:32:04 +0800</pubDate>
+      <author>2739218253@qq.com (孤影)</author>
+      <guid>/posts/202106091132/</guid>
+      <description>config配置文件中配置可参考Hugo官方文档: Configure Hugo 这里主要补充kagome中所需要的一些配置项: kagome所需的配置项都在config</description>
+    </item>
+    
+    <item>
+      <title>播放音频与视频，shortcode使用说明</title>
+      <link>/posts/202105261132/</link>
+      <pubDate>Wed, 26 May 2021 11:32:04 +0800</pubDate>
+      <author>2739218253@qq.com (孤影)</author>
+      <guid>/posts/202105261132/</guid>
+      <description>Hugo ships with several Built-in Shortcodes for rich content, along with a Privacy Config and a set of Simple Shortcodes that enable static and no-JS versions of various social media embeds. Hugo默认支付播放YouTube，Vimeo等视频格式，所有支持的类型见: Hugo/templates/shortcodes</description>
+    </item>
+    
+    <item>
+      <title>插入公式，图片与Widget目录显示</title>
+      <link>/posts/202105251659/</link>
+      <pubDate>Tue, 25 May 2021 16:59:09 +0800</pubDate>
+      <author>2739218253@qq.com (孤影)</author>
+      <guid>/posts/202105251659/</guid>
+      <description>公式显示 如果需要显示公式，需要在Front Matter中添加math: md，详见: front-matter When $$a \ne 0$$, there are two solutions to $$ax^2 + bx + c = 0$$ and they are: $$x = {-b \pm \sqrt{b^2-4ac} \over 2a}$$ $$ x</description>
+    </item>
+    
+  </channel>
+</rss>

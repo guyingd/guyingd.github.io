@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>toc on guying</title>
+    <link>/tags/toc/</link>
+    <description>Recent content in toc on guying</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <managingEditor>2739218253@qq.com (孤影)</managingEditor>
+    <webMaster>2739218253@qq.com (孤影)</webMaster>
+    <copyright>© 2021 &lt;a href=&#34;https://sukoshi.xyz&#34;&gt;Sukoshi&lt;/a&gt;.</copyright>
+    <lastBuildDate>Tue, 25 May 2021 16:59:09 +0800</lastBuildDate><atom:link href="/tags/toc/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>插入公式，图片与Widget目录显示</title>
+      <link>/posts/202105251659/</link>
+      <pubDate>Tue, 25 May 2021 16:59:09 +0800</pubDate>
+      <author>2739218253@qq.com (孤影)</author>
+      <guid>/posts/202105251659/</guid>
+      <description>公式显示 如果需要显示公式，需要在Front Matter中添加math: md，详见: front-matter When $$a \ne 0$$, there are two solutions to $$ax^2 + bx + c = 0$$ and they are: $$x = {-b \pm \sqrt{b^2-4ac} \over 2a}$$ $$ x</description>
+    </item>
+    
+  </channel>
+</rss>
