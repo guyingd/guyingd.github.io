@@ -13,13 +13,11 @@
     
     
     
-    
-    
-    <meta name="keywords" content="hugo,theme,kikyo,kagome,个人博客,主题">
+    <meta name="keywords" content="unit test,hugo">
   
 
    
-    <meta name="description" content="Hugo主题Kagome演示站点">
+    <meta name="description" content="测试hugo主题kagome中插入公式，插入图片和TOC目录显示">
   
 
   <meta name="generator" content="Hugo 0.101.0" />
@@ -29,19 +27,19 @@
   
   
   
-  <title>如何丰富Banner信息 🌟 guying</title>
+  <title>插入公式，图片与Widget目录显示 🌟 guying</title>
 
-  <meta property="og:title" content="如何丰富Banner信息" />
-<meta property="og:description" content="在文章页里，在banner中会展示Front Matter中的如下字段: title 标题 date 发布时间 categories 分类 没有则不展示 tags 标签 没有则不展示 cover 封面(背景图) 没" />
+  <meta property="og:title" content="插入公式，图片与Widget目录显示" />
+<meta property="og:description" content="测试hugo主题kagome中插入公式，插入图片和TOC目录显示" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="/posts/202106230952/" /><meta property="article:section" content="posts" />
-<meta property="article:published_time" content="2021-06-23T09:52:08+08:00" />
-<meta property="article:modified_time" content="2021-06-23T09:52:08+08:00" />
+<meta property="og:url" content="/posts/202205251659/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-05-25T16:59:09+08:00" />
+<meta property="article:modified_time" content="2022-05-25T16:59:09+08:00" />
 
 
   <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="如何丰富Banner信息"/>
-<meta name="twitter:description" content="在文章页里，在banner中会展示Front Matter中的如下字段: title 标题 date 发布时间 categories 分类 没有则不展示 tags 标签 没有则不展示 cover 封面(背景图) 没"/>
+<meta name="twitter:title" content="插入公式，图片与Widget目录显示"/>
+<meta name="twitter:description" content="测试hugo主题kagome中插入公式，插入图片和TOC目录显示"/>
 
 
   
@@ -90,14 +88,14 @@
 
   <div class="card-cover">
     
-      <img src="https://pic3.zhimg.com/v2-d65f6051bea0a35b5abb3ae6a1a1564e_r.jpg" alt="https://pic3.zhimg.com/v2-d65f6051bea0a35b5abb3ae6a1a1564e_r.jpg" />
+      <img src="http://121.5.199.227:66/%e4%b8%9d.php?id=2@webp" alt="http://121.5.199.227:66/丝.php?id=2@webp" />
     
   </div>
 
   <div class="card-text">
-    <h1 class="card-text--title">如何丰富Banner信息</h1>
+    <h1 class="card-text--title">插入公式，图片与Widget目录显示</h1>
     
-      <p class="card-text--row">2021-06-23 09:52</p>
+      <p class="card-text--row">2022-05-25 16:59</p>
       
       
       
@@ -110,7 +108,9 @@
       
         <ul class="card-text--tag">
           
-            <li><a href="/tags/hugo/">hugo</a></li></ul>
+            <li><a href="/tags/toc/">toc</a></li>
+            <li><a href="/tags/math/">math</a></li>
+            <li><a href="/tags/image/">image</a></li></ul>
       
     
   </div>
@@ -120,99 +120,51 @@
 
         <div class="article-content">
           <div class="markdown-body content-padding-large soft-size--large soft-style--box">
-            <p>在文章页里，在banner中会展示<code>Front Matter</code>中的如下字段:</p>
-<ul>
-<li>
-<p><strong>title</strong> 标题</p>
-</li>
-<li>
-<p><strong>date</strong> 发布时间</p>
-</li>
-<li>
-<p><strong>categories</strong> 分类 没有则不展示</p>
-</li>
-<li>
-<p><strong>tags</strong> 标签 没有则不展示</p>
-</li>
-<li>
-<p><strong>cover</strong> 封面(背景图) 没有则不展示</p>
-</li>
-</ul>
-<p>在单页面里(如Link,About等)或<strong>其他着陆页</strong>在banner中会展示<code>Front Matter</code>中的如下字段:</p>
-<ul>
-<li>
-<p><strong>title</strong> 标题</p>
-</li>
-<li>
-<p><strong>description</strong> 页面描述 没有则不展示</p>
-</li>
-<li>
-<p><strong>cover</strong> 封面(背景图) 没有则不展示</p>
-</li>
-</ul>
-<p>文章页与单页面在hugo它们的<code>Kind</code>都是<code>page</code>!</p>
-<p>其他着陆页有：<code>section</code>，<code>taxonomy</code>，<code>term</code>等，这里参考Hugo官方文档中的表格信息:</p>
-<table>
-<thead>
-<tr>
-<th>Kind</th>
-<th>Description</th>
-<th>Example</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>home</td>
-<td>The landing page for the home page</td>
-<td>/index.html</td>
-</tr>
-<tr>
-<td>page</td>
-<td>The landing page for a given page</td>
-<td><code>my-post</code>page (<code>/posts/my-post/index.html</code>)</td>
-</tr>
-<tr>
-<td>section</td>
-<td>The landing page of a given section</td>
-<td><code>posts</code>section (<code>/posts/index.html</code>)</td>
-</tr>
-<tr>
-<td>taxonomy</td>
-<td>The landing page for a taxonomy</td>
-<td><code>tags</code>taxonomy (<code>/tags/index.html</code>)</td>
-</tr>
-<tr>
-<td>term</td>
-<td>The landing page for one taxonomy’s term</td>
-<td>term<code>awesome</code> in <code>tags</code> taxonomy (<code>/tags/awesome/index.html</code>)</td>
-</tr>
-</tbody>
-</table>
-<p>Hugo官方文档: <a href="https://gohugo.io/content-management/taxonomies/#default-taxonomies" target="_blank" rel="noopener">default-taxonomies</a></p>
-<hr>
-<p>丰富<code>section</code>，<code>taxonomy</code>，<code>term</code>展示信息</p>
-<h4 id="section">section</h4>
-<p>如我们有个<code>posts</code>这样一个<code>section</code>，在<code>content/posts/</code>新建一个<code>_index.md</code>添加如下信息即可:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-md" data-lang="md"><span style="display:flex;"><span>+++
-</span></span><span style="display:flex;"><span>title = &#34;POSTS&#34;
-</span></span><span style="display:flex;"><span>cover = &#34;https://qiniu.sukoshi.xyz/src/images/68686407_p0.jpg&#34;
-</span></span><span style="display:flex;"><span>description = &#34;记录生活点点点点点点点滴&#34;
-</span></span><span style="display:flex;"><span>+++
-</span></span></code></pre></div><h4 id="taxonomy">taxonomy</h4>
-<p>如我们有个<code>tags</code>这样一个<code>taxonomy</code>，在<code>content/tags/</code>新建一个<code>_index.md</code>添加如下信息即可:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-md" data-lang="md"><span style="display:flex;"><span>+++
-</span></span><span style="display:flex;"><span>title = &#34;聚合标签🏷️&#34;
-</span></span><span style="display:flex;"><span>cover = &#34;https://qiniu.sukoshi.xyz/src/images/68135789_p0.jpg&#34;
-</span></span><span style="display:flex;"><span>description = &#34;标签有点多哦～～～&#34;
-</span></span><span style="display:flex;"><span>+++
-</span></span></code></pre></div><h4 id="term">term</h4>
-<p>如我们有个<code>摄影</code>这样的一个<code>term</code>，它属于<code>tags</code>这个<code>taxonomy</code>下，则我们在<code>content/tags/摄影/</code>下新建一个<code>_index.md</code>添加如下信息即可:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-md" data-lang="md"><span style="display:flex;"><span>+++
-</span></span><span style="display:flex;"><span>title = &#34;记录美好生活&#34;
-</span></span><span style="display:flex;"><span>cover = &#34;https://qiniu.sukoshi.xyz/src/images/68135789_p0.jpg&#34;
-</span></span><span style="display:flex;"><span>description = &#34;玩器材的永远不懂摄影 -- 冠希哥&#34;
-</span></span><span style="display:flex;"><span>+++
-</span></span></code></pre></div>
+            <h2 id="公式显示">公式显示</h2>
+<p>如果需要显示公式，需要在<em>Front Matter</em>中添加<code>math: md</code>，详见: <a href="https://gohugo.io/content-management/front-matter/" target="_blank" rel="noopener">front-matter</a></p>
+<p>When $$a \ne 0$$, there are two solutions to $$ax^2 + bx + c = 0$$ and they are:</p>
+<p>$$x = {-b \pm \sqrt{b^2-4ac} \over 2a}$$</p>
+<p>$$
+x \href{why-equal.html}{=} y^2 + 1
+$$</p>
+<h2 id="带图片说明的image">带图片说明的IMAGE</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-md" data-lang="md"><span style="display:flex;"><span>![<span style="color:#f92672">测试图片</span>](<span style="color:#a6e22e">https://qiniu.sukoshi.xyz/attach/2019/06/BA98379B-EA0F-48DB-B6E1-D475D6BC4AB2.jpg@webp &#34;中和街道&#34;</span>)
+</span></span></code></pre></div><p>
+  <figure class="figure-image">
+    <img src="https://qiniu.sukoshi.xyz/attach/2019/06/BA98379B-EA0F-48DB-B6E1-D475D6BC4AB2.jpg@webp" title="中和街道" alt="测试图片" loading="lazy" />
+    <figcaption>中和街道</figcaption>
+  </figure>
+</p>
+<h2 id="不带图片说明的image">不带图片说明的IMAGE</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-md" data-lang="md"><span style="display:flex;"><span>![<span style="color:#f92672">测试图片</span>](<span style="color:#a6e22e">https://qiniu.sukoshi.xyz/attach/2019/06/BA98379B-EA0F-48DB-B6E1-D475D6BC4AB2.jpg@webp@webp</span>)
+</span></span></code></pre></div><p>
+  <figure class="figure-image">
+    <img src="http://121.5.199.227:66/%e4%b8%9d.php?id=1@webp" title="黑丝" alt="黑丝" loading="lazy" />
+    <figcaption>黑丝</figcaption>
+  </figure>
+</p>
+<p>
+  <figure class="figure-image">
+    <img src="http://121.5.199.227:66/%e4%b8%9d.php?id=2@webp" title="白丝" alt="白丝" loading="lazy" />
+    <figcaption>白丝</figcaption>
+  </figure>
+</p>
+<h2 id="toc-功能测试">TOC 功能测试</h2>
+<p>如需要显示 <em>TOC</em> Widget，需要在 <em>Front Matter</em> 中添加<code>toc: true</code>，默认设置了以后就会展示.</p>
+<p>如需要根据长度显示，需要在 <em>config.toml</em> 中的 <em>params.toc_show_len</em> 设置具体值，如300，这样以后只有开启了toc并且文章字数超过300才会显示TOC目录.</p>
+<p><strong>需要注意的是字数获取用的是<code>WordCount</code>这个属性，如果你的内容是中，日，韩等，需要在<code>config.toml</code>中配置<code>hasCJKLanguage = true</code></strong></p>
+<p>默认只显示h2-h3的标签，如需要调整，详情查看：<a href="https://gohugo.io/getting-started/configuration-markup#table-of-contents" target="_blank" rel="noopener">Hugo文档 ｜ Configure Markup</a></p>
+<h2 id="introduction">Introduction</h2>
+<p>One morning, when Gregor Samsa woke from troubled dreams, he found himself transformed in his bed into a horrible vermin.</p>
+<h2 id="my-heading">My Heading</h2>
+<p>He lay on his armour-like back, and if he lifted his head a little he could see his brown belly, slightly domed and divided by arches into stiff sections. The bedding was hardly able to cover it and seemed ready to slide off any moment.</p>
+<h3 id="my-subheading">My Subheading</h3>
+<p>A collection of textile samples lay spread out on the table - Samsa was a travelling salesman - and above it there hung a picture that he had recently cut out of an illustrated magazine and housed in a nice, gilded frame. It showed a lady fitted out with a fur hat and fur boa who sat upright, raising a heavy fur muff that covered the whole of her lower arm towards the viewer. Gregor then turned to look out the window at the dull weather. Drops</p>
+<h4 id="my-subsubheading">My Subsubheading</h4>
+<p>hhh, self is My Heading go to My Subheading, my is My Subsubheading.</p>
+<h2 id="my-bodying">My Bodying</h2>
+<p>He lay on his bodying display, and if it he could see his brown, what good title and housed in a nice.</p>
+
           </div>
         </div>
                  
@@ -226,20 +178,12 @@
 
   <div class="article-paging">
     
-      <section class="post-paging--item card-container content-padding-primary soft-size--primary soft-style--box">
-  <div class="card-cover" background-image-lazy data-img="http://121.5.199.227:66/丝.php?id=2@webp"></div>
-  <div class="card-text">
-    <a href="/posts/202205251659/"><h4 class="card-text--title text-ellipsis">插入公式，图片与Widget目录显示</h4></a>
-    <p class="card-text--row">2022-05-25 16:59</p>
-  </div>
-</section>
-    
     
       <section class="post-paging--item card-container content-padding-primary soft-size--primary soft-style--box">
-  <div class="card-cover" background-image-lazy data-img="https://pic4.zhimg.com/80/v2-3046478ecd250cd0c1affc6102e819fb_1440w.jpg"></div>
+  <div class="card-cover" background-image-lazy data-img="https://pic3.zhimg.com/v2-d65f6051bea0a35b5abb3ae6a1a1564e_r.jpg"></div>
   <div class="card-text">
-    <a href="/posts/202106221751/"><h4 class="card-text--title text-ellipsis">i18n多语言配置</h4></a>
-    <p class="card-text--row">2021-06-22 17:51</p>
+    <a href="/posts/202106230952/"><h4 class="card-text--title text-ellipsis">如何丰富Banner信息</h4></a>
+    <p class="card-text--row">2021-06-23 09:52</p>
   </div>
 </section>
     
@@ -264,6 +208,31 @@
 
     
 
+<section class="aside-widget widget-toc content-padding-large soft-size--large soft-style--box">
+  <h2 class="widget-header">
+    <div class="title">
+      <span></span>
+    </div>
+  </h2>
+  <div class="widget-body">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#公式显示">公式显示</a></li>
+    <li><a href="#带图片说明的image">带图片说明的IMAGE</a></li>
+    <li><a href="#不带图片说明的image">不带图片说明的IMAGE</a></li>
+    <li><a href="#toc-功能测试">TOC 功能测试</a></li>
+    <li><a href="#introduction">Introduction</a></li>
+    <li><a href="#my-heading">My Heading</a>
+      <ul>
+        <li><a href="#my-subheading">My Subheading</a></li>
+      </ul>
+    </li>
+    <li><a href="#my-bodying">My Bodying</a></li>
+  </ul>
+</nav>
+  </div>
+</section>
+
 
     
 
@@ -282,7 +251,7 @@
     <ul class="post-list">
       
       
-        <li class="post-item"><a href="/posts/202205251659/">插入公式，图片与Widget目录显示</a></li>
+        <li class="post-item"><a href="/posts/202106230952/">如何丰富Banner信息</a></li>
       
         <li class="post-item"><a href="/posts/202106221751/">i18n多语言配置</a></li>
       
@@ -463,6 +432,8 @@ if (!doNotTrack) {
   })();
 </script>
 
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
 
 

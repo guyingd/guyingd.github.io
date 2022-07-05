@@ -9,7 +9,16 @@
     <managingEditor>2739218253@qq.com (孤影)</managingEditor>
     <webMaster>2739218253@qq.com (孤影)</webMaster>
     <copyright>© 2021 &lt;a href=&#34;https://sukoshi.xyz&#34;&gt;Sukoshi&lt;/a&gt;.</copyright>
-    <lastBuildDate>Wed, 23 Jun 2021 09:52:08 +0800</lastBuildDate><atom:link href="/categories/doc/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 25 May 2022 16:59:09 +0800</lastBuildDate><atom:link href="/categories/doc/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>插入公式，图片与Widget目录显示</title>
+      <link>/posts/202205251659/</link>
+      <pubDate>Wed, 25 May 2022 16:59:09 +0800</pubDate>
+      <author>2739218253@qq.com (孤影)</author>
+      <guid>/posts/202205251659/</guid>
+      <description>公式显示 如果需要显示公式，需要在Front Matter中添加math: md，详见: front-matter When $$a \ne 0$$, there are two solutions to $$ax^2 + bx + c = 0$$ and they are: $$x = {-b \pm \sqrt{b^2-4ac} \over 2a}$$ $$ x</description>
+    </item>
+    
     <item>
       <title>如何丰富Banner信息</title>
       <link>/posts/202106230952/</link>
@@ -53,15 +62,6 @@
       <author>2739218253@qq.com (孤影)</author>
       <guid>/posts/202105261132/</guid>
       <description>Hugo ships with several Built-in Shortcodes for rich content, along with a Privacy Config and a set of Simple Shortcodes that enable static and no-JS versions of various social media embeds. Hugo默认支付播放YouTube，Vimeo等视频格式，所有支持的类型见: Hugo/templates/shortcodes</description>
-    </item>
-    
-    <item>
-      <title>插入公式，图片与Widget目录显示</title>
-      <link>/posts/202105251659/</link>
-      <pubDate>Tue, 25 May 2021 16:59:09 +0800</pubDate>
-      <author>2739218253@qq.com (孤影)</author>
-      <guid>/posts/202105251659/</guid>
-      <description>公式显示 如果需要显示公式，需要在Front Matter中添加math: md，详见: front-matter When $$a \ne 0$$, there are two solutions to $$ax^2 + bx + c = 0$$ and they are: $$x = {-b \pm \sqrt{b^2-4ac} \over 2a}$$ $$ x</description>
     </item>
     
   </channel>

@@ -9,7 +9,34 @@
     <managingEditor>2739218253@qq.com (孤影)</managingEditor>
     <webMaster>2739218253@qq.com (孤影)</webMaster>
     <copyright>© 2021 &lt;a href=&#34;https://sukoshi.xyz&#34;&gt;Sukoshi&lt;/a&gt;.</copyright>
-    <lastBuildDate>Wed, 23 Jun 2021 09:52:08 +0800</lastBuildDate><atom:link href="/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 25 May 2022 16:59:09 +0800</lastBuildDate><atom:link href="/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>image</title>
+      <link>/tags/image/</link>
+      <pubDate>Wed, 25 May 2022 16:59:09 +0800</pubDate>
+      <author>2739218253@qq.com (孤影)</author>
+      <guid>/tags/image/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>math</title>
+      <link>/tags/math/</link>
+      <pubDate>Wed, 25 May 2022 16:59:09 +0800</pubDate>
+      <author>2739218253@qq.com (孤影)</author>
+      <guid>/tags/math/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>toc</title>
+      <link>/tags/toc/</link>
+      <pubDate>Wed, 25 May 2022 16:59:09 +0800</pubDate>
+      <author>2739218253@qq.com (孤影)</author>
+      <guid>/tags/toc/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>hugo</title>
       <link>/tags/hugo/</link>
@@ -52,33 +79,6 @@
       <pubDate>Wed, 26 May 2021 11:32:04 +0800</pubDate>
       <author>2739218253@qq.com (孤影)</author>
       <guid>/tags/video/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>image</title>
-      <link>/tags/image/</link>
-      <pubDate>Tue, 25 May 2021 16:59:09 +0800</pubDate>
-      <author>2739218253@qq.com (孤影)</author>
-      <guid>/tags/image/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>math</title>
-      <link>/tags/math/</link>
-      <pubDate>Tue, 25 May 2021 16:59:09 +0800</pubDate>
-      <author>2739218253@qq.com (孤影)</author>
-      <guid>/tags/math/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>toc</title>
-      <link>/tags/toc/</link>
-      <pubDate>Tue, 25 May 2021 16:59:09 +0800</pubDate>
-      <author>2739218253@qq.com (孤影)</author>
-      <guid>/tags/toc/</guid>
       <description></description>
     </item>
     

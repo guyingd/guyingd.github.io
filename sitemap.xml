@@ -2,25 +2,37 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>/categories/</loc>
+    <lastmod>2022-05-25T16:59:09+08:00</lastmod>
+  </url><url>
+    <loc>/categories/doc/</loc>
+    <lastmod>2022-05-25T16:59:09+08:00</lastmod>
+  </url><url>
+    <loc>/</loc>
+    <lastmod>2022-05-25T16:59:09+08:00</lastmod>
+  </url><url>
+    <loc>/tags/image/</loc>
+    <lastmod>2022-05-25T16:59:09+08:00</lastmod>
+  </url><url>
+    <loc>/posts/</loc>
+    <lastmod>2022-05-25T16:59:09+08:00</lastmod>
+  </url><url>
+    <loc>/tags/math/</loc>
+    <lastmod>2022-05-25T16:59:09+08:00</lastmod>
+  </url><url>
+    <loc>/tags/</loc>
+    <lastmod>2022-05-25T16:59:09+08:00</lastmod>
+  </url><url>
+    <loc>/tags/toc/</loc>
+    <lastmod>2022-05-25T16:59:09+08:00</lastmod>
+  </url><url>
+    <loc>/posts/202205251659/</loc>
+    <lastmod>2022-05-25T16:59:09+08:00</lastmod>
+  </url><url>
     <loc>/link/</loc>
     <lastmod>2021-07-14T09:43:04+08:00</lastmod>
   </url><url>
-    <loc>/categories/</loc>
-    <lastmod>2021-06-23T09:52:08+08:00</lastmod>
-  </url><url>
-    <loc>/categories/doc/</loc>
-    <lastmod>2021-06-23T09:52:08+08:00</lastmod>
-  </url><url>
-    <loc>/</loc>
-    <lastmod>2021-06-23T09:52:08+08:00</lastmod>
-  </url><url>
     <loc>/tags/hugo/</loc>
-    <lastmod>2021-06-23T09:52:08+08:00</lastmod>
-  </url><url>
-    <loc>/posts/</loc>
-    <lastmod>2021-06-23T09:52:08+08:00</lastmod>
-  </url><url>
-    <loc>/tags/</loc>
     <lastmod>2021-06-23T09:52:08+08:00</lastmod>
   </url><url>
     <loc>/posts/202106230952/</loc>
@@ -52,18 +64,6 @@
   </url><url>
     <loc>/posts/202105261132/</loc>
     <lastmod>2021-05-26T11:32:04+08:00</lastmod>
-  </url><url>
-    <loc>/tags/image/</loc>
-    <lastmod>2021-05-25T16:59:09+08:00</lastmod>
-  </url><url>
-    <loc>/tags/math/</loc>
-    <lastmod>2021-05-25T16:59:09+08:00</lastmod>
-  </url><url>
-    <loc>/tags/toc/</loc>
-    <lastmod>2021-05-25T16:59:09+08:00</lastmod>
-  </url><url>
-    <loc>/posts/202105251659/</loc>
-    <lastmod>2021-05-25T16:59:09+08:00</lastmod>
   </url><url>
     <loc>/tags/css/</loc>
     <lastmod>2019-03-11T00:00:00+00:00</lastmod>
