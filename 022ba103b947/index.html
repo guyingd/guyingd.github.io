@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang='zh-CN'>
+
+<head>
+  <meta name="generator" content="Hexo 6.3.0">
+  <meta name="hexo-theme" content="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.16.2">
+  <meta charset="utf-8">
+  
+
+  <meta http-equiv='x-dns-prefetch-control' content='on' />
+  <link rel='dns-prefetch' href='https://fastly.jsdelivr.net'>
+  <link rel="preconnect" href="https://fastly.jsdelivr.net" crossorigin>
+  <link rel='dns-prefetch' href='//unpkg.com'>
+
+  <meta name="renderer" content="webkit">
+  <meta name="force-rendering" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta name="HandheldFriendly" content="True" >
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="theme-color" content="#f8f8f8">
+  
+  <title>基于深度学习框架Tensorflow的成绩自动查询 - GuYing</title>
+
+  
+    <meta name="description" content="程序自动化操作，简化成绩查询过程，节省时间，提高效率。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="基于深度学习框架Tensorflow的成绩自动查询">
+<meta property="og:url" content="https://guyinga.top/022ba103b947/">
+<meta property="og:site_name" content="GuYing">
+<meta property="og:description" content="程序自动化操作，简化成绩查询过程，节省时间，提高效率。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://s2.ax1x.com/2020/01/31/18SxbR.png">
+<meta property="article:published_time" content="2020-11-24T11:02:37.000Z">
+<meta property="article:modified_time" content="2022-11-14T07:34:57.000Z">
+<meta property="article:author" content="guyingd">
+<meta property="article:tag" content="tensorflow">
+<meta property="article:tag" content="python">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s2.ax1x.com/2020/01/31/18SxbR.png">
+  
+  
+
+  <!-- feed -->
+  
+    <link rel="alternate" href="/atom.xml" title="GuYing" type="application/atom+xml">
+  
+
+  
+    
+<link rel="stylesheet" href="/css/main.css">
+
+  
+
+  
+
+  
+
+  
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.css" integrity="sha384-Xi8rHCmBmhbuyyhbI88391ZKP2dmfnOl4rT9ZfRI7mLTdk1wblIUnrIq35nqwEvC" crossorigin="anonymous">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.js" integrity="sha384-X/XCfMm41VSsqRNQgDerQczD69XqmjOOOwYQvr/uuC+j4OPoNhVgjdGFwhvN02Ja" crossorigin="anonymous"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/auto-render.min.js" integrity="sha384-+XBljXPPiv+OzfbB3cVmLHf4hdUFHlWNZN5spNQ7rmHTXpd7WvJum6fIACpNNfIR" crossorigin="anonymous"onload="renderMathInElement(document.body);"></script>
+  
+
+
+  
+    
+      <link rel="stylesheet" href="https://fastly.jsdelivr.net/npm/lxgw-wenkai-screen-webfont@1.1.0/style.css" />
+    
+      <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon/apple-touch-icon.png">
+    
+      <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon/favicon-32x32.png">
+    
+      <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon/favicon-16x16.png">
+    
+      <link rel="manifest" href="/images/favicon/site.webmanifest">
+    
+      <link rel="mask-icon" href="/images/logo.svg" color="#5bbad5">
+    
+      <link rel="shortcut icon" href="/images/favicon/favicon.ico">
+    
+      <meta name="msapplication-TileColor" content="#2d89ef">
+    
+      <meta name="msapplication-config" content="#2d89ef">
+    
+      <meta name="theme-color" content="#ffffff">
+    
+  
+</head>
+
+<body>
+  
+
+
+
+
+  <div class='l_body' id='start'>
+    <aside class='l_left' layout='post'>
+    
+
+  
+
+<header class="header"><div class="logo-wrap"><a class="avatar" href="/about/"><div class="bg" style="opacity:0;background-image:url(https://fastly.jsdelivr.net/gh/cdn-x/placeholder@1.0.2/avatar/round/rainbow64@3x.webp);"></div><img no-lazy class="avatar" src="/images/网站图片/logo.svg" onerror="javascript:this.classList.add('error');this.src='/images/网站图片/default_image.svg';"></a><a class="title" href="/"><div class="main" ff="title">GuYing</div><div class="sub normal cap">「Stay Hungry.Stay Foolish.」</div><div class="sub hover cap" style="opacity:0">求知若饥，虚心若愚</div></a></div>
+
+<nav class="menu dis-select"><a class="nav-item active" href="/">博客</a><a class="nav-item" href="/wiki/">项目</a><a class="nav-item" href="/friends/">友链</a><a class="nav-item" href="/about/">关于</a></nav>
+</header>
+
+
+<div class="widgets">
+
+<widget class="widget-wrapper toc single" id="toc"><div class="widget-header cap dis-select"><span class="name">基于深度学习框架Tensorflow的成绩自动查询</span></div><div class="widget-body fs14"><div class="doc-tree active"><ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%A1%B9%E7%9B%AE%E4%BB%8B%E7%BB%8D"><span class="toc-text"> 项目介绍</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E9%A1%B9%E7%9B%AE%E6%89%80%E9%9C%80%E7%9F%A5%E8%AF%86"><span class="toc-text"> 项目所需知识</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%A1%B9%E7%9B%AE%E4%BC%98%E7%82%B9"><span class="toc-text"> 项目优点</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%A1%B9%E7%9B%AE%E6%89%80%E9%9C%80%E5%BA%93"><span class="toc-text"> 项目所需库</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%A1%B9%E7%9B%AE%E9%9A%BE%E7%82%B9"><span class="toc-text"> 项目难点</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%A4%9A%E7%94%A8%E6%88%B7%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95"><span class="toc-text"> 多用户使用方法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%BF%90%E8%A1%8C%E7%BB%93%E6%9E%9C"><span class="toc-text"> 运行结果</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#python%E6%BA%90%E7%A0%81"><span class="toc-text"> python源码</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#todo"><span class="toc-text"> TODO：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99"><span class="toc-text"> 参考资料</span></a></li></ol></div></div></widget>
+
+
+
+
+
+
+</div>
+<footer class="footer dis-select"><div class="social-wrap"><a class="social" href="/atom.xml" rel="noopener noreferrer"><img src="/images/网站图片/rss.svg"/></a><a class="social" href="mailto:2739218253@qq.com" rel="noopener noreferrer"><img src="/images/网站图片/gmail.svg"/></a><a class="social" href="https://github.com/guyingd" target="_blank" rel="external nofollow noopener noreferrer"><img src="/images/网站图片/github.svg"/></a><a class="social" href="https://guyinga.top" target="_blank" rel="external nofollow noopener noreferrer"><img src="/images/网站图片/volantis.svg"/></a><a class="social" href="/" rel="noopener noreferrer"><img src="/images/网站图片/OneDrive.svg"/></a></div></footer>
+
+    </aside>
+    <div class='l_main'>
+      
+
+      
+
+
+<div class="bread-nav fs12"><div id="breadcrumb"><a class="cap breadcrumb" href="/">主页</a><span class="sep"></span><a class="cap breadcrumb" href="/">文章</a><span class="sep"></span><a class="cap breadcrumb-link" href="/categories/%E6%8A%98%E8%85%BE/">折腾</a></div><div id="post-meta">发布于&nbsp;<time datetime="2020-11-24T11:02:37.000Z">2020-11-24</time></div></div>
+
+<article class='md-text content post reveal'>
+<h1 class="article-title"><span>基于深度学习框架Tensorflow的成绩自动查询</span></h1>
+<blockquote>
+<p>项目地址(包含数据集)：<a target="_blank" rel="noopener" href="https://github.com/feelheart7/Python">https://github.com/feelheart7/Python</a><br />
+项目地址(包含数据集，精简版，由于学校网页失效，精简只有深度学习核心部分)：<a target="_blank" rel="noopener" href="https://github.com/feelheart7/tensorflow">https://github.com/feelheart7/tensorflow</a></p>
+</blockquote>
+<h4 id="项目介绍"><a class="markdownIt-Anchor" href="#项目介绍"></a> 项目介绍</h4>
+<p>当考试结束后，有很多同学想及时知道自己的成绩，由于学校成绩在官网最新更新，其他平台查成绩有很大的延迟，所以迫不及待的同学需要去学校官网的教务处查询，过程操作不是很方便，每次凭运气查成绩。于是通过程序自动化操作，简化成绩查询过程，节省时间，提高效率。</p>
+<h5 id="项目所需知识"><a class="markdownIt-Anchor" href="#项目所需知识"></a> 项目所需知识</h5>
+<ul>
+<li>图像数值处理</li>
+<li>深度学习</li>
+<li>tensorflow</li>
+<li>python3.6</li>
+<li>爬虫</li>
+</ul>
+<h4 id="项目优点"><a class="markdownIt-Anchor" href="#项目优点"></a> 项目优点</h4>
+<ul>
+<li>第一次查询全部成绩</li>
+<li>最新成绩通过邮箱通知，最新成绩显示在邮箱标题</li>
+<li>配置简单只需填写 ，学号、密码、和接受通知的邮箱</li>
+</ul>
+<h4 id="项目所需库"><a class="markdownIt-Anchor" href="#项目所需库"></a> 项目所需库</h4>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># 操作图片模块</span><br><span class="line">from PIL import Image</span><br><span class="line"># 第三方OCR调用（识别率不高）</span><br><span class="line">import pytesseract</span><br><span class="line"># 范围随机模块</span><br><span class="line">import random</span><br><span class="line"># 操作系统模块</span><br><span class="line">import os</span><br><span class="line"># 矩阵计算与tensorflow（深度学习框架）</span><br><span class="line">import numpy as np</span><br><span class="line">import tensorflow as tf</span><br><span class="line"># 爬虫模拟网页请求模块</span><br><span class="line">import requests</span><br><span class="line"># 调用系统浏览器</span><br><span class="line">import webbrowser</span><br><span class="line"># 爬取html指定内容</span><br><span class="line">from bs4 import BeautifulSoup</span><br><span class="line"># 正则模块</span><br><span class="line">import re</span><br><span class="line"># smtp邮箱</span><br><span class="line">import smtplib</span><br><span class="line">from email.mime.text import MIMEText</span><br><span class="line">from email.utils import formataddr</span><br><span class="line"># 时间模块，用于延迟</span><br><span class="line">import time</span><br><span class="line"># 下载图片模块</span><br><span class="line">from typing import Any</span><br><span class="line">from urllib.request import urlretrieve</span><br><span class="line"># TF_CPP_MIN_LOG_LEVEL默认值为 0 (显示所有logs)</span><br><span class="line"># 设置为 1 隐藏 INFO logs, 2 额外隐藏WARNING logs</span><br><span class="line"># 设置为3所有 ERROR logs也不显示</span><br><span class="line">os.environ[&#x27;TF_CPP_MIN_LOG_LEVEL&#x27;] = &#x27;2&#x27;</span><br></pre></td></tr></table></figure>
+<h4 id="项目难点"><a class="markdownIt-Anchor" href="#项目难点"></a> 项目难点</h4>
+<p>通过深度神经网络的验证码识别，目前我的验证码的识别率为97%，3万图片经过深度神经网络的训练，使用的是Google的神经网络框架tensorflow，如果还想提高识别率也是可以的，可以增加数据集，降低keep_prob的值（拟合度），达到99.9%是没有问题的。</p>
+<blockquote>
+<p>3万张的数据集并不是我手动码的，而是通过最开始我自己人工识别了1000张和我的好朋友刘雪峰200张作为最初数据集，开始训练的识别率只有20%左右，然后写了个函数将识别正确验证码储存，再进行训练，从而增大数据集和提高数据集（当识别率已经很高的时候，错误的图片再进行人工识别在训练可进一步提高识别率）。</p>
+</blockquote>
+<h4 id="多用户使用方法"><a class="markdownIt-Anchor" href="#多用户使用方法"></a> 多用户使用方法</h4>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">info = [&#123;</span><br><span class="line">        &#x27;account&#x27;: &#x27;******,</span><br><span class="line">        &#x27;password&#x27;: &#x27;******&#x27;,</span><br><span class="line">        &#x27;email&#x27;: &#x27;*****@qq.com&#x27;</span><br><span class="line">        &#125;,</span><br><span class="line">        &#123;</span><br><span class="line">        &#x27;account&#x27;: &#x27;******</span><br><span class="line">        &#x27;password&#x27;: &#x27;***&#x27;,</span><br><span class="line">        &#x27;email&#x27;: &#x27;*****@qq.com&#x27;</span><br><span class="line">        &#125;]</span><br></pre></td></tr></table></figure>
+<h4 id="运行结果"><a class="markdownIt-Anchor" href="#运行结果"></a> 运行结果</h4>
+<p><img src="https://s2.ax1x.com/2020/01/31/18SxbR.png" alt="运行结果" /></p>
+<h4 id="python源码"><a class="markdownIt-Anchor" href="#python源码"></a> python源码</h4>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># coding=utf-8</span><br><span class="line"># 操作图片模块</span><br><span class="line">from PIL import Image</span><br><span class="line"># 第三方OCR调用（识别率不高）</span><br><span class="line">import pytesseract</span><br><span class="line"># 范围随机模块</span><br><span class="line">import random</span><br><span class="line"># 操作系统模块</span><br><span class="line">import os</span><br><span class="line"># 矩阵计算与tensorflow（深度学习框架）</span><br><span class="line">import numpy as np</span><br><span class="line">import tensorflow as tf</span><br><span class="line"># 爬虫模拟网页请求模块</span><br><span class="line">import requests</span><br><span class="line"># 调用系统浏览器</span><br><span class="line">import webbrowser</span><br><span class="line"># 爬取html指定内容</span><br><span class="line">from bs4 import BeautifulSoup</span><br><span class="line"># 正则模块</span><br><span class="line">import re</span><br><span class="line"># smtp邮箱</span><br><span class="line">import smtplib</span><br><span class="line">from email.mime.text import MIMEText</span><br><span class="line">from email.utils import formataddr</span><br><span class="line"># 时间模块，用于延迟</span><br><span class="line">import time</span><br><span class="line"># 下载图片模块</span><br><span class="line">from typing import Any</span><br><span class="line">from urllib.request import urlretrieve</span><br><span class="line"># TF_CPP_MIN_LOG_LEVEL默认值为 0 (显示所有logs)</span><br><span class="line"># 设置为 1 隐藏 INFO logs, 2 额外隐藏WARNING logs</span><br><span class="line"># 设置为3所有 ERROR logs也不显示</span><br><span class="line">os.environ[&#x27;TF_CPP_MIN_LOG_LEVEL&#x27;] = &#x27;2&#x27;</span><br><span class="line"></span><br><span class="line"># 全局变量</span><br><span class="line">IMAGE_HEIGHT = 22  # 验证码图片高度</span><br><span class="line">IMAGE_WIDTH = 68   # 验证码图片宽度</span><br><span class="line">MAX_CAPTCHA = 4    # 验证码的位数</span><br><span class="line">CHAR_SET_LEN = 36  # 验证码的字符有多少种</span><br><span class="line"># 验证码图片网址</span><br><span class="line">IMAGE_URL = &quot;http://jwfw1.sdjzu.edu.cn/ssfw/jwcaptcha.do&quot;</span><br><span class="line"># 下载验证码图片的数量</span><br><span class="line">VERIFICATION_CODE_NUMBER = 10</span><br><span class="line"># 验证码文件夹与文件绝对存储路径</span><br><span class="line">VERIFICATION_CODE_PATH1 = os.path.dirname(__file__) + &#x27;/verification_code_images/&#x27;</span><br><span class="line">VERIFICATION_CODE_PATH2 = os.path.dirname(__file__) + &#x27;/verification_code_images/&#123;name&#125;.png&#x27;</span><br><span class="line"># 训练数据集绝对存储路径</span><br><span class="line">VERIFICATION_CODE_TRAINING_PATH = os.path.dirname(__file__) + &#x27;/verification_code_training_images/&#x27;</span><br><span class="line"># placeholder 是 Tensorflow 中的占位符，暂时储存变量 X Y ,keep_prob是dropout层保留概率</span><br><span class="line">X = tf.placeholder(tf.float32, [None, IMAGE_HEIGHT*IMAGE_WIDTH])</span><br><span class="line">Y = tf.placeholder(tf.float32, [None, MAX_CAPTCHA*CHAR_SET_LEN])</span><br><span class="line">keep_prob = tf.placeholder(tf.float32)</span><br><span class="line"># 邮箱信息</span><br><span class="line">SENDER = &#x27;********&#x27;</span><br><span class="line">PASSWORD = &#x27;********&#x27;</span><br><span class="line"># 用户信息</span><br><span class="line">info = [&#123;</span><br><span class="line">        &#x27;account&#x27;: &#x27;********&#x27;,</span><br><span class="line">        &#x27;password&#x27;: &#x27;********&#x27;,</span><br><span class="line">        &#x27;email&#x27;: &#x27;********&#x27;</span><br><span class="line">        &#125;,</span><br><span class="line">        &#123;</span><br><span class="line">        &#x27;account&#x27;: &#x27;********&#x27;,</span><br><span class="line">        &#x27;password&#x27;: &#x27;********&#x27;,</span><br><span class="line">        &#x27;email&#x27;: &#x27;********&#x27;</span><br><span class="line">        &#125;]</span><br><span class="line"># String1为原始成绩,String2为最新成绩。创建方式为这样append防止默认copy（以免浅拷贝）</span><br><span class="line">String1 = [[] for copy in range(len(info))]</span><br><span class="line">String2 = [[] for copy in range(len(info))]</span><br><span class="line"># 训练集所有图片list与</span><br><span class="line">all_images = os.listdir(VERIFICATION_CODE_TRAINING_PATH)</span><br><span class="line">all_images_size = len(all_images)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># 下载验证码图片安装序号存储图片</span><br><span class="line">def download_verification_code():</span><br><span class="line">    # 创建文件夹如果没有</span><br><span class="line">    os.makedirs(VERIFICATION_CODE_PATH1, exist_ok=True)</span><br><span class="line">    for i in range(0, VERIFICATION_CODE_NUMBER):</span><br><span class="line">        urlretrieve(IMAGE_URL, VERIFICATION_CODE_PATH2.format(name=i))</span><br><span class="line">    print(&quot;成功下载%s张图片！&quot; % VERIFICATION_CODE_NUMBER)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># 调用pytesseract整体识别验证码(识别率低)</span><br><span class="line">def pytesseract_verification_code():</span><br><span class="line">    for i in range(0, VERIFICATION_CODE_NUMBER):</span><br><span class="line">        img = Image.open(VERIFICATION_CODE_PATH2.format(name=i))</span><br><span class="line">        char = pytesseract.image_to_string(img, config=&#x27;--psm 8&#x27;)</span><br><span class="line">        # psm 各个值的说明</span><br><span class="line">        # 0：定向脚本监测（OSD）</span><br><span class="line">        # 1： 使用OSD自动分页</span><br><span class="line">        # 2 ：自动分页，但是不使用OSD或OCR（Optical Character Recognition，光学字符识别）</span><br><span class="line">        # 3 ：全自动分页，但是没有使用OSD（默认）</span><br><span class="line">        # 4 ：假设可变大小的一个文本列。</span><br><span class="line">        # 5 ：假设垂直对齐文本的单个统一块。</span><br><span class="line">        # 6 ：假设一个统一的文本块。</span><br><span class="line">        # 7 ：将图像视为单个文本行。</span><br><span class="line">        # 8 ：将图像视为单个词。</span><br><span class="line">        # 9 ：将图像视为圆中的单个词。</span><br><span class="line">        # 10 ：将图像视为单个字符</span><br><span class="line">        print(i, char)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># 二值化分割验证码再调用pytesseract识别验证码(识别率有所提高)</span><br><span class="line">def pytesseract_devide_verification_code():</span><br><span class="line">    # 随机读取图片并灰度化</span><br><span class="line">    random_number = random.randint(0, VERIFICATION_CODE_NUMBER)</span><br><span class="line">    img = Image.open(VERIFICATION_CODE_PATH2.format(name=random_number)).convert(&#x27;L&#x27;)</span><br><span class="line">    # 二值化:173为我的验证图片有较好的效果的值，不同图片的值不一样，请根据自己验证码图片设置相应的值</span><br><span class="line">    img = img.point(lambda x: 255 if x &gt; 173 else 0)</span><br><span class="line">    # 分离:crop函数带的参数为(起始点的横坐标，起始点的纵坐标，宽度，高度）</span><br><span class="line">    img1 = img.crop((0 * IMAGE_WIDTH / MAX_CAPTCHA, 0, 1 * IMAGE_WIDTH / MAX_CAPTCHA, IMAGE_HEIGHT))</span><br><span class="line">    img2 = img.crop((1 * IMAGE_WIDTH / MAX_CAPTCHA, 0, 2 * IMAGE_WIDTH / MAX_CAPTCHA, IMAGE_HEIGHT))</span><br><span class="line">    img3 = img.crop((2 * IMAGE_WIDTH / MAX_CAPTCHA, 0, 3 * IMAGE_WIDTH / MAX_CAPTCHA, IMAGE_HEIGHT))</span><br><span class="line">    img4 = img.crop((3 * IMAGE_WIDTH / MAX_CAPTCHA, 0, 4 * IMAGE_WIDTH / MAX_CAPTCHA, IMAGE_HEIGHT))</span><br><span class="line">    # 调用pytesseract识别验证码</span><br><span class="line">    char = pytesseract.image_to_string(img, config=&#x27;--psm 8&#x27;)</span><br><span class="line">    char1 = pytesseract.image_to_string(img1, config=&#x27;--psm 10&#x27;)</span><br><span class="line">    char2 = pytesseract.image_to_string(img2, config=&#x27;--psm 10&#x27;)</span><br><span class="line">    char3 = pytesseract.image_to_string(img3, config=&#x27;--psm 10&#x27;)</span><br><span class="line">    char4 = pytesseract.image_to_string(img4, config=&#x27;--psm 10&#x27;)</span><br><span class="line">    print(char)</span><br><span class="line">    print(char1)</span><br><span class="line">    print(char2)</span><br><span class="line">    print(char3)</span><br><span class="line">    print(char4)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">################################################################</span><br><span class="line">### 通过tensorflow的CNN(卷积神经网络深度学习后识别验证码,识别率贼高####</span><br><span class="line">################################################################</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># 获取验证码名字和图片（训练数据集）</span><br><span class="line">def get_name_and_image():</span><br><span class="line">    # 获取数据集下的所有图片的数组all_images</span><br><span class="line">    # all_images = os.listdir(VERIFICATION_CODE_TRAINING_PATH)</span><br><span class="line">    random_image = random.randint(0, all_images_size - 1)</span><br><span class="line">    # print (all_images_size)</span><br><span class="line">    base = os.path.basename(VERIFICATION_CODE_TRAINING_PATH + all_images[random_image])  # 有扩展名</span><br><span class="line">    name = os.path.splitext(base)[0]  # 无扩展名</span><br><span class="line">    image = Image.open(VERIFICATION_CODE_TRAINING_PATH + all_images[random_image])</span><br><span class="line">    image = np.array(image)</span><br><span class="line">    return name, image</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># 验证码名字转变成向量: 不同位数的需要重写这个函数,函数里的数字为ASCII码</span><br><span class="line">def name2vec(name):</span><br><span class="line">    vector = np.zeros(MAX_CAPTCHA*CHAR_SET_LEN)</span><br><span class="line">    for i, c in enumerate(name):</span><br><span class="line">        if ord(c) &lt; 58:</span><br><span class="line">            idx = i * 36 + ord(c)-48</span><br><span class="line">            vector[idx] = 1</span><br><span class="line">        else:</span><br><span class="line">            idx = i * 36 + ord(c) - 87</span><br><span class="line">            vector[idx] = 1</span><br><span class="line">    return vector</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># 向量转名字:注释部分是 最开始的向量 转 名字</span><br><span class="line"># def vec2name(vec):</span><br><span class="line">#     name = []</span><br><span class="line">#     for i, c in enumerate(vec):</span><br><span class="line">#         if c == 1.0:</span><br><span class="line">#             name.append(i)</span><br><span class="line">#     for i in range(0, 4):</span><br><span class="line">#         if name[i] % 36 &lt; 10:</span><br><span class="line">#             name[i] = chr(name[i] % 36 + 48)</span><br><span class="line">#         else:</span><br><span class="line">#             name[i] = chr(name[i] % 36 + 87)</span><br><span class="line">#     return &quot;&quot;.join(name)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># 向量转名字: 训练是不用到这个函数，训练完成用这个函数得到最终结果</span><br><span class="line">def vec2name(vec):</span><br><span class="line">    name = []</span><br><span class="line">    for i in vec:</span><br><span class="line">        if i &lt; 10:</span><br><span class="line">            a = chr(i + 48)</span><br><span class="line">            name.append(a)</span><br><span class="line">        else:</span><br><span class="line">            a = chr(i + 87)</span><br><span class="line">            name.append(a)</span><br><span class="line">    return &quot;&quot;.join(name)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># 采样函数:默认一次采集64张验证码作为一次训练</span><br><span class="line"># 需要注意通过get_name_and_image()函数获得的image是一个含布尔值的矩阵</span><br><span class="line"># 在这里通过1*(image.flatten())函数转变成只含0和1的1行114*450列的矩阵</span><br><span class="line">def get_next_batch(batch_size=64):</span><br><span class="line">    batch_x = np.zeros([batch_size, IMAGE_HEIGHT*IMAGE_WIDTH])</span><br><span class="line">    batch_y = np.zeros([batch_size, MAX_CAPTCHA*CHAR_SET_LEN])</span><br><span class="line"></span><br><span class="line">    for i in range(batch_size):</span><br><span class="line">        name, image = get_name_and_image()</span><br><span class="line">        batch_x[i, :] = 1*(image.flatten())</span><br><span class="line">        batch_y[i, :] = name2vec(name)</span><br><span class="line">    return batch_x, batch_y</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># 定义CNN(卷积神经网络):三个卷积层卷积神经网络结构</span><br><span class="line"># 采用3个卷积层加1个全连接层的结构，在每个卷积层中都选用2*2的最大池化层和dropout层，卷积核尺寸选择5*5。，</span><br><span class="line"># 我们的图片已经经过了3层池化层，也就是长宽都压缩了8倍(各自取整为3X9)</span><br><span class="line">def crack_captcha_cnn(w_alpha=0.01, b_alpha=0.1):</span><br><span class="line">    x = tf.reshape(X, shape=[-1, IMAGE_HEIGHT, IMAGE_WIDTH, 1])</span><br><span class="line">    # 3个卷积层</span><br><span class="line">    w_c1 = tf.Variable(w_alpha * tf.random_normal([5, 5, 1, 32]))</span><br><span class="line">    b_c1 = tf.Variable(b_alpha * tf.random_normal([32]))</span><br><span class="line">    conv1 = tf.nn.relu(tf.nn.bias_add(tf.nn.conv2d(x, w_c1, strides=[1, 1, 1, 1], padding=&#x27;SAME&#x27;), b_c1))</span><br><span class="line">    conv1 = tf.nn.max_pool(conv1, ksize=[1, 2, 2, 1], strides=[1, 2, 2, 1], padding=&#x27;SAME&#x27;)</span><br><span class="line">    conv1 = tf.nn.dropout(conv1, keep_prob)</span><br><span class="line"></span><br><span class="line">    w_c2 = tf.Variable(w_alpha * tf.random_normal([5, 5, 32, 64]))</span><br><span class="line">    b_c2 = tf.Variable(b_alpha * tf.random_normal([64]))</span><br><span class="line">    conv2 = tf.nn.relu(tf.nn.bias_add(tf.nn.conv2d(conv1, w_c2, strides=[1, 1, 1, 1], padding=&#x27;SAME&#x27;), b_c2))</span><br><span class="line">    conv2 = tf.nn.max_pool(conv2, ksize=[1, 2, 2, 1], strides=[1, 2, 2, 1], padding=&#x27;SAME&#x27;)</span><br><span class="line">    conv2 = tf.nn.dropout(conv2, keep_prob)</span><br><span class="line"></span><br><span class="line">    w_c3 = tf.Variable(w_alpha * tf.random_normal([5, 5, 64, 64]))</span><br><span class="line">    b_c3 = tf.Variable(b_alpha * tf.random_normal([64]))</span><br><span class="line">    conv3 = tf.nn.relu(tf.nn.bias_add(tf.nn.conv2d(conv2, w_c3, strides=[1, 1, 1, 1], padding=&#x27;SAME&#x27;), b_c3))</span><br><span class="line">    conv3 = tf.nn.max_pool(conv3, ksize=[1, 2, 2, 1], strides=[1, 2, 2, 1], padding=&#x27;SAME&#x27;)</span><br><span class="line">    conv3 = tf.nn.dropout(conv3, keep_prob)</span><br><span class="line"></span><br><span class="line">    # 1个全连接层</span><br><span class="line">    w_d = tf.Variable(w_alpha * tf.random_normal([3*9*64, 1024]))</span><br><span class="line">    b_d = tf.Variable(b_alpha * tf.random_normal([1024]))</span><br><span class="line">    dense = tf.reshape(conv3, [-1, w_d.get_shape().as_list()[0]])</span><br><span class="line">    dense = tf.nn.relu(tf.add(tf.matmul(dense, w_d), b_d))</span><br><span class="line">    dense = tf.nn.dropout(dense, keep_prob)</span><br><span class="line"></span><br><span class="line">    w_out = tf.Variable(w_alpha * tf.random_normal([1024, MAX_CAPTCHA * CHAR_SET_LEN]))</span><br><span class="line">    b_out = tf.Variable(b_alpha * tf.random_normal([MAX_CAPTCHA * CHAR_SET_LEN]))</span><br><span class="line">    out = tf.add(tf.matmul(dense, w_out), b_out)</span><br><span class="line">    return out</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># 训练函数：选择sigmoid_cross_entropy_with_logits()交叉熵来比较loss</span><br><span class="line"># 用adam优化器来优化</span><br><span class="line"># keep_prob = 0.3，控制着过拟合</span><br><span class="line">def train_crack_captcha_cnn():</span><br><span class="line">    output = crack_captcha_cnn()</span><br><span class="line">    loss = tf.reduce_mean(tf.nn.sigmoid_cross_entropy_with_logits(logits=output, labels=Y))</span><br><span class="line">    optimizer = tf.train.AdamOptimizer(learning_rate=0.0001).minimize(loss)</span><br><span class="line">    predict = tf.reshape(output, [-1, MAX_CAPTCHA, CHAR_SET_LEN])</span><br><span class="line">    max_idx_p = tf.argmax(predict, 2)</span><br><span class="line">    max_idx_l = tf.argmax(tf.reshape(Y, [-1, MAX_CAPTCHA, CHAR_SET_LEN]), 2)</span><br><span class="line">    correct_pred = tf.equal(max_idx_p, max_idx_l)</span><br><span class="line">    accuracy = tf.reduce_mean(tf.cast(correct_pred, tf.float32))</span><br><span class="line">    saver = tf.train.Saver()</span><br><span class="line">    with tf.Session() as sess:</span><br><span class="line">        sess.run(tf.global_variables_initializer())</span><br><span class="line">        step = 0</span><br><span class="line">        while True:</span><br><span class="line">            batch_x, batch_y = get_next_batch(256)</span><br><span class="line">            _, loss_ = sess.run([optimizer, loss], feed_dict=&#123;X: batch_x, Y: batch_y, keep_prob: 0.2&#125;)</span><br><span class="line">            print(step, loss_)</span><br><span class="line">            # 每100 step计算一次准确率</span><br><span class="line">            if step % 1000 == 0:</span><br><span class="line">                batch_x_test, batch_y_test = get_next_batch(1000)</span><br><span class="line">                acc = sess.run(accuracy, feed_dict=&#123;X: batch_x_test, Y: batch_y_test, keep_prob: 1.&#125;)</span><br><span class="line">                print(step, acc)</span><br><span class="line">                # 如果准确率大于99%,保存模型,完成训练</span><br><span class="line">                if acc &gt; 0.999:</span><br><span class="line">                    saver.save(sess, &quot;./crack_capcha.model&quot;, global_step=step)</span><br><span class="line">                    break</span><br><span class="line">            step += 1</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># train_crack_captcha_cnn()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># 训练完成后,注释train_crack_captcha_cnn()，取消下面的注释，开始预测，注意更改预测集目录</span><br><span class="line"># def crack_captcha():</span><br><span class="line">#     output = crack_captcha_cnn()</span><br><span class="line">#</span><br><span class="line">#     saver = tf.train.Saver()</span><br><span class="line">#     with tf.Session() as sess:</span><br><span class="line">#         saver.restore(sess, tf.train.latest_checkpoint(&#x27;.&#x27;))</span><br><span class="line">#         n = 1</span><br><span class="line">#         while n &lt;= 10:</span><br><span class="line">#             text, verification_code_training_images = get_name_and_image()</span><br><span class="line">#             verification_code_training_images = 1 * (verification_code_training_images.flatten())</span><br><span class="line">#             predict = tf.argmax(tf.reshape(output, [-1, MAX_CAPTCHA, CHAR_SET_LEN]), 2)</span><br><span class="line">#             text_list = sess.run(predict, feed_dict=&#123;X: [verification_code_training_images], keep_prob: 1&#125;)</span><br><span class="line">#             vec = text_list[0].tolist()</span><br><span class="line">#             predict_text = vec2name(vec)</span><br><span class="line">#             print(&quot;正确: &#123;&#125;  预测: &#123;&#125;&quot;.format(text, predict_text))</span><br><span class="line">#             n += 1</span><br><span class="line">#</span><br><span class="line">#</span><br><span class="line"># crack_captcha()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">def captcha():</span><br><span class="line">    output = crack_captcha_cnn()</span><br><span class="line">    saver = tf.train.Saver()</span><br><span class="line">    with tf.Session() as sess:</span><br><span class="line">        saver.restore(sess, tf.train.latest_checkpoint(&#x27;.&#x27;))</span><br><span class="line">        first_time = True</span><br><span class="line"></span><br><span class="line">        while True:</span><br><span class="line">            users_number = 0</span><br><span class="line">            for information in info:</span><br><span class="line">                while True:</span><br><span class="line">                    session = requests.Session()</span><br><span class="line">                    headers = &#123;&quot;User-Agent&quot;: &quot;Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:39.0) Gecko/20100101 Firefox/39.0&quot;&#125;</span><br><span class="line">                    html = session.get(IMAGE_URL, headers=headers).content</span><br><span class="line">                    with open(&#x27;./test_captcha/test.png&#x27;, &#x27;wb&#x27;) as file:</span><br><span class="line">                        file.write(html)</span><br><span class="line">                    img = Image.open(&#x27;./test_captcha/test.png&#x27;).convert(&#x27;L&#x27;)</span><br><span class="line">                    # 二值化</span><br><span class="line">                    img = img.point(lambda x: 255 if x &gt; 173 else 0)</span><br><span class="line">                    img = np.array(img)</span><br><span class="line">                    img = 1 * (img.flatten())</span><br><span class="line">                    predict = tf.argmax(tf.reshape(output, [-1, MAX_CAPTCHA, CHAR_SET_LEN]), 2)</span><br><span class="line">                    text_list = sess.run(predict, feed_dict=&#123;X: [img], keep_prob: 1&#125;)</span><br><span class="line">                    vec = text_list[0].tolist()</span><br><span class="line">                    # print(&quot;预测:&quot;, vec2name(vec))</span><br><span class="line"></span><br><span class="line">                    session.get(&#x27;http://jwfw1.sdjzu.edu.cn/ssfw/login.jsp&#x27;)</span><br><span class="line">                    data = &#123;&#x27;j_username&#x27;: information[&#x27;account&#x27;], &#x27;j_password&#x27;: information[&#x27;password&#x27;],</span><br><span class="line">                            &#x27;validateCode&#x27;: vec2name(vec)&#125;</span><br><span class="line">                    r = session.post(&#x27;http://jwfw1.sdjzu.edu.cn/ssfw/j_spring_ids_security_check&#x27;, data=data, headers=headers)</span><br><span class="line">                    if (re.search(r&#x27;校验码错误&#x27;, r.text, re.I | re.M)) is None:</span><br><span class="line">                        print(&quot;验证码正确通过！&quot;)</span><br><span class="line">                        n = session.get(</span><br><span class="line">                            &#x27;http://jwfw1.sdjzu.edu.cn/ssfw/jwnavmenu.do?menuItemWid=1E057E24ABAB4CAFE0540010E0235690&#x27;,</span><br><span class="line">                            headers=headers)</span><br><span class="line">                        soup = BeautifulSoup(n.content, features=&#x27;html.parser&#x27;)</span><br><span class="line">                        s = soup.select(&#x27;div[title=&quot;有效成绩&quot;] .t_con td[align=&quot;center&quot;]&#x27;)</span><br><span class="line">                        subjects_number = int(len(s) / 11)</span><br><span class="line">                        # print(&quot;科目数:&quot;, subjects_number)</span><br><span class="line">                        for i in range(0, subjects_number):</span><br><span class="line">                            # print(&#x27;序号:&#x27;, s[i * 11].get_text(strip=True))</span><br><span class="line">                            # print(&#x27;学年学期:&#x27;, s[i * 11 + 1].get_text( strip=True))</span><br><span class="line">                            # print(&#x27;课程号:&#x27;, s[i * 11 + 2].get_text(strip=True))</span><br><span class="line">                            # print(&#x27;课程名称:&#x27;, s[i * 11 + 3].get_text( strip=True))</span><br><span class="line">                            # print(&#x27;课程类别:&#x27;, s[i * 11 + 4].get_text(strip=True))</span><br><span class="line">                            # print(&#x27;任选课类别:&#x27;, s[i * 11 + 5].get_text(strip=True))</span><br><span class="line">                            # print(&#x27;课程性质:&#x27;, s[i * 11 + 6].get_text(strip=True))</span><br><span class="line">                            # print(&#x27;学分:&#x27;, s[i * 11 + 7].get_text(strip=True))</span><br><span class="line">                            # print(&#x27;成绩:&#x27;, s[i * 11 + 8].get_text(strip=True))</span><br><span class="line">                            # print(&#x27;****************&#x27;)</span><br><span class="line">                            ss = &#x27;&#123;&#125; &#123;&#125; 成绩: &#123;&#125;&#x27;.format(s[i * 11].get_text(strip=True), s[i * 11 + 3].get_text(strip=True),</span><br><span class="line">                                                       s[i * 11 + 8].get_text(strip=True))</span><br><span class="line">                            if first_time:</span><br><span class="line">                                String1[users_number].append(ss)</span><br><span class="line">                            else:</span><br><span class="line">                                String2[users_number].append(ss)</span><br><span class="line">                        # 发送邮件</span><br><span class="line">                        my_user = &#x27;%s&#x27; % information[&#x27;email&#x27;]</span><br><span class="line">                        sss = &quot;&quot;.join(list(set(String2[users_number]).difference(set(String1[users_number]))))  # b中有而a中没有的</span><br><span class="line">                        ret = True</span><br><span class="line">                        if first_time:</span><br><span class="line">                            text = &#x27;\n&#x27;.join(String1[users_number])</span><br><span class="line"></span><br><span class="line">                            try:</span><br><span class="line">                                msg = MIMEText(text, &#x27;plain&#x27;, &#x27;utf-8&#x27;)</span><br><span class="line">                                msg[&#x27;From&#x27;] = formataddr([&quot;weijiajin&quot;, SENDER])  # 括号里的对应发件人邮箱昵称、发件人邮箱账号</span><br><span class="line">                                msg[&#x27;To&#x27;] = formataddr([&quot;亲～:&quot;, my_user])  # 括号里的对应收件人邮箱昵称、收件人邮箱账号</span><br><span class="line">                                msg[&#x27;Subject&#x27;] = &quot;全部成绩！好好学习！&quot;  # 邮件的主题，也可以说是标题</span><br><span class="line">                                server = smtplib.SMTP_SSL(&quot;smtp.qq.com&quot;, 465)  # 发件人邮箱中的SMTP服务器，端口是465</span><br><span class="line">                                server.login(SENDER, PASSWORD)  # 括号中对应的是发件人邮箱账号、邮箱密码</span><br><span class="line">                                server.sendmail(SENDER, [my_user, ], msg.as_string())  # 括号中对应的是发件人邮箱账号、收件人邮箱账号、发送邮件</span><br><span class="line">                                server.quit()  # 关闭连接</span><br><span class="line">                            except Exception:  # 如果 try 中的语句没有执行，则会执行下面的 ret=False</span><br><span class="line">                                ret = False</span><br><span class="line">                            if ret:</span><br><span class="line">                                print(&quot;发送邮件成功！&quot;)</span><br><span class="line">                            else:</span><br><span class="line">                                print(&quot;发送邮件失败！&quot;)</span><br><span class="line">                            String2[users_number].clear()</span><br><span class="line">                            users_number = + 1</span><br><span class="line">                            break</span><br><span class="line">                        elif sss == &quot;&quot;:</span><br><span class="line">                            print(&quot;没有最新成绩！不发送邮件！&quot;)</span><br><span class="line">                            String2[users_number].clear()</span><br><span class="line">                            users_number = + 1</span><br><span class="line">                            break</span><br><span class="line">                        elif sss != &quot;&quot;:</span><br><span class="line">                            text = &#x27;\n&#x27;.join(String2[users_number])</span><br><span class="line">                            title = &quot;&quot;.join(list(set(String2[users_number]).difference(set(String1[users_number]))))</span><br><span class="line">                            try:</span><br><span class="line">                                msg = MIMEText(text, &#x27;plain&#x27;, &#x27;utf-8&#x27;)</span><br><span class="line">                                msg[&#x27;From&#x27;] = formataddr([&quot;weijiajin&quot;, SENDER])  # 括号里的对应发件人邮箱昵称、发件人邮箱账号</span><br><span class="line">                                msg[&#x27;To&#x27;] = formataddr([&quot;亲～&quot;, my_user])  # 括号里的对应收件人邮箱昵称、收件人邮箱账号</span><br><span class="line">                                msg[&#x27;Subject&#x27;] = &quot;最新成绩出来啦～&quot; + title  # 邮件的主题，也可以说是标题</span><br><span class="line">                                server = smtplib.SMTP_SSL(&quot;smtp.qq.com&quot;, 465)  # 发件人邮箱中的SMTP服务器，端口是465</span><br><span class="line">                                server.login(SENDER, my_pass)  # 括号中对应的是发件人邮箱账号、邮箱密码</span><br><span class="line">                                server.sendmail(SENDER, [my_user, ], msg.as_string())  # 括号中对应的是发件人邮箱账号、收件人邮箱账号、发送邮件</span><br><span class="line">                                server.quit()  # 关闭连接</span><br><span class="line">                            except Exception:  # 如果 try 中的语句没有执行，则会执行下面的 ret=False</span><br><span class="line">                                ret = False</span><br><span class="line">                            if ret:</span><br><span class="line">                                print(&quot;发送邮件成功！&quot;)</span><br><span class="line"></span><br><span class="line">                            else:</span><br><span class="line">                                print(&quot;发送邮件失败！&quot;)</span><br><span class="line">                            String1[users_number].clear()</span><br><span class="line">                            String1[users_number] = String2[users_number]</span><br><span class="line">                            String2[users_number].clear()</span><br><span class="line">                            users_number = + 1</span><br><span class="line">                            break</span><br><span class="line">                        time.sleep(300)</span><br><span class="line">                    else:</span><br><span class="line">                        print(&quot;校验码错误！重新尝试中......&quot;)</span><br><span class="line"></span><br><span class="line">            first_time = False</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">def auto_download_train_images():</span><br><span class="line">    output = crack_captcha_cnn()</span><br><span class="line">    saver = tf.train.Saver()</span><br><span class="line">    with tf.Session() as sess:</span><br><span class="line">        saver.restore(sess, tf.train.latest_checkpoint(&#x27;.&#x27;))</span><br><span class="line">        times1 = 0</span><br><span class="line">        times2 = 0</span><br><span class="line"></span><br><span class="line">        while True:</span><br><span class="line">            session = requests.Session()</span><br><span class="line">            headers = &#123;&quot;User-Agent&quot;: &quot;Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:39.0) Gecko/20100101 Firefox/39.0&quot;&#125;</span><br><span class="line">            html = session.get(IMAGE_URL, headers=headers).content</span><br><span class="line">            with open(&#x27;./test_captcha/test.png&#x27;, &#x27;wb&#x27;) as file:</span><br><span class="line">                file.write(html)</span><br><span class="line">            img = Image.open(&#x27;./test_captcha/test.png&#x27;).convert(&#x27;L&#x27;)</span><br><span class="line">            # 二值化</span><br><span class="line">            img = img.point(lambda x: 255 if x &gt; 173 else 0)</span><br><span class="line">            img1 = np.array(img)</span><br><span class="line">            img1 = 1 * (img1.flatten())</span><br><span class="line">            predict = tf.argmax(tf.reshape(output, [-1, MAX_CAPTCHA, CHAR_SET_LEN]), 2)</span><br><span class="line">            text_list = sess.run(predict, feed_dict=&#123;X: [img1], keep_prob: 1&#125;)</span><br><span class="line">            vec = text_list[0].tolist()</span><br><span class="line">            # print(&quot;预测:&quot;, vec2name(vec))</span><br><span class="line">            session.get(&#x27;http://jwfw1.sdjzu.edu.cn/ssfw/login.jsp&#x27;)</span><br><span class="line">            data = &#123;&#x27;j_username&#x27;: &#x27;201611101122&#x27;, &#x27;j_password&#x27;: &#x27;174519&#x27;,</span><br><span class="line">                    &#x27;validateCode&#x27;: vec2name(vec)&#125;</span><br><span class="line">            r = session.post(&#x27;http://jwfw1.sdjzu.edu.cn/ssfw/j_spring_ids_security_check&#x27;, data=data, headers=headers)</span><br><span class="line">            if (re.search(r&#x27;校验码错误&#x27;, r.text, re.I | re.M)) is None:</span><br><span class="line">                # print(&quot;验证码正确通过！&quot;)</span><br><span class="line">                # print(times1)</span><br><span class="line">                image_name = &#x27;&#123;image_name&#125;.png&#x27;</span><br><span class="line">                img.save(os.path.join(&#x27;./verification_code_training_images/&#x27;, image_name.format(image_name=vec2name(vec))))</span><br><span class="line">                times1 = times1 + 1</span><br><span class="line">            else:</span><br><span class="line">                # print(&quot;校验码错误！&quot;)</span><br><span class="line">                # print(times2)</span><br><span class="line">                image_name = &#x27;&#123;image_name&#125;.png&#x27;</span><br><span class="line">                img.save(os.path.join(&#x27;./error_images/&#x27;, image_name.format(image_name=vec2name(vec))))</span><br><span class="line">                times2 = times2 + 1</span><br><span class="line">            rate = times1/(times2+times1)</span><br><span class="line">            print(&quot;总次数: % s&quot; % (times2+times1)+&quot;正确率：% s &quot; % rate)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">captcha()</span><br><span class="line"># auto_download_train_images()</span><br></pre></td></tr></table></figure>
+<h4 id="todo"><a class="markdownIt-Anchor" href="#todo"></a> TODO：</h4>
+<ul>
+<li>增加绩点计算公式</li>
+<li>集成于微信小程序或者微信公众号</li>
+<li>优化代码</li>
+</ul>
+<h4 id="参考资料"><a class="markdownIt-Anchor" href="#参考资料"></a> 参考资料</h4>
+<ul>
+<li>
+<p><a target="_blank" rel="noopener" href="https://morvanzhou.github.io/">https://morvanzhou.github.io/</a></p>
+</li>
+<li>
+<p><a target="_blank" rel="noopener" href="https://www.iswin.org/2016/10/15/Simple-CAPTCHA-Recognition-with-Machine-Learning/">https://www.iswin.org/2016/10/15/Simple-CAPTCHA-Recognition-with-Machine-Learning/</a></p>
+</li>
+<li>
+<p><a target="_blank" rel="noopener" href="https://finthon.com/python-tensorflow-cnn-captcha/">https://finthon.com/python-tensorflow-cnn-captcha/</a></p>
+</li>
+<li>
+<p><a target="_blank" rel="noopener" href="http://blog.topspeedsnail.com/archives/10858">http://blog.topspeedsnail.com/archives/10858</a></p>
+</li>
+</ul>
+
+
+<div class="article-footer reveal fs14"><section id="license"><div class="header"><span>许可协议</span></div><div class="body"><p>本文采用<a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">署名-非商业性使用-相同方式共享 4.0 国际</a>许可协议，转载请注明出处。</p>
+</div></section><section id="share"><div class="header"><span>分享文章</span></div><div class="body"><div class="link"><input class="copy-area" readonly="true" id="copy-link" value="https://guyinga.top/022ba103b947/" /></div><div class="social-wrap dis-select"><a class="social share-item wechat" onclick="util.toggle(&quot;qrcode-wechat&quot)"><img src="https://fastly.jsdelivr.net/gh/cdn-x/placeholder@1.0.1/social/b32ef3da1162a.svg"/></a><a class="social share-item weibo" target="_blank" rel="external nofollow noopener noreferrer" href="https://service.weibo.com/share/share.php?url=https://guyinga.top/022ba103b947/&title=基于深度学习框架Tensorflow的成绩自动查询 - GuYing&summary=程序自动化操作，简化成绩查询过程，节省时间，提高效率。"><img src="https://fastly.jsdelivr.net/gh/cdn-x/placeholder@1.0.1/social/80c07e4dbb303.svg"/></a><a class="social share-item email" href="mailto:?subject=基于深度学习框架Tensorflow的成绩自动查询 - GuYing&amp;body=https://guyinga.top/022ba103b947/"><img src="https://fastly.jsdelivr.net/gh/cdn-x/placeholder@1.0.1/social/a1b00e20f425d.svg"/></a><a class="social share-item link" onclick="util.copy(&quot;copy-link&quot;, &quot;复制成功&quot;)"><img src="https://fastly.jsdelivr.net/gh/cdn-x/placeholder@1.0.1/social/8411ed322ced6.svg"/></a></div><div class="qrcode" id="qrcode-wechat" style="visibility:hidden;height:0"><img src="https://api.qrserver.com/v1/create-qr-code/?size=256x256&data=https://guyinga.top/022ba103b947/index.html"/></div></div></section></div>
+
+</article>
+
+<div class="related-wrap reveal" id="read-next"><section class="body"><div class="item" id="prev"><div class="note">较新文章</div><a href="/05d8712a0c40/">海明校验码是怎么实现的</a></div><div class="item" id="next"></div></section></div>
+
+
+<div class="related-wrap reveal" id="related-posts">
+    <section class='header'>
+      <div class='title cap theme'>您可能感兴趣的文章</div>
+    </section>
+    <section class='body'>
+    <div class="related-posts"><a class="item" href="/05d8712a0c40/" title="海明校验码是怎么实现的"><span class="title">海明校验码是怎么实现的</span><span class="excerpt">如何一步步推导出海明码</span></a></div></section></div>
+
+
+
+  <div class='related-wrap md-text reveal' id="comments">
+    <div class='cmt-title cap theme'>
+      快来参与讨论吧
+    </div>
+    <div class='cmt-body waline'>
+      
+
+<div id="waline_container" class="waline_thread"><svg class="loading" style="vertical-align: middle;fill: currentColor;overflow: hidden;" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2709"><path d="M832 512c0-176-144-320-320-320V128c211.2 0 384 172.8 384 384h-64zM192 512c0 176 144 320 320 320v64C300.8 896 128 723.2 128 512h64z" p-id="2710"></path></svg></div>
+
+    </div>
+  </div>
+
+
+
+      
+<footer class="page-footer reveal fs12"><hr><div class="sitemap"><div class="sitemap-group"><span class="fs14">博客</span><a href="/">近期</a><a href="/categories/">分类</a><a href="/tags/">标签</a><a href="/archives/">归档</a><a href="/shiping/">收藏</a></div><div class="sitemap-group"><span class="fs14">项目</span><a href="/wiki/tags/%E8%84%9A%E6%9C%AC/">脚本</a><a href="/wiki/tags/%E5%85%B6%E4%BB%96/">其他</a></div><div class="sitemap-group"><span class="fs14">友链</span><a href="/friends/">友链</a><a href="/about/#comments">留言板</a></div><div class="sitemap-group"><span class="fs14">关于</span><a href="/about/">关于本站</a><a target="_blank" rel="noopener" href="https://github.com/guyingd">GitHub</a></div></div><div class="text"><hr><p align="center"><a target="_blank" rel="noopener" href="https://aws.amazon.com/cn/campaigns/cloudfront"><img src="/images/网站图片/内容分发-CloudFront-orange.svg" width="143" height="20" /></a>&nbsp&nbsp<a target="_blank" rel="noopener" href="https://github.com/guyingd"><img src="/images/网站图片/网站部署-GitHub-5DADE2.svg" width="119" height="20"/></a>&nbsp&nbsp<a target="_blank" rel="noopener" href="https://hexo.io"><img src="/images/网站图片/强力驱动-Hexo-blue.svg" width="111" height="20"/></a>&nbsp&nbsp<a target="_blank" rel="noopener" href="https://cloudflare.com"><img src="/images/网站图片/域名解析-CloudFlare-f38020.svg"></a></p>
+</div></footer>
+
+      <div class='float-panel mobile-only blur' style='display:none'>
+  <button type='button' class='sidebar-toggle mobile' onclick='sidebar.toggle()'>
+    <svg class="icon" style="width: 1em; height: 1em;vertical-align: middle;fill: currentColor;overflow: hidden;" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="15301"><path d="M566.407 808.3c26.9-0.1 49.3-20.8 51.6-47.6-1.9-27.7-23.9-49.7-51.6-51.6h-412.6c-28.2-1.4-52.6 19.5-55.5 47.6 2.3 26.8 24.6 47.5 51.6 47.6h416.5v4z m309.3-249.9c26.9-0.1 49.3-20.8 51.6-47.6-2.2-26.8-24.6-47.5-51.6-47.6h-721.9c-27.7-2.8-52.5 17.4-55.3 45.1-0.1 0.8-0.1 1.7-0.2 2.5 0.9 27.2 23.6 48.5 50.7 47.6H875.707z m-103.1-245.9c26.9-0.1 49.3-20.8 51.6-47.6-0.4-28.3-23.2-51.1-51.5-51.6h-618.9c-29.5-1.1-54.3 21.9-55.5 51.4v0.2c1.4 27.8 25.2 49.2 53 47.8 0.8 0 1.7-0.1 2.5-0.2h618.8z" p-id="15302"></path><path d="M566.407 808.3c26.9-0.1 49.3-20.8 51.6-47.6-1.9-27.7-23.9-49.7-51.6-51.6h-412.6c-28.2-1.4-52.6 19.5-55.5 47.6 1.9 27.7 23.9 49.7 51.6 51.6h416.5z m309.3-249.9c26.9-0.1 49.3-20.8 51.6-47.6-2.2-26.8-24.6-47.5-51.6-47.6h-721.9c-27.7-2.8-52.5 17.4-55.3 45.1-0.1 0.8-0.1 1.7-0.2 2.5 0.9 27.2 23.6 48.5 50.7 47.6H875.707z m-103.1-245.9c26.9-0.1 49.3-20.8 51.6-47.6-0.4-28.3-23.2-51.1-51.5-51.6h-618.9c-29.5-1.1-54.3 21.9-55.5 51.4v0.2c1.4 27.8 25.2 49.2 53 47.8 0.8 0 1.7-0.1 2.5-0.2h618.8z" p-id="15303"></path></svg>
+  </button>
+</div>
+
+    </div>
+  </div>
+  <div class='scripts'>
+    <script type="text/javascript">
+  stellar = {
+    // 懒加载 css https://github.com/filamentgroup/loadCSS
+    loadCSS: (href, before, media, attributes) => {
+      var doc = window.document;
+      var ss = doc.createElement("link");
+      var ref;
+      if (before) {
+        ref = before;
+      } else {
+        var refs = (doc.body || doc.getElementsByTagName("head")[0]).childNodes;
+        ref = refs[refs.length - 1];
+      }
+      var sheets = doc.styleSheets;
+      if (attributes) {
+        for (var attributeName in attributes) {
+          if (attributes.hasOwnProperty(attributeName)) {
+            ss.setAttribute(attributeName, attributes[attributeName]);
+          }
+        }
+      }
+      ss.rel = "stylesheet";
+      ss.href = href;
+      ss.media = "only x";
+      function ready(cb) {
+        if (doc.body) {
+          return cb();
+        }
+        setTimeout(function () {
+          ready(cb);
+        });
+      }
+      ready(function () {
+        ref.parentNode.insertBefore(ss, before ? ref : ref.nextSibling);
+      });
+      var onloadcssdefined = function (cb) {
+        var resolvedHref = ss.href;
+        var i = sheets.length;
+        while (i--) {
+          if (sheets[i].href === resolvedHref) {
+            return cb();
+          }
+        }
+        setTimeout(function () {
+          onloadcssdefined(cb);
+        });
+      };
+      function loadCB() {
+        if (ss.addEventListener) {
+          ss.removeEventListener("load", loadCB);
+        }
+        ss.media = media || "all";
+      }
+      if (ss.addEventListener) {
+        ss.addEventListener("load", loadCB);
+      }
+      ss.onloadcssdefined = onloadcssdefined;
+      onloadcssdefined(loadCB);
+      return ss;
+    },
+
+    // 从 butterfly 和 volantis 获得灵感
+    loadScript: (src, opt) => new Promise((resolve, reject) => {
+      var script = document.createElement('script');
+      script.src = src;
+      if (opt) {
+        for (let key of Object.keys(opt)) {
+          script[key] = opt[key]
+        }
+      } else {
+        // 默认异步，如果需要同步，第二个参数传入 {} 即可
+        script.async = true
+      }
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    }),
+
+    // https://github.com/jerryc127/hexo-theme-butterfly
+    jQuery: (fn) => {
+      if (typeof jQuery === 'undefined') {
+        stellar.loadScript(stellar.plugins.jQuery).then(fn)
+      } else {
+        fn()
+      }
+    }
+  };
+  stellar.version = '1.15.1';
+  stellar.github = 'https://github.com/xaoxuu/hexo-theme-stellar/tree/1.15.1';
+  stellar.config = {
+    date_suffix: {
+      just: '刚刚',
+      min: '分钟前',
+      hour: '小时前',
+      day: '天前',
+      month: '个月前',
+    },
+  };
+
+  // required plugins (only load if needs)
+  stellar.plugins = {
+    jQuery: 'https://fastly.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js'
+  };
+
+  // stellar js
+  stellar.plugins.stellar = Object.assign({"sites":"/js/plugins/sites.js","friends":"/js/plugins/friends.js","ghinfo":"/js/plugins/ghinfo.js","timeline":"/js/plugins/timeline.js","linkcard":"/js/plugins/linkcard.js","fcircle":"/js/plugins/fcircle.js"});
+
+  stellar.plugins.marked = Object.assign("https://cdn.bootcdn.net/ajax/libs/marked/4.0.18/marked.min.js");
+  // optional plugins
+  if ('false' == 'true') {
+    stellar.plugins.lazyload = Object.assign({"enable":false,"js":"https://fastly.jsdelivr.net/npm/vanilla-lazyload@17.3.1/dist/lazyload.min.js","transition":"blur"});
+  }
+  if ('true' == 'true') {
+    stellar.plugins.swiper = Object.assign({"enable":true,"css":"https://unpkg.com/swiper@6/swiper-bundle.min.css","js":"https://unpkg.com/swiper@6/swiper-bundle.min.js"});
+  }
+  if ('true' == 'true') {
+    stellar.plugins.scrollreveal = Object.assign({"enable":true,"js":"https://fastly.jsdelivr.net/npm/scrollreveal@4.0.9/dist/scrollreveal.min.js","distance":"8px","duration":500,"interval":100,"scale":1});
+  }
+  if ('true' == 'true') {
+    stellar.plugins.preload = Object.assign({"enable":true,"service":"flying_pages","instant_page":"https://fastly.jsdelivr.net/gh/volantis-x/cdn-volantis@4.1.2/js/instant_page.js","flying_pages":"https://fastly.jsdelivr.net/gh/gijo-varghese/flying-pages@2.1.2/flying-pages.min.js"});
+  }
+  if ('true' == 'true') {
+    stellar.plugins.fancybox = Object.assign({"enable":true,"js":"https://fastly.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.umd.js","css":"https://fastly.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.css","selector":".swiper-slide img"});
+  }
+  if ('false' == 'true') {
+    stellar.plugins.heti = Object.assign({"enable":false,"css":"https://unpkg.com/heti/umd/heti.min.css","js":"https://unpkg.com/heti/umd/heti-addon.min.js"});
+  }
+</script>
+
+<!-- required -->
+
+  
+<script src="/js/main.js" async></script>
+
+
+
+<!-- optional -->
+
+  <script>
+  function load_comment(){
+    if(!document.getElementById("waline_container"))return;
+    stellar.loadCSS('https://unpkg.com/@waline/client@v2/dist/waline.css');
+    stellar.loadScript('https://unpkg.com/@waline/client@v2/dist/waline.js', {defer:true}).then(function () {
+      const el = document.getElementById("waline_container");
+      var path = el.getAttribute('comment_id');
+      if (!path) {
+        path = decodeURI(window.location.pathname);
+      }
+      Waline.init(Object.assign({"js":"https://unpkg.com/@waline/client@v2/dist/waline.js","css":"https://unpkg.com/@waline/client@v2/dist/waline.css","serverURL":"https://pl.guyinga.top","commentCount":true,"pageview":false,"locale":{"placeholder":"ꉂ(ˊᗜˋ*) 请输入内容"},"emoji":["https://gcore.jsdelivr.net/gh/norevi/waline-blobcatemojis@1.0/blobs","https://unpkg.com/@waline/emojis@1.1.0/bilibili","https://unpkg.com/@waline/emojis@1.1.0/qq"],"lang":"zh-CN","wordLimit":0,"pageSize":10}, {
+        el: '#waline_container',
+        path: path,
+      }));
+    });
+  }
+  window.addEventListener('DOMContentLoaded', (event) => {
+    console.log('DOM fully loaded and parsed');
+    load_comment();
+  });
+
+</script>
+
+
+
+
+<!-- inject -->
+
+
+  </div>
+</body>
+</html>

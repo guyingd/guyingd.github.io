@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang='zh-CN'>
+
+<head>
+  <meta name="generator" content="Hexo 6.3.0">
+  <meta name="hexo-theme" content="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.16.2">
+  <meta charset="utf-8">
+  
+
+  <meta http-equiv='x-dns-prefetch-control' content='on' />
+  <link rel='dns-prefetch' href='https://fastly.jsdelivr.net'>
+  <link rel="preconnect" href="https://fastly.jsdelivr.net" crossorigin>
+  <link rel='dns-prefetch' href='//unpkg.com'>
+
+  <meta name="renderer" content="webkit">
+  <meta name="force-rendering" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta name="HandheldFriendly" content="True" >
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="theme-color" content="#f8f8f8">
+  
+  <title>C++程序设计简答题（二） - GuYing</title>
+
+  
+    <meta name="description" content="面向对象的程序设计">
+<meta property="og:type" content="article">
+<meta property="og:title" content="C++程序设计简答题（二）">
+<meta property="og:url" content="https://guyinga.top/dddeac14c9ae/">
+<meta property="og:site_name" content="GuYing">
+<meta property="og:description" content="面向对象的程序设计">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-03-15T16:00:00.000Z">
+<meta property="article:modified_time" content="2022-11-14T07:34:57.000Z">
+<meta property="article:author" content="guyingd">
+<meta property="article:tag" content="C++">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+
+  <!-- feed -->
+  
+    <link rel="alternate" href="/atom.xml" title="GuYing" type="application/atom+xml">
+  
+
+  
+    
+<link rel="stylesheet" href="/css/main.css">
+
+  
+
+  
+
+  
+
+  
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.css" integrity="sha384-Xi8rHCmBmhbuyyhbI88391ZKP2dmfnOl4rT9ZfRI7mLTdk1wblIUnrIq35nqwEvC" crossorigin="anonymous">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.js" integrity="sha384-X/XCfMm41VSsqRNQgDerQczD69XqmjOOOwYQvr/uuC+j4OPoNhVgjdGFwhvN02Ja" crossorigin="anonymous"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/auto-render.min.js" integrity="sha384-+XBljXPPiv+OzfbB3cVmLHf4hdUFHlWNZN5spNQ7rmHTXpd7WvJum6fIACpNNfIR" crossorigin="anonymous"onload="renderMathInElement(document.body);"></script>
+  
+
+
+  
+    
+      <link rel="stylesheet" href="https://fastly.jsdelivr.net/npm/lxgw-wenkai-screen-webfont@1.1.0/style.css" />
+    
+      <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon/apple-touch-icon.png">
+    
+      <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon/favicon-32x32.png">
+    
+      <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon/favicon-16x16.png">
+    
+      <link rel="manifest" href="/images/favicon/site.webmanifest">
+    
+      <link rel="mask-icon" href="/images/logo.svg" color="#5bbad5">
+    
+      <link rel="shortcut icon" href="/images/favicon/favicon.ico">
+    
+      <meta name="msapplication-TileColor" content="#2d89ef">
+    
+      <meta name="msapplication-config" content="#2d89ef">
+    
+      <meta name="theme-color" content="#ffffff">
+    
+  
+</head>
+
+<body>
+  
+
+
+
+
+  <div class='l_body' id='start'>
+    <aside class='l_left' layout='post'>
+    
+
+  
+
+<header class="header"><div class="logo-wrap"><a class="avatar" href="/about/"><div class="bg" style="opacity:0;background-image:url(https://fastly.jsdelivr.net/gh/cdn-x/placeholder@1.0.2/avatar/round/rainbow64@3x.webp);"></div><img no-lazy class="avatar" src="/images/网站图片/logo.svg" onerror="javascript:this.classList.add('error');this.src='/images/网站图片/default_image.svg';"></a><a class="title" href="/"><div class="main" ff="title">GuYing</div><div class="sub normal cap">「Stay Hungry.Stay Foolish.」</div><div class="sub hover cap" style="opacity:0">求知若饥，虚心若愚</div></a></div>
+
+<nav class="menu dis-select"><a class="nav-item active" href="/">博客</a><a class="nav-item" href="/wiki/">项目</a><a class="nav-item" href="/friends/">友链</a><a class="nav-item" href="/about/">关于</a></nav>
+</header>
+
+
+<div class="widgets">
+
+<widget class="widget-wrapper toc single" id="toc"><div class="widget-header cap dis-select"><span class="name">C++程序设计简答题（二）</span></div><div class="widget-body fs14"><div class="doc-tree active"><ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E6%AF%94%E8%BE%83%E5%80%BC%E4%BC%A0%E9%80%92%E5%92%8C%E5%BC%95%E7%94%A8%E4%BC%A0%E9%80%92%E7%9A%84%E7%9B%B8%E5%90%8C%E7%82%B9%E5%92%8C%E4%B8%8D%E5%90%8C%E7%82%B9"><span class="toc-text"> 1. 比较值传递和引用传递的相同点和不同点。</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E4%BB%80%E4%B9%88%E5%8F%AB%E5%86%85%E8%81%94%E5%87%BD%E6%95%B0%E5%AE%83%E6%9C%89%E5%93%AA%E4%BA%9B%E7%89%B9%E7%82%B9"><span class="toc-text"> 2 什么叫内联函数?它有哪些特点？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-%E4%BB%80%E4%B9%88%E5%8F%AB%E5%A4%8D%E5%88%B6%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0%E5%A4%8D%E5%88%B6%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0%E4%BD%95%E6%97%B6%E8%A2%AB%E8%B0%83%E7%94%A8"><span class="toc-text"> 3 什么叫复制构造函数？复制构造函数何时被调用？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-%E5%A4%8D%E5%88%B6%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0%E4%B8%8E%E8%B5%8B%E5%80%BC%E8%BF%90%E7%AE%97%E7%AC%A6%E6%9C%89%E4%BD%95%E4%B8%8D%E5%90%8C"><span class="toc-text"> 4 复制构造函数与赋值运算符（&#x3D;）有何不同？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-%E4%BB%80%E4%B9%88%E5%8F%AB%E4%BD%9C%E7%94%A8%E5%9F%9F%E6%9C%89%E5%93%AA%E5%87%A0%E7%A7%8D%E7%B1%BB%E5%9E%8B%E7%9A%84%E4%BD%9C%E7%94%A8%E5%9F%9F"><span class="toc-text"> 5 什么叫作用域？有哪几种类型的作用域？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#6-%E4%BB%80%E4%B9%88%E5%8F%AB%E5%81%9A%E5%8F%AF%E8%A7%81%E6%80%A7%E5%8F%AF%E8%A7%81%E6%80%A7%E7%9A%84%E4%B8%80%E8%88%AC%E8%A7%84%E5%88%99%E6%98%AF%E4%BB%80%E4%B9%88"><span class="toc-text"> 6 什么叫做可见性？可见性的一般规则是什么？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#7-%E4%BB%80%E4%B9%88%E5%8F%AB%E9%9D%99%E6%80%81%E6%95%B0%E6%8D%AE%E6%88%90%E5%91%98%E4%BB%96%E6%9C%89%E4%BD%95%E7%89%B9%E7%82%B9"><span class="toc-text"> 7 什么叫静态数据成员？他有何特点？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#8-%E4%BB%80%E4%B9%88%E5%8F%AB%E9%9D%99%E6%80%81%E5%87%BD%E6%95%B0%E6%88%90%E5%91%98%E4%BB%96%E6%9C%89%E4%BD%95%E7%89%B9%E7%82%B9"><span class="toc-text"> 8 什么叫静态函数成员？他有何特点？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#9-%E4%BB%80%E4%B9%88%E5%8F%AB%E5%8F%8B%E5%85%83%E5%87%BD%E6%95%B0%E4%BB%80%E4%B9%88%E5%8F%AB%E5%8F%8B%E5%85%83%E7%B1%BB"><span class="toc-text"> 9 什么叫友元函数？什么叫友元类？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#10-%E5%9C%A8%E5%87%BD%E6%95%B0%E5%86%85%E9%83%A8%E5%AE%9A%E4%B9%89%E7%9A%84%E6%99%AE%E9%80%9A%E5%B1%80%E9%83%A8%E5%8F%98%E9%87%8F%E5%92%8C%E9%9D%99%E6%80%81%E5%B1%80%E9%83%A8%E5%8F%98%E9%87%8F%E5%9C%A8%E5%8A%9F%E8%83%BD%E4%B8%8A%E6%9C%89%E4%BD%95%E4%B8%8D%E5%90%8C%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%BA%95%E5%B1%82%E5%AF%B9%E8%BF%99%E4%B8%A4%E7%B1%BB%E5%8F%98%E9%87%8F%E5%81%9A%E4%BA%86%E6%80%8E%E6%A0%B7%E7%9A%84%E4%B8%8D%E5%90%8C%E5%A4%84%E7%90%86%E5%AF%BC%E8%87%B4%E4%BA%86%E8%BF%99%E7%A7%8D%E5%B7%AE%E5%BC%82"><span class="toc-text"> 10 在函数内部定义的普通局部变量和静态局部变量在功能上有何不同？计算机底层对这两类变量做了怎样的不同处理导致了这种差异？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#11-%E5%BC%95%E7%94%A8%E5%92%8C%E6%8C%87%E9%92%88%E6%9C%89%E4%BD%95%E5%8C%BA%E5%88%AB%E4%BD%95%E6%97%B6%E5%8F%AA%E8%83%BD%E4%BD%BF%E7%94%A8%E6%8C%87%E9%92%88%E8%80%8C%E4%B8%8D%E8%83%BD%E4%BD%BF%E7%94%A8%E5%BC%95%E7%94%A8"><span class="toc-text"> 11 引用和指针有何区别？何时只能使用指针而不能使用引用？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#12-%E6%AF%94%E8%BE%83%E7%B1%BB%E7%9A%84-3-%E7%A7%8D%E7%BB%A7%E6%89%BF%E6%96%B9%E5%BC%8F%E4%B9%8B%E9%97%B4%E7%9A%84%E5%B7%AE%E5%88%AB"><span class="toc-text"> 12 比较类的 3 种继承方式之间的差别？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#13-%E4%BB%80%E4%B9%88%E5%8F%AB%E8%99%9A%E5%9F%BA%E7%B1%BB%E6%9C%89%E4%BD%95%E4%BD%9C%E7%94%A8"><span class="toc-text"> 13 什么叫虚基类？有何作用？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#14-%E7%BB%84%E5%90%88%E4%B8%8E%E7%BB%A7%E6%89%BF%E6%9C%89%E4%BB%80%E4%B9%88%E5%85%B1%E5%90%8C%E7%82%B9%E5%92%8C%E5%B7%AE%E5%BC%82%E9%80%9A%E8%BF%87%E7%BB%84%E5%90%88%E7%94%9F%E6%88%90%E7%9A%84%E7%B1%BB%E4%B8%8E%E8%A2%AB%E7%BB%84%E5%90%88%E7%9A%84%E7%B1%BB%E4%B9%8B%E9%97%B4%E7%9A%84%E9%80%BB%E8%BE%91%E5%85%B3%E7%B3%BB%E6%98%AF%E4%BB%80-%E4%B9%88%E7%BB%A7%E6%89%BF%E5%91%A2"><span class="toc-text"> 14 组合与继承有什么共同点和差异？通过组合生成的类与被组合的类之间的逻辑关系是什 么？继承呢？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#15-%E5%9F%BA%E7%B1%BB%E4%B8%8E%E6%B4%BE%E7%94%9F%E7%B1%BB%E7%9A%84%E5%AF%B9%E8%B1%A1%E6%8C%87%E9%92%88%E6%88%96%E5%BC%95%E7%94%A8%E4%B9%8B%E9%97%B4%E5%93%AA%E4%BA%9B%E6%83%85%E5%86%B5%E4%B8%8B%E5%8F%AF%E4%BB%A5%E9%9A%90%E5%90%AB%E8%BD%AC%E6%8D%A2%E5%93%AA%E4%BA%9B%E6%83%85%E5%86%B5%E4%B8%8B%E5%8F%AF%E4%BB%A5%E6%98%BE-%E7%A4%BA%E8%BD%AC%E6%8D%A2%E5%9C%A8%E6%B6%89%E5%8F%8A%E5%A4%9A%E9%87%8D%E7%BB%A7%E6%89%BF%E6%88%96%E8%99%9A%E7%BB%A7%E6%89%BF%E7%9A%84%E6%83%85%E5%86%B5%E4%B8%8B%E5%9C%A8%E8%BD%AC%E6%8D%A2%E6%97%B6%E4%BC%9A%E9%9D%A2%E4%B8%B4%E5%93%AA%E4%BA%9B%E6%96%B0%E9%97%AE%E9%A2%98"><span class="toc-text"> 15 基类与派生类的对象，指针或引用之间，哪些情况下可以隐含转换，哪些情况下可以显 示转换？在涉及多重继承或虚继承的情况下，在转换时会面临哪些新问题？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#16-%E4%BB%80%E4%B9%88%E5%8F%AB%E5%81%9A%E5%A4%9A%E6%80%81%E6%80%A7%E5%9C%A8-c%E7%A7%8D%E6%98%AF%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0%E5%A4%9A%E6%80%81%E7%9A%84"><span class="toc-text"> 16 什么叫做多态性？在 C++种是如何实现多态的？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#17-%E4%BB%80%E4%B9%88%E5%8F%AB%E6%8A%BD%E8%B1%A1%E7%B1%BB%E6%8A%BD%E8%B1%A1%E7%B1%BB%E6%9C%89%E4%BD%95%E4%BD%9C%E7%94%A8%E6%8A%BD%E8%B1%A1%E7%B1%BB%E7%9A%84%E6%B4%BE%E7%94%9F%E7%B1%BB%E6%98%AF%E5%90%A6%E4%B8%80%E5%AE%9A%E8%A6%81%E7%BB%99%E5%87%BA%E7%BA%AF%E8%99%9A%E5%87%BD%E6%95%B0%E7%9A%84%E5%AE%9E%E7%8E%B0"><span class="toc-text"> 17 什么叫抽象类？抽象类有何作用？抽象类的派生类是否一定要给出纯虚函数的实现？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#18-%E5%9C%A8-c%E4%B8%AD%E8%83%BD%E5%90%A6%E5%A3%B0%E6%98%8E%E8%99%9A%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0%E4%B8%BA%E4%BB%80%E4%B9%88%E8%83%BD%E5%90%A6%E5%A3%B0%E6%98%8E%E8%99%9A%E6%9E%90%E6%9E%84%E5%87%BD%E6%95%B0%E6%9C%89%E4%BD%95%E7%94%A8%E9%80%94"><span class="toc-text"> 18 在 C++中，能否声明虚构造函数？为什么？能否声明虚析构函数？有何用途？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#19-%E4%BB%80%E4%B9%88%E5%8F%AB%E5%81%9A%E6%B5%81%E6%B5%81%E7%9A%84%E6%8F%90%E5%8F%96%E5%92%8C%E6%8F%92%E5%85%A5%E6%98%AF%E6%8C%87%E4%BB%80%E4%B9%88io-%E6%B5%81%E5%9C%A8-c%E4%B8%AD%E8%B5%B7%E7%9D%80%E6%80%8E%E6%A0%B7%E7%9A%84%E4%BD%9C%E7%94%A8"><span class="toc-text"> 19 什么叫做流？流的提取和插入是指什么？I&#x2F;O 流在 C++中起着怎样的作用？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#20-%E4%BB%80%E4%B9%88%E5%8F%AB%E5%81%9A%E5%BC%82%E5%B8%B8%E4%BB%80%E4%B9%88%E5%8F%AB%E5%81%9A%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86"><span class="toc-text"> 20 什么叫做异常？什么叫做异常处理？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#21-c%E7%9A%84%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86%E6%9C%BA%E5%88%B6%E6%9C%89%E4%BD%95%E4%BC%98%E7%82%B9"><span class="toc-text"> 21 C++的异常处理机制有何优点？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#22-%E6%AF%94%E8%BE%83%E5%87%BD%E6%95%B0%E9%87%8D%E8%BD%BD%E5%92%8C%E8%99%9A%E5%87%BD%E6%95%B0%E5%9C%A8%E6%A6%82%E5%BF%B5%E5%92%8C%E4%BD%BF%E7%94%A8%E6%96%B9%E5%BC%8F%E6%96%B9%E9%9D%A2%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB"><span class="toc-text"> 22 比较函数重载和虚函数在概念和使用方式方面有什么区别？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#23-%E6%AF%94%E8%BE%83-class-%E5%92%8C-struct-%E7%BB%93%E6%9E%84%E4%BD%93%E7%9A%84%E5%BC%82%E5%90%8C"><span class="toc-text"> 23 比较 class 和 struct 结构体的异同</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#24-%E6%B5%85%E6%8B%B7%E8%B4%9D%E5%92%8C%E6%B7%B1%E6%8B%B7%E8%B4%9D%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-text"> 24 浅拷贝和深拷贝的区别？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#25-const-%E5%92%8C-static-%E4%BD%9C%E7%94%A8-const-%E4%BD%9C%E7%94%A8"><span class="toc-text"> 25 const 和 static 作用 const 作用：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#26-%E6%9E%90%E6%9E%84%E5%87%BD%E6%95%B0%E5%B8%A6-virtual-%E5%92%8C-%E4%B8%8D%E5%B8%A6-virtual-%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-text"> 26 析构函数带 virtual 和 不带 virtual 的区别</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#27-%E9%87%8D%E5%86%99%E9%87%8D%E8%BD%BD%E5%92%8C%E9%9A%90%E8%97%8F%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-text"> 27 重写，重载和隐藏的区别？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#28-c%E4%B8%AD%E7%9A%84%E5%9B%9B%E4%B8%AA%E9%BB%98%E8%AE%A4%E7%9A%84%E5%87%BD%E6%95%B0"><span class="toc-text"> 28 C++中的四个默认的函数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#29-%E4%B8%8D%E5%8F%AF%E4%BB%A5%E8%A2%AB%E9%87%8D%E8%BD%BD%E7%9A%84%E8%BF%90%E7%AE%97%E7%AC%A6%E4%BA%94%E4%B8%AA"><span class="toc-text"> 29 不可以被重载的运算符–五个</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#30-%E4%B8%89%E7%A7%8D%E5%AD%97%E7%AC%A6%E6%95%B0%E7%BB%84%E5%88%9D%E5%A7%8B%E5%8C%96%E7%9A%84%E6%96%B9%E6%B3%95"><span class="toc-text"> 30 三种字符数组初始化的方法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#31-%E5%93%AA%E4%BA%9B%E6%93%8D%E4%BD%9C%E7%AC%A6%E5%BF%85%E9%A1%BB%E9%87%8D%E8%BD%BD%E4%B8%BA%E6%88%90%E5%91%98%E5%87%BD%E6%95%B0"><span class="toc-text"> 31 哪些操作符必须重载为成员函数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#32-%E4%BB%80%E4%B9%88%E6%98%AFelse-%E6%91%87%E6%91%86%E9%97%AE%E9%A2%98%E4%B8%BE%E4%BE%8B%E8%AF%B4%E6%98%8E"><span class="toc-text"> 32 什么是“else 摇摆问题”，举例说明</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#33-%E5%87%BD%E6%95%B0%E6%A8%A1%E6%9D%BF%E5%92%8C%E5%87%BD%E6%95%B0%E9%87%8D%E8%BD%BD%E7%9A%84%E5%8C%BA%E5%88%AB%E4%B8%8E%E8%81%94%E7%B3%BB"><span class="toc-text"> 33 函数模板和函数重载的区别与联系</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#34-%E6%80%8E%E6%A0%B7%E5%8C%BA%E5%88%AB%E8%99%9A%E5%87%BD%E6%95%B0%E5%92%8C%E7%BA%AF%E8%99%9A%E5%87%BD%E6%95%B0%E4%B8%A4%E8%80%85%E9%83%BD%E6%9C%89%E4%BB%80%E4%B9%88%E4%BD%9C%E7%94%A8"><span class="toc-text"> 34 怎样区别虚函数和纯虚函数？两者都有什么作用</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#35-%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%A8%8B%E5%BA%8F%E6%8E%A5%E5%8F%A3%E4%B8%8E%E5%AE%9E%E7%8E%B0%E6%96%B9%E6%B3%95%E5%88%86%E7%A6%BB%E6%9C%89%E4%BB%80%E4%B9%88%E4%BD%9C%E7%94%A8%E5%A5%BD%E5%A4%84"><span class="toc-text"> 35 面向对象程序“接口与实现方法分离”，有什么作用（好处）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#36-%E5%88%97%E5%87%BA%E6%89%80%E6%9C%89%E4%B8%8E%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%A4%84%E7%90%86%E6%9C%89%E5%85%B3%E7%9A%84%E5%A4%B4%E6%96%87%E4%BB%B6"><span class="toc-text"> 36 列出所有与字符串处理有关的头文件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#37-c%E4%B8%AD%E6%98%BE%E7%A4%BA%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2"><span class="toc-text"> 37 C++中显示类型转换</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#39-%E5%AD%98%E5%82%A8%E7%B1%BB%E5%88%AB%E8%AF%B4%E6%98%8E%E7%AC%A6%E5%8F%AF%E5%88%92%E5%88%86%E4%B8%BA%E4%B8%A4%E7%B1%BB"><span class="toc-text"> 39 存储类别说明符可划分为两类。</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#40-%E4%BB%80%E4%B9%88%E6%98%AF%E8%BF%90%E7%AE%97%E7%AC%A6%E9%87%8D%E8%BD%BD%E5%AE%83%E5%A6%82%E4%BD%95%E5%A2%9E%E5%BC%BA-c%E7%9A%84%E6%89%A9%E5%B1%95%E6%80%A7"><span class="toc-text"> 40 什么是运算符重载，它如何增强 C++的扩展性？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#41-%E4%B8%BA%E4%BB%80%E4%B9%88%E8%AF%B4%E7%BB%A7%E6%89%BF%E6%98%AF-c%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%9A%84%E4%B8%BB%E8%A6%81%E7%89%B9%E5%BE%81%E4%B9%8B%E4%B8%80%E8%AF%B7%E7%AE%80%E8%A6%81%E8%AF%B4%E6%98%8E"><span class="toc-text"> 41 为什么说”继承是 C++面向对象的主要特征之一”?请简要说明.？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#42-%E4%BD%9C%E7%94%A8%E5%9F%9F%E8%BE%A8%E6%9E%90%E6%9C%89%E5%93%AA%E4%BA%9B"><span class="toc-text"> 42 作用域辨析有哪些？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#43stl-%E6%98%AF%E4%BB%80%E4%B9%88%E7%BB%84%E6%88%90%E9%83%A8%E5%88%86%E5%92%8C%E5%8C%BA%E5%88%AB"><span class="toc-text"> 43.STL 是什么？组成部分和区别。</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#44-%E5%A6%82%E4%BD%95%E5%A3%B0%E6%98%8E%E5%92%8C%E4%BD%BF%E7%94%A8%E8%99%9A%E5%87%BD%E6%95%B0-%E8%AF%B4%E6%98%8E%E5%AE%83%E5%9C%A8%E5%A4%9A%E6%80%81%E6%80%A7%E4%B8%AD%E7%9A%84%E4%BD%9C%E7%94%A8%E5%92%8C%E6%84%8F%E4%B9%89"><span class="toc-text"> 44 如何声明和使用虚函数。说明它在多态性中的作用和意义。</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#44%E4%BB%80%E4%B9%88%E6%98%AF%E9%80%BB%E8%BE%91%E9%94%99%E8%AF%AF%E4%BB%80%E4%B9%88%E6%98%AF%E8%AF%AD%E6%B3%95%E9%94%99%E8%AF%AF%E8%AF%B7%E4%B8%BE%E4%BE%8B%E8%AF%B4%E6%98%8E"><span class="toc-text"> 44.什么是逻辑错误？什么是语法错误？请举例说明。</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#45-%E7%BC%96%E5%86%99%E8%AF%AD%E5%8F%A5%E8%AF%B4%E6%98%8E%E6%9E%9A%E4%B8%BE%E7%B1%BB%E5%9E%8B%E6%98%AF%E5%A6%82%E4%BD%95%E5%AE%9A%E4%B9%89%E5%92%8C%E4%BD%BF%E7%94%A8%E7%9A%84"><span class="toc-text"> 45 编写语句说明枚举类型是如何定义和使用的。</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#46-adt%E6%98%AF%E4%BB%80%E4%B9%88%E7%AE%80%E8%BF%B0%E4%BD%A0%E5%AF%B9%E6%95%B0%E6%8D%AE%E6%8A%BD%E8%B1%A1%E5%92%8C%E4%BF%A1%E6%81%AF%E9%9A%90%E8%97%8F%E7%9A%84%E8%AE%A4%E8%AF%86"><span class="toc-text"> 46 ADT是什么？简述你对“数据抽象”和“信息隐藏”的认识。</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#47-%E7%AE%80%E8%BF%B0%E4%BD%A0%E5%AF%B9%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E5%92%8C%E9%9D%A2%E5%90%91%E8%BF%87%E7%A8%8B%E7%BC%96%E7%A8%8B%E6%80%9D%E6%83%B3%E7%9A%84%E7%90%86%E8%A7%A3%E5%92%8C%E8%AE%A4%E8%AF%86"><span class="toc-text"> 47 简述你对“面向对象”和“面向过程”编程思想的理解和认识。</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#50-%E5%86%99%E5%87%BA%E9%80%92%E5%BD%92%E5%87%BD%E6%95%B0%E5%AE%9A%E4%B9%89%E4%BB%A5%E5%8F%8A%E7%9B%B8%E5%BA%94%E7%9A%84%E4%BC%98%E7%BC%BA%E7%82%B9"><span class="toc-text"> 50 写出递归函数定义以及相应的优缺点</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#51-%E5%86%99%E5%87%BA%E5%8C%85%E5%90%AB%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA%E7%9A%84%E6%A0%87%E5%87%86%E5%BA%93"><span class="toc-text"> 51 写出包含输入输出的标准库</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#52-%E6%80%8E%E6%A0%B7%E5%8C%BA%E5%88%AB%E8%99%9A%E5%87%BD%E6%95%B0%E5%92%8C%E7%BA%AF%E8%99%9A%E5%87%BD%E6%95%B0%E4%B8%A4%E8%80%85%E9%83%BD%E6%9C%89%E4%BB%80%E4%B9%88%E4%BD%9C%E7%94%A8"><span class="toc-text"> 52 怎样区别虚函数和纯虚函数？两者都有什么作用</span></a></li></ol></div></div></widget>
+
+
+
+
+
+
+</div>
+<footer class="footer dis-select"><div class="social-wrap"><a class="social" href="/atom.xml" rel="noopener noreferrer"><img src="/images/网站图片/rss.svg"/></a><a class="social" href="mailto:2739218253@qq.com" rel="noopener noreferrer"><img src="/images/网站图片/gmail.svg"/></a><a class="social" href="https://github.com/guyingd" target="_blank" rel="external nofollow noopener noreferrer"><img src="/images/网站图片/github.svg"/></a><a class="social" href="https://guyinga.top" target="_blank" rel="external nofollow noopener noreferrer"><img src="/images/网站图片/volantis.svg"/></a><a class="social" href="/" rel="noopener noreferrer"><img src="/images/网站图片/OneDrive.svg"/></a></div></footer>
+
+    </aside>
+    <div class='l_main'>
+      
+
+      
+
+
+<div class="bread-nav fs12"><div id="breadcrumb"><a class="cap breadcrumb" href="/">主页</a><span class="sep"></span><a class="cap breadcrumb" href="/">文章</a><span class="sep"></span><a class="cap breadcrumb-link" href="/categories/C/">C++</a></div><div id="post-meta">发布于&nbsp;<time datetime="2022-03-15T16:00:00.000Z">2022-03-16</time></div></div>
+
+<article class='md-text content post reveal'>
+<h1 class="article-title"><span>C++程序设计简答题（二）</span></h1>
+<h4 id="1-比较值传递和引用传递的相同点和不同点"><a class="markdownIt-Anchor" href="#1-比较值传递和引用传递的相同点和不同点"></a> 1. 比较值传递和引用传递的相同点和不同点。</h4>
+<p>值传递是指当发生函数调用时，给形参分配内存空间，并用实参来初始化形参（直接将 实参的值传递给形参）。这一过程是参数值的单向传递过程，一旦形参获得了值便与实参脱 离关系，此后无论形参发生了怎样的改变，都不会影响到实参。<br />
+引用传递将引用作为形参，在执行主调函数中的调用语句时，系统自动用实参来初始化 形参。这样形参就成为实参的一个别名，对形参的任何操作也就直接作用于实参。</p>
+<h4 id="2-什么叫内联函数它有哪些特点"><a class="markdownIt-Anchor" href="#2-什么叫内联函数它有哪些特点"></a> 2 什么叫内联函数?它有哪些特点？</h4>
+<p>定义时使用关键字 inline 的函数叫做内联函数；编译器在编译时在调用处用函数体进行替换,节省了参数传递、控制转移等开销；<br />
+内联函数体内不能有循环语句和 switch 语句；<br />
+内联函数的定义必须出现在内联函数第一次被调用之前；对内联函数不能进行异常接口声明；</p>
+<h4 id="3-什么叫复制构造函数复制构造函数何时被调用"><a class="markdownIt-Anchor" href="#3-什么叫复制构造函数复制构造函数何时被调用"></a> 3 什么叫复制构造函数？复制构造函数何时被调用？</h4>
+<p>复制构造函数是一种特殊的构造函数，具有一般构造函数的所有特性，其形参是本类的 对象的引用 (const T &amp;)。其作用是使用一个已经存在的对象（由复制构造函数的参数指定），去初始化同类的一个新对象。<br />
+（1） 当用类的一个对象去初始化该类的另一个对象时；<br />
+（2） 如果函数的形参是类的对象，调用函数时进行形参和实参结合时；<br />
+（3） 如果函数的返回值是类的对象，函数执行完成返回调用者时。</p>
+<h4 id="4-复制构造函数与赋值运算符有何不同"><a class="markdownIt-Anchor" href="#4-复制构造函数与赋值运算符有何不同"></a> 4 复制构造函数与赋值运算符（=）有何不同？</h4>
+<p>从概念上区分：复制构造函数是构造函数，而赋值操作符属于操作符重载范畴，它通常 是类的成员函数 从原型上来区分：<br />
+复制构造函数原型 ClassType(const ClassType &amp;);无返回值；<br />
+赋值操作符原型 ClassType&amp; operator=(const ClassType &amp;);返回值为 ClassType 的引用，便于连续赋 值操作 从使用的场合来区分：复制构造函数用于产生对象，它用于以下几个地方：函数参数为 类的值类型时、函数返回值为类类型时以及初始化语句</p>
+<h4 id="5-什么叫作用域有哪几种类型的作用域"><a class="markdownIt-Anchor" href="#5-什么叫作用域有哪几种类型的作用域"></a> 5 什么叫作用域？有哪几种类型的作用域？</h4>
+<p>作用域讨论的是标识符的有效范围，作用域是一个标识符在程序正文中有效的区域。 C++的作用域分为：函数原型作用域、函数作用域、文件作用域(全局作用域)、块作用 域（局部作用域）、类作用域和名字空间作用域。</p>
+<h4 id="6-什么叫做可见性可见性的一般规则是什么"><a class="markdownIt-Anchor" href="#6-什么叫做可见性可见性的一般规则是什么"></a> 6 什么叫做可见性？可见性的一般规则是什么？</h4>
+<p>可见性是标识符是否可以引用的问题； 可见性的一般规则是：标识符要声明在前，引用在后，在同一作用域中，不能声明同名 的标识符。对于在不同的作用域声明的标识符，遵循的原则是：若有两个或多个具有包含关 系的作用域，外层声明的标识符如果在内层没有声明同名标识符时仍可见，如果内层声明了 同名标识符则外层标识符不可见。</p>
+<h4 id="7-什么叫静态数据成员他有何特点"><a class="markdownIt-Anchor" href="#7-什么叫静态数据成员他有何特点"></a> 7 什么叫静态数据成员？他有何特点？</h4>
+<p>类的静态数据成员是类的数据成员的一种特例，采用 static 关键字来声明。对于类的普<br />
+通数据成员，每一个类的对象都拥有一个拷贝，就是说每一个对象的同名数据成员可以分别存储不同的值，这也是保证对象拥有区别于其他对象的特征的需要，但是静态数据成员，每 个类只要一个拷贝，由所有该类的对象共同维护和使用，这个共同维护，使用也就实现了同一类的不同对象之间的数据共享。</p>
+<h4 id="8-什么叫静态函数成员他有何特点"><a class="markdownIt-Anchor" href="#8-什么叫静态函数成员他有何特点"></a> 8 什么叫静态函数成员？他有何特点？</h4>
+<p>使用 static 关键字声明的函数成员是静态的，静态函数成员属于整个类，被同一个类的 所有对象共同维护，为这些所有对象共享。<br />
+静态成员函数具有以下两个方面的好处：<br />
+一是由于静态成员函数只能直接访问同一个类的静态数据成员，可以保证不会对该类的其余数据成员造成负面影响；<br />
+二是同一个类只维护一个静态函数成员的拷贝，节约了系统的开销，提高 程序的运行效率。</p>
+<h4 id="9-什么叫友元函数什么叫友元类"><a class="markdownIt-Anchor" href="#9-什么叫友元函数什么叫友元类"></a> 9 什么叫友元函数？什么叫友元类？</h4>
+<p>友元函数是使用关键字 friend 关键字声明的函数，它可以访问相应类的保护成员和私 有成员。友元类是使用 friend 关键字声明的类，它的所有成员函数都是相应类的友元函数。<br />
+友元不可继承，没有传递性。</p>
+<h4 id="10-在函数内部定义的普通局部变量和静态局部变量在功能上有何不同计算机底层对这两类变量做了怎样的不同处理导致了这种差异"><a class="markdownIt-Anchor" href="#10-在函数内部定义的普通局部变量和静态局部变量在功能上有何不同计算机底层对这两类变量做了怎样的不同处理导致了这种差异"></a> 10 在函数内部定义的普通局部变量和静态局部变量在功能上有何不同？计算机底层对这两类变量做了怎样的不同处理导致了这种差异？</h4>
+<p>局部作用域中静态变量的特点是：它并不会随着每次函数调用而产生一个副本，也不会 随着函数的返回而失效，定义时未指定初值的基本类型静态变量，会被以 0 值初始化；局部作用域的全部变量诞生于声明点，结束于声明所在的块执行完毕之时，并且不指定初值，意 味初值不确定。普通局部变量存放于栈区，超出作用域后，变量被撤销，其所占的内存也被 回收；静态局部变量存放于静态数据存储区，全局可见，但是作用域是局部作用域，超出作用域后变量仍然存在。</p>
+<h4 id="11-引用和指针有何区别何时只能使用指针而不能使用引用"><a class="markdownIt-Anchor" href="#11-引用和指针有何区别何时只能使用指针而不能使用引用"></a> 11 引用和指针有何区别？何时只能使用指针而不能使用引用？</h4>
+<p>引用是一个别名，不能为 NULL 值，不能被重新分配；<br />
+指针是一个存放地址的变量。<br />
+当需要对变量重新赋以另外的地址或赋值为 NULL 时只能使用指针。<br />
+引用是一个变量的别名，本身不单独分配自己的内存空间，而指针有自己的内存空间。</p>
+<h4 id="12-比较类的-3-种继承方式之间的差别"><a class="markdownIt-Anchor" href="#12-比较类的-3-种继承方式之间的差别"></a> 12 比较类的 3 种继承方式之间的差别？</h4>
+<p>公有继承，使得基类 public(公有)和 protected(保护)成员的访问属性在派生类中不变， 而基类 private(私有)成员不可访问。<br />
+私有继承，使得基类 public(公有)和 protected(保护)成员都以 private(私有)成员身份出 现在派生类中，而基类 private(私有)成员不可访问。<br />
+保护继承中，基类 public(公有)和 protected(保护)成员都以 protected(保护)成员身份出 现在派生类中，而基类 private(私有)成员不可访问。</p>
+<h4 id="13-什么叫虚基类有何作用"><a class="markdownIt-Anchor" href="#13-什么叫虚基类有何作用"></a> 13 什么叫虚基类？有何作用？</h4>
+<p>当某类的部分或全部直接基类是从另一个基类派生而来，这些直接基类中，从上一级基类继承来的成员就拥有相同的名称，派生类的对象的这些同名成员在内存中同时拥有多 个拷贝，我们可以使用作用域分辨符来唯一标识并分别访问它们。<br />
+我们也可以将直接基类的共同基类设置为虚基类，这时从不同的路径继承过来的该类成员在内存中只拥有一个拷 贝，这样就解决了同名成员的唯一标识问题。<br />
+虚基类的声明是在派生类的定义过程，其语法格式为： class 派生类名：virtual 继承方式 基类名 上述语句声明基类为派生类的虚基类，在多继承情况下，虚基类关键字的作用范围和 继承方式关键字相同，只对紧跟其后的基类起作用。<br />
+声明了虚基类之后，虚基类的成员在 进一步派生过程中，和派生类一起维护一个内存数据拷贝。 虚基类就是为了解决多继承产生的二义性问题</p>
+<h4 id="14-组合与继承有什么共同点和差异通过组合生成的类与被组合的类之间的逻辑关系是什-么继承呢"><a class="markdownIt-Anchor" href="#14-组合与继承有什么共同点和差异通过组合生成的类与被组合的类之间的逻辑关系是什-么继承呢"></a> 14 组合与继承有什么共同点和差异？通过组合生成的类与被组合的类之间的逻辑关系是什 么？继承呢？</h4>
+<p>组合和继承它们都使得已有对象成为新对象的一部分，从而达到代码复用的目的。组合 和继承其实反映了两种不同的对象关系。<br />
+组合反映的是“有一个”（has-s）的关系，如果类 B 中存在一个类 A 的内嵌对象，表示的 是每一个 B 类型的对象都“有一个”A 类型的对象，A 类型的对象与 B 类型的对象是部分整体 的关系。<br />
+继承反映的是“是一个”（is-a）的关系，在“是一个”关系中，如果类 A 是类 B 的公有基 类，那么这表示每一个 B 类型的对象都“是一个”A 类型的对象，B 类型的对象与 A 类型的对 象是特殊与一般的关系。</p>
+<h4 id="15-基类与派生类的对象指针或引用之间哪些情况下可以隐含转换哪些情况下可以显-示转换在涉及多重继承或虚继承的情况下在转换时会面临哪些新问题"><a class="markdownIt-Anchor" href="#15-基类与派生类的对象指针或引用之间哪些情况下可以隐含转换哪些情况下可以显-示转换在涉及多重继承或虚继承的情况下在转换时会面临哪些新问题"></a> 15 基类与派生类的对象，指针或引用之间，哪些情况下可以隐含转换，哪些情况下可以显 示转换？在涉及多重继承或虚继承的情况下，在转换时会面临哪些新问题？</h4>
+<p>派生类指针可以隐含转换为基类指针，而基类指针要想转换为派生类指针，则转换一定 要显示地进行。因为从特殊的指针转换到一般的指针时安全的，因此允许隐含转换；<br />
+从一般 的指针转换到特殊的指针是不安全的，因此只能显示地转换。基类对象一般无法被显式转换 为派生类对象。在多重继承情况下，执行基类指针到派生类指针的显式转换时，有时需要将 指针所存储的地址值进行调整后才能得到新指针的值。<br />
+但是，如果 A 类型是 B 类型的虚拟 基类，虽然 B 类型的指针可以隐含转换为 A 类型，但是 A 类型指针却无法通过 static_case 隐含转换为 B 类型的指针。</p>
+<h4 id="16-什么叫做多态性在-c种是如何实现多态的"><a class="markdownIt-Anchor" href="#16-什么叫做多态性在-c种是如何实现多态的"></a> 16 什么叫做多态性？在 C++种是如何实现多态的？</h4>
+<p>**多态是指同样的消息被不同类型的对象接收时导致完全不同的行为，是对类的特定成员 函数的再抽象。**C++支持重载多态，强制多态，包含多态和参数多态。 在基类中声明相应的函数为 virtual 型，然后在派生类中实现该函数，这样就可以通过 基类指针调用派生类对象的函数，实现了运行时动态绑定，即多态的功能。</p>
+<h4 id="17-什么叫抽象类抽象类有何作用抽象类的派生类是否一定要给出纯虚函数的实现"><a class="markdownIt-Anchor" href="#17-什么叫抽象类抽象类有何作用抽象类的派生类是否一定要给出纯虚函数的实现"></a> 17 什么叫抽象类？抽象类有何作用？抽象类的派生类是否一定要给出纯虚函数的实现？</h4>
+<p>带有纯虚函数的类是抽象类。其主要作用是通过它为一个类族建立一个公共的接口，使 他们能够更有效地发挥多态特性。抽象类声明了一个类族派生类的共同接口，而接口的完整 实现，即纯虚函数的函数体，要由派生类自己定义。抽象类派生出新的类之后，如果派生类 给出所有纯虚函数的函数实现，这个派生类就可以定义自己的对象，因而不再是抽象类；反 之，如果派生类没有给出全部纯虚函数的实现，此时的派生类仍然是一个抽象类。</p>
+<h4 id="18-在-c中能否声明虚构造函数为什么能否声明虚析构函数有何用途"><a class="markdownIt-Anchor" href="#18-在-c中能否声明虚构造函数为什么能否声明虚析构函数有何用途"></a> 18 在 C++中，能否声明虚构造函数？为什么？能否声明虚析构函数？有何用途？</h4>
+<p>在 C++中，不能声明虚构造函数，多态是不同的对象对同一消息有不同的行为特性，虚 函数作为运行过程中多态的基础，主要是针对对象的，而构造函数是在对象产生之前运行的， 因此虚构造函数是没有意义的；<br />
+可以声明虚析构函数，析构函数的功能是在该类对象消亡之前进行一些必要的清理工作， 如果一个类的析构函数是虚函数，那么，由它派生而来的所有子类的析构函数也是虚函数。 析构函数设置为虚函数之后，在使用指针引用时可以动态联编，实现运行时的多态，保证使 用基类的指针就能够调用适当的析构函数针对不同的对象进行清理工作。</p>
+<h4 id="19-什么叫做流流的提取和插入是指什么io-流在-c中起着怎样的作用"><a class="markdownIt-Anchor" href="#19-什么叫做流流的提取和插入是指什么io-流在-c中起着怎样的作用"></a> 19 什么叫做流？流的提取和插入是指什么？I/O 流在 C++中起着怎样的作用？</h4>
+<p>流是一种抽象，它 负责在数据的生产者和数据的消费者之间建立联系，并管理数据的流 动，一般意义下的读操作在流数据抽象中被称为（从流中）提取，写操作被称为（向流中） 插入。<br />
+操作系统是将键盘、屏幕、打印机和通信端口作为扩充文件来处理的，I/O 流类就是 用来与这些扩充文件进行交互，实现数据的输入与输出。</p>
+<h4 id="20-什么叫做异常什么叫做异常处理"><a class="markdownIt-Anchor" href="#20-什么叫做异常什么叫做异常处理"></a> 20 什么叫做异常？什么叫做异常处理？</h4>
+<p>当一个函数在执行的过程中出现了一些不平常的情况，或运行结果无法定义的情况，使 得操作不得不被中断时，我们说出现了异常。异常通常是用 throw 关键字产生的一个对象， 用来表明出现了一些意外的情况。我们在设计程序时，就要充分考虑到各种意外情况，并给 与恰当的处理。这就是我们所说的异常处理。</p>
+<h4 id="21-c的异常处理机制有何优点"><a class="markdownIt-Anchor" href="#21-c的异常处理机制有何优点"></a> 21 C++的异常处理机制有何优点？</h4>
+<p>C++的异常处理机制使得异常的引发和处理不必在同一函数中，这样底层的函数可以着 重解决具体问题，而不必过多地考虑对异常的处理。上层调用者可以在适当的位置设计对不 同类型异常的处理。</p>
+<h4 id="22-比较函数重载和虚函数在概念和使用方式方面有什么区别"><a class="markdownIt-Anchor" href="#22-比较函数重载和虚函数在概念和使用方式方面有什么区别"></a> 22 比较函数重载和虚函数在概念和使用方式方面有什么区别？</h4>
+<p>函数重载可以用于普通函数（非成员的函数）和类的成员函数，而虚函数只能用于 类的成员函数。<br />
+    函数重载可以用于构造函数，而虚函数不能用于构造函数。<br />
+    如果对成员函数进行重载，则重载的函数与被重载的函数应当都是同一类中的成员 函数，不能分属于两个不同继承层次的类。函数重载是横向的重载。虚函数是对同 一类族中的基类和派生类的同名函数的处理，即允许在派生类中对基类的成员函数 重新定义。虚函数的作用是处理纵向的同名函数。<br />
+    重载的函数必须具有相同的函数名，但函数的参数个数和参数类型二者中至少有一 样不同，否则在编译时无法区分它们。而虚函数则要求再同一类族中的所有虚函数 不仅函数名相同，而且要求函数类型、函数的参数个数和参数类型都全部相同，否 则就不是重定义了。也就不是虚函数了。<br />
+    函数重载是在程序编译阶段确定操作的对象的，属静态关联。虚函数是在程序运行 阶段确定操作的对象的，属动态关联。</p>
+<h4 id="23-比较-class-和-struct-结构体的异同"><a class="markdownIt-Anchor" href="#23-比较-class-和-struct-结构体的异同"></a> 23 比较 class 和 struct 结构体的异同</h4>
+<p>不同之处：</p>
+<p>默认成员访问权限不同，struct 默认是 public，而 class 默认是 private。<br />
+    默认继承方式不同，struct 默认是 public，而 class 默认是 private。<br />
+    在定义模板参数时可以用 class 但不能用 struct。 相同之处在于：都可以包含成员函数，都可以实现继承，都可以实现多态。</p>
+<h4 id="24-浅拷贝和深拷贝的区别"><a class="markdownIt-Anchor" href="#24-浅拷贝和深拷贝的区别"></a> 24 浅拷贝和深拷贝的区别？</h4>
+<p>在某些情况下，类内的成员变量需要动态开辟堆内存，如果实行按位拷贝，就可能会出 现两个对象里面的成员变量指针指向同一块内存区域。当回收其中一个对象时，该对象成员 变量所指向的内存区域也将回收，会导致另一个对象存在野指针的情况。非常危险。 深拷贝和浅拷贝可以简单理解为：如果一个类拥有资源，当这个类的对象发生复制过程 的时候，资源重新分配，这个过程就是深拷贝，反之，没有重新分配资源，就是浅拷贝。</p>
+<h4 id="25-const-和-static-作用-const-作用"><a class="markdownIt-Anchor" href="#25-const-和-static-作用-const-作用"></a> 25 const 和 static 作用 const 作用：</h4>
+<p>const:</p>
+<p>定义 const 常量，具有不可变性，保护被修饰的东西。防止意外修改，增强程序的 健壮性。<br />
+    便于类型检查，使编译器对处理内容有更多的了解。<br />
+    可以避免意义模糊的数字出现，也便于进行参数的修改。同宏定义一样，可以做到 不变则以，一变都变。<br />
+    const 定义的常量在程序运行过程中只有一份拷贝，而宏定义却又若干份拷贝。</p>
+<p>static:</p>
+<p>作为类的静态数据成员：被类的所有对象共同拥有，在内存中只有一份拷贝。在类 内声明，在类外初始化。<br />
+    在全局变量前加上 static 关键字，该变量被定义为一个全局变量，<br />
+    特点：<br />
+    a) 变量在全局数据区分配内存<br />
+    b) 如果不显示初始化，则隐式的初始化为 0<br />
+    c) 作用域仅限于本文件内<br />
+    在局部变量前加 static 关键字，该变量被定义为静态局部变量，<br />
+    特点：<br />
+    a) 在全局数据区分配内存<br />
+    b) 如果不显示初始化，则隐式的初始化为 0<br />
+    c) 始终驻留在全局数据区，直到程序结束。作用域仅限于函数体内，当函数执行 完后作用域随之消失。<br />
+    静态函数，<br />
+    特点：<br />
+    a) 静态函数只能在本源文件中使用<br />
+    b) 在文件作用域下声明的 inline 函数默认是 static 的</p>
+<h4 id="26-析构函数带-virtual-和-不带-virtual-的区别"><a class="markdownIt-Anchor" href="#26-析构函数带-virtual-和-不带-virtual-的区别"></a> 26 析构函数带 virtual 和 不带 virtual 的区别</h4>
+<p>如果基类要被派生，则析构函数一定要带 virtual。否则，通过基类指针指向派生类对象 后，删除该指针时并不会释放派生类对象的空间。也即，不会调用派生类的析构函数。</p>
+<p>不带 virtual 的几种情况：</p>
+<p>作为非公有基类<br />
+    不作为接口使用的基类<br />
+    可以保证这个类不被 public 继承<br />
+    如果他的所有派生类的 virtual 函数都是什么都不做<br />
+    如果不需要基类指针指向派生类对象</p>
+<h4 id="27-重写重载和隐藏的区别"><a class="markdownIt-Anchor" href="#27-重写重载和隐藏的区别"></a> 27 重写，重载和隐藏的区别？</h4>
+<p>重载：在一个类中的同名函数，但参数列表不同，函数的返回值相同。<br />
+隐藏：派生类的函数屏蔽了与其同名的父类函数<br />
+重写（覆盖）：父类和子类存在相同的函数，包括返回值，参数列表均相同，父类的该 函数必须含有 virtual 关键字。</p>
+<h4 id="28-c中的四个默认的函数"><a class="markdownIt-Anchor" href="#28-c中的四个默认的函数"></a> 28 C++中的四个默认的函数</h4>
+<p>构造函数：先基类后派生类<br />
+    拷贝函数：对象被创建时调用<br />
+    调用拷贝构造函数的情况：<br />
+    a) 一个对象以值传递的方式传入函数体<br />
+    b) 一个对象以值传递的方式从函数返回<br />
+    c) 一个对象需要通过另外一个对象初始化<br />
+    析构函数：每个类只有一个析构函数，<br />
+    赋值函数：</p>
+<h4 id="29-不可以被重载的运算符五个"><a class="markdownIt-Anchor" href="#29-不可以被重载的运算符五个"></a> 29 不可以被重载的运算符–五个</h4>
+<p>类属关系运算符、成员指针运算符“、作用域运算符、 sizeof 运算符和三目 运算符<br />
+. .* :: sizeof() ?:</p>
+<h4 id="30-三种字符数组初始化的方法"><a class="markdownIt-Anchor" href="#30-三种字符数组初始化的方法"></a> 30 三种字符数组初始化的方法</h4>
+<p>char str[5] = {“hello”};<br />
+char str[6] = {‘a’,‘b’,‘c’,‘d’,‘e’,’\0’};<br />
+char str[] = “abcde”;</p>
+<h4 id="31-哪些操作符必须重载为成员函数"><a class="markdownIt-Anchor" href="#31-哪些操作符必须重载为成员函数"></a> 31 哪些操作符必须重载为成员函数</h4>
+<p>必须重载：<br />
+= -&gt; () [] new delete</p>
+<h4 id="32-什么是else-摇摆问题举例说明"><a class="markdownIt-Anchor" href="#32-什么是else-摇摆问题举例说明"></a> 32 什么是“else 摇摆问题”，举例说明</h4>
+<p>C++编译器总是把 else 同与它最近的 if 联系起来，因此如果没有正确放置花括号对就 会出现逻辑错误。</p>
+<h4 id="33-函数模板和函数重载的区别与联系"><a class="markdownIt-Anchor" href="#33-函数模板和函数重载的区别与联系"></a> 33 函数模板和函数重载的区别与联系</h4>
+<p>函数重载：C++允许使用同一个函数名，不同的参数个数和参数类型来定义多个函数。 重载函数的参数个数，类型，顺序至少有一个不同。返回值可以相同，也可以不同。</p>
+<p>函数模板：是对一类同构函数的抽象定义，并不是具体的函数，函数模板的定义被编译 时不会产生任何可执行的代码。 联系： 针对不同类型的数据，但实现相同功能的函数重载可以通过函数模板来替代。</p>
+<h4 id="34-怎样区别虚函数和纯虚函数两者都有什么作用"><a class="markdownIt-Anchor" href="#34-怎样区别虚函数和纯虚函数两者都有什么作用"></a> 34 怎样区别虚函数和纯虚函数？两者都有什么作用</h4>
+<p>纯虚函数是在基类中声明的虚函数，在基类中没有定义。在基类中实现纯虚函数的方法 是在函数原型后加“=0。虚函数可以实现也可以不实现。<br />
+定义纯虚函数是为了实现一个接口，起到了一个规范的作用。规范继承这个类的程序员 必须实现这个接口。<br />
+声明了纯虚函数的类为抽象类，不能实例化对象。 定义虚函数是为了允许用基类的指针来调用子类的这个函数。<br />
+抽象类的作用：将有关的操作作为一个接口组织在一个继承层次结构中，由他来为派生 类提供一个公共的根。派生类将具体实现在其基类中作为接口的操作。</p>
+<h4 id="35-面向对象程序接口与实现方法分离有什么作用好处"><a class="markdownIt-Anchor" href="#35-面向对象程序接口与实现方法分离有什么作用好处"></a> 35 面向对象程序“接口与实现方法分离”，有什么作用（好处）</h4>
+<p>接口与实现分离技术可以只把接口暴露给用户，具体的实现细节隐藏起来，当需要改动 代码时，只要在实现部分修改后编译，用户无需再编译自己的项目。</p>
+<h4 id="36-列出所有与字符串处理有关的头文件"><a class="markdownIt-Anchor" href="#36-列出所有与字符串处理有关的头文件"></a> 36 列出所有与字符串处理有关的头文件</h4>
+<p>string.h 是 C 语言中字符串操作函数的头文件<br />
+cstring 是 c<ins>对 C 语言中的 strcpy 之类的函数申明，包含 cstring 之后，就可以在程序 中使用 C 语言风格的 strcpy 之类的函数。<br />
+string 是 c</ins>语言中 string 类模板的申明<br />
+CString 是 MFC 中定义的字符串类，MFC 中很多类及函数都是以 CString 为参数的</p>
+<h4 id="37-c中显示类型转换"><a class="markdownIt-Anchor" href="#37-c中显示类型转换"></a> 37 C++中显示类型转换</h4>
+<p>static_cast：最常用的类型转换，提供基本数据类型之间的转换操作。<br />
+    const_cast：可以把 const 类型的指针转换为非 const 类型的指针。<br />
+    reinterpret_cast：解释的意思，主要用于不相关类型之间的转换。目标和原始值之 间至少有相同的位数，我们可以将转换之后的值再转换回去，而不像其它 3 种类型 可能会导致精度丢失<br />
+    dynamic_cast：运行时检查该转换是否类型安全，但只有在多态类型时合法，主要 用于类层次间的上行和下行转换，还可以用于类之间的交叉转换。在进行类层次间 的上行转换时和 static_cast 效果一样，进行下行转换时，具有类型检查的功能，比 static_cast 更安全。</p>
+<p>38 delete 和 delete [] 的区别？<br />
+delete ptr 代表用来释放内存，且只用来释放 ptr 指向的内存。<br />
+delete[] rg 用来释放 rg 指向的内存！！还逐一调用数组中每个对象的析构函数 对于像 int/char/long/int*/struct 等等简单数据类型，由于对象没有 destructor，所以用 delete 和 delete [] 是一样的！但是如果是 C++对象数组就不同了！</p>
+<h4 id="39-存储类别说明符可划分为两类"><a class="markdownIt-Anchor" href="#39-存储类别说明符可划分为两类"></a> 39 存储类别说明符可划分为两类。</h4>
+<p>静态存储类别（static，extern）和自动存储类别（auto， register）。这样的变量在程序执行进入到定义它们的程序块时创建，在程序块激活时存在， 在程序块退出时销毁。</p>
+<h4 id="40-什么是运算符重载它如何增强-c的扩展性"><a class="markdownIt-Anchor" href="#40-什么是运算符重载它如何增强-c的扩展性"></a> 40 什么是运算符重载，它如何增强 C++的扩展性？</h4>
+<p>运算符重载是对已有的运算符赋予多重含义，使得同一个运算符作用于不同类型的数据 时导致不同的行为。 运算符重载的本质是函数重载，可以改变现有运算符的操作方式，以适用于类类型，为 类的用户提供了一个直接的接口，使得用户程序所用的语言是面向问题的，而不是面向机器的，增强了 C++的扩展性。</p>
+<h4 id="41-为什么说继承是-c面向对象的主要特征之一请简要说明"><a class="markdownIt-Anchor" href="#41-为什么说继承是-c面向对象的主要特征之一请简要说明"></a> 41 为什么说”继承是 C++面向对象的主要特征之一”?请简要说明.？</h4>
+<p>继承是一种联结类的层次模型，层次结构的上层是最具有通用性的，而下层的部分，即 后代具有特殊性。类可以从他的祖先那里继承方法和成员变量，也可以增加新的方法是适用 于特殊的需要。如果没有继承，类就缺失了一块层次结构，代码重用和数据共享就贯彻不到 底，有了继承，就会有抽象编程中的多态问题，只有从机制内部真正解决了多态表现问题， 对象的数据封装，信息隐藏，代码重用等招式才能淋漓尽致的发挥出来。才称得上真正的面 向对象编程。</p>
+<h4 id="42-作用域辨析有哪些"><a class="markdownIt-Anchor" href="#42-作用域辨析有哪些"></a> 42 作用域辨析有哪些？</h4>
+<p>类作用域： 在类的作用域内，类的成员可以被类的所有成员函数直接访问，在类的作用域之外， public 类成员通过对象的句柄之一而引用。句柄可以是对象名称，对象的引用，对象的指针。 对象，引用或指针指定了客户可访问的接口。<br />
+    全局名字空间作用域： 声明与任何函数或者类之外的标识符具有全局名字空间作用域，这种标识符对于从其声 明处开始直到文件结尾处为止出现的所有函数都是已知的，即可访问的。位于函数之外的全局变量。函数定义和函数原型都属于该作用域。<br />
+    函数作用域： 标签是唯一具有函数作用域的标识符，标签可以在函数中的任何地方使用，但是不能在 函数体外被引用。<br />
+    局部作用域： 在一个语句块中声明的作用域，开始于标识符的声明出，结束于标识符声明处所在语句 块的结束右花括号处。局部变量具有局部作用域，函数形参也是函数的局部作用域。当语句 块是嵌套的，并且外层语句块的一个标识符和内层语句块的一个标识符具有相同的名字时， 外层的标识符处于隐藏状态，直到内存的语句块执行结束为止。<br />
+    函数原型作用域： 函数原型形参列表中的标识符，在一个函数原型中，一个特定的标识符只能使用一次。</p>
+<h4 id="43stl-是什么组成部分和区别"><a class="markdownIt-Anchor" href="#43stl-是什么组成部分和区别"></a> 43.STL 是什么？组成部分和区别。</h4>
+<p>STL 是 c++提供的标准模板库。<br />
+STL 的主要组成部分为：容器、迭代器、算法、函数对象和适配器。其中算法处于核心 地位，迭代器如同算法和容器之间的桥梁，算法通过迭代器从容器中获取元素，然后将获取 的元素传递给特定的函数对象的操作，最后将处理后的结果存储到容器中。</p>
+<h4 id="44-如何声明和使用虚函数-说明它在多态性中的作用和意义"><a class="markdownIt-Anchor" href="#44-如何声明和使用虚函数-说明它在多态性中的作用和意义"></a> 44 如何声明和使用虚函数。说明它在多态性中的作用和意义。</h4>
+<p>声明：在基类中声明成员函数时在前面加上关键字 virtual 。<br />
+使用虚函数：在基类中将成员函数声明为虚函数，这样在派生类中重写该方法后，在使 用基类的指针或引用指向派生类对象时，就可以通过这个基类指针或引用访问到派生类的方法。</p>
+<p>C++中的多态可分为四类：重载多态、强制多态、包含多态和参数多态，其中包含多态 是研究类族中定义于不同类中的同名函数的多态行为，主要通过虚函数来实现。多态使得接 口与实现得到分离，要利用统一接口实现运行时多态一般需要动态绑定，而虚函数是动态绑 定的基础，就使得虚函数在多态中很重要。</p>
+<p>多态指同样的消息被不同类型的对象接收时导致不同的行为。 虚函数机理：当编译器看到 fn 的虚函数标志时，会记下，等遇到这个虚函数的调用时，将 该捆绑操作滞后到运行中，以实际的对象来捆绑其对应的成员函数操作，编译器在捆绑操作 b.fn()处避开函数调用，只作一个指向实际对象成员函数的间接访问，每个实际的对象都需 额外占有一个指针空间，以指向类中的虚函数表。</p>
+<h4 id="44什么是逻辑错误什么是语法错误请举例说明"><a class="markdownIt-Anchor" href="#44什么是逻辑错误什么是语法错误请举例说明"></a> 44.什么是逻辑错误？什么是语法错误？请举例说明。</h4>
+<p>逻辑错误：由于程序设计人员设计的算法有错或编写的程序有错，此时程序一般能够正 常运行，但是通知给系统的指令与解题的原意不相同，即出现了逻辑上的混乱。 例如：int a[5] = { 1 , 2 , 3 , 4 , 5} ; for( int i = 0 ; i &lt;= 0 ; i ++ ) cout &lt;&lt; a[i] &lt;&lt; endl ; //发生数组越界</p>
+<p>语法错误：违背了 C++语言的规定，不能生成可执行文件，主要是语句的结构或拼写中 存在的错误。 例如：for( int i = 0 , i &lt; 10 , i ++) { } //应该用“;</p>
+<h4 id="45-编写语句说明枚举类型是如何定义和使用的"><a class="markdownIt-Anchor" href="#45-编写语句说明枚举类型是如何定义和使用的"></a> 45 编写语句说明枚举类型是如何定义和使用的。</h4>
+<p>枚举类型的声明形式如下 enum 枚举类型名 { 变量值列表 } ;</p>
+<p>例如： enum weekday{ sun , mon , tue , wed , thu , fri , sta } ; 变量定义：enum weekday a , b , c = tue ; //也可以省略 enum</p>
+<p>枚举元素具有默认值，他们依次是：0 , 1 , 2 , … , 例子中：sun 的值为 0 ， mon 的值 为 1，tue 的值为 2，… ,sta 的值为 6 。<br />
+    枚举元素按常量处理，不能进行赋值。<br />
+    整数值也不能赋给枚举变量，如确实需要可进行强制类型转换。<br />
+    枚举变量可以进行关系运算。</p>
+<h4 id="46-adt是什么简述你对数据抽象和信息隐藏的认识"><a class="markdownIt-Anchor" href="#46-adt是什么简述你对数据抽象和信息隐藏的认识"></a> 46 ADT是什么？简述你对“数据抽象”和“信息隐藏”的认识。</h4>
+<p>C++内部的数据类型包括基本类型和复合类型（数组、字符串、指针和结构），有表示 范围，只是用可以接受的方式表示实际概念。确定了一个类型就确定了计算机存储给类型所 需要的容量，确定了其表示范围，也确定了对该类型可以进行的操作。</p>
+<p>抽象数据类型（Abstract Data Type)，简称 ADT，是指一个数学模型以及定义在该模型 上的一组操作。 通常以以下格式定义： ADT 抽象数据类型名{ 数据对象：&lt;数据对象的定义&gt; 数据关系：&lt;数据关系的定义&gt; 基本操作：&lt;基本操作的定义&gt; }</p>
+<p>数据抽象：对具体事物描述的一个概括。通过数据抽象可以将数据类型的定义和它的实 现分开，使得只研究和使用它的结构而不用考虑它的实现细节成为可能。C++中的类就是一 种数据抽象，类是具有相同属性和服务的一组对象的集合。</p>
+<p>信息隐藏：C++中的封装就是信息隐藏的一种，即尽可能的隐藏对象的内部细节，对外 形成一个边界，只保留有限的对外接口使之与外部反生关系。</p>
+<h4 id="47-简述你对面向对象和面向过程编程思想的理解和认识"><a class="markdownIt-Anchor" href="#47-简述你对面向对象和面向过程编程思想的理解和认识"></a> 47 简述你对“面向对象”和“面向过程”编程思想的理解和认识。</h4>
+<p>“面向过程”是一种以事件为中心的编程思想，就是分析出解决问题所需要的步骤，然后 用函数把这些步骤一步一步实现，使用的时候一个一个依次调用就可以了。过程化编程强调 功能，以过程模块为中心，分层逐步展开设计。通常采用结构化程序设计，基本思路为：自 顶向下、逐步求精。</p>
+<p>“面向对象”的编程思想就是把你需要解决的问题中的所有具体的东西，都看成一个个具 有属性和行为的对象，然后把所有具有相同性质的对象抽象成类，那些与问题无关的对象则 忽略。对象化编程强调分离抽象层次，以便让程序员分工，关心不同抽象层次中的细节，而 不用去关心不同抽象层次的联系，数据安全而隐蔽，不同抽象层次的职责分明。</p>
+<h4 id="50-写出递归函数定义以及相应的优缺点"><a class="markdownIt-Anchor" href="#50-写出递归函数定义以及相应的优缺点"></a> 50 写出递归函数定义以及相应的优缺点</h4>
+<p>递归函数是直接或间接地（通过另一个函数）调用自己。</p>
+<p>优点：<br />
+结构清晰，可读性强，使程序易于理解和调试。</p>
+<p>缺点</p>
+<p>效率较低。递归是有时间和空间消耗的。另外，递归有可能很多计算都是重复的，从而给性能带来很大的负面影响。因为递归的本质是把一个问题分解成连个或者多个小问题。如果多个小问题存在相互重叠的部分，那么就存在重复的计算。</p>
+<p>可能导致调用栈溢出。每一次函数调用在内存栈中分配空间，而每个进程的栈的容量是有限的。当递归调用的层级太多时，就会超出栈的容量，从而导致栈溢出。</p>
+<h4 id="51-写出包含输入输出的标准库"><a class="markdownIt-Anchor" href="#51-写出包含输入输出的标准库"></a> 51 写出包含输入输出的标准库</h4>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">    &lt;fstream&gt;</span><br><span class="line">    &lt;iomanip&gt;</span><br><span class="line">    &lt;ios&gt;</span><br><span class="line">    &lt;iosfwd&gt;</span><br><span class="line">    &lt;iostream&gt;</span><br><span class="line">    &lt;ostream&gt;</span><br><span class="line">    &lt;istream&gt;</span><br><span class="line">    &lt;sstream&gt;</span><br><span class="line">    &lt;streambuf&gt;</span><br></pre></td></tr></table></figure>
+<h4 id="52-怎样区别虚函数和纯虚函数两者都有什么作用"><a class="markdownIt-Anchor" href="#52-怎样区别虚函数和纯虚函数两者都有什么作用"></a> 52 怎样区别虚函数和纯虚函数？两者都有什么作用</h4>
+<p>虛函數介紹</p>
+<p>虚函数，在类成员方法的声明（不是定义）语句前加“virtual”, 如 virtual void func()<br />
+    纯虚函数，在虚函数后加“=0”，如 virtual void func()=0<br />
+    对于虚函数，子类可以（也可以不）重新定义基类的虚函数，该行为称之为复写Override。<br />
+    对于纯虚函数，子类必须提供纯虚函数的个性化实现。</p>
+<p>在派生子类中对虚函数和纯虚函数的个性化实现，都体现了“多态”特性。但区别是：</p>
+<p>子类如果不提供虚函数的实现，将会自动调用基类的缺省虚函数实现，作为备选方案；<br />
+    子类如果不提供纯虚函数的实现，编译将会失败。尽管在基类中可以给出纯虚函数的实现，但无法通过指向子类对象的基类类型指针来调用该纯虚函数，也即不能作为子类相应纯虚函数的备选方案。（纯虚函数在基类中的实现跟多态性无关，它只是提供了一种语法上的便利，在变化多端的应用场景中留有后路。）</p>
+<p>虚函数：当使用类的指针调用成员函数时，普通函数由指针类型决定，而虚函数由指针指向的实际类型决定。所以虚函数的调用时由指针所指向内存块的具体类型决定的。</p>
+<p>纯虚函数：纯虚函数是在基类中声明的虚函数，它要求任何派生类都要定义自己的实现方法，以实现多态性。实现了纯虚函数的子类，该纯虚函数在子类中就变成了虚函数。</p>
+<p>定义纯虚函数是为了实现一个接口，用来规范派生类的行为，也即规范继承这个类的程序员必须实现这个函数。派生类仅仅只是继承函数的接口。纯虚函数的意义在于，让所有的类对象（主要是派生类对象）都可以执行纯虚函数的动作，但基类无法为纯虚函数提供一个合理的缺省实现。所以类纯虚函数的声明就是在告诉子类的设计者，“你必须提供一个纯虚函数的实现，但我不知道你会怎样实现它”。</p>
+<p>含有纯虚函数的类称之为抽象类，它不能生成对象（创建实例），只能创建它的派生类的实例。抽象类是一种特殊的类，它是为了抽象和设计的目的为建立的，它处于继承层次结构的较上层。抽象类的主要作用是将有关的操作作为结果接口组织在一个继承层次结构中，由它来为派生类提供一个公共的根，派生类将具体实现在其基类中作为接口的操作。</p>
+<p>抽象类只能作为基类来使用，其纯虚函数的实现由派生类给出。如果派生类中没有重新定义纯虚函数，而只是继承基类的纯虚函数，则这个派生类仍然还是一个抽象类。如果派生类中给出了基类纯虚函数的实现，则该派生类就不再是抽象类了，它是一个可以建立对象的具体的类。</p>
+
+
+<div class="article-footer reveal fs14"><section id="license"><div class="header"><span>许可协议</span></div><div class="body"><p>本文采用<a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">署名-非商业性使用-相同方式共享 4.0 国际</a>许可协议，转载请注明出处。</p>
+</div></section><section id="share"><div class="header"><span>分享文章</span></div><div class="body"><div class="link"><input class="copy-area" readonly="true" id="copy-link" value="https://guyinga.top/dddeac14c9ae/" /></div><div class="social-wrap dis-select"><a class="social share-item wechat" onclick="util.toggle(&quot;qrcode-wechat&quot)"><img src="https://fastly.jsdelivr.net/gh/cdn-x/placeholder@1.0.1/social/b32ef3da1162a.svg"/></a><a class="social share-item weibo" target="_blank" rel="external nofollow noopener noreferrer" href="https://service.weibo.com/share/share.php?url=https://guyinga.top/dddeac14c9ae/&title=C++程序设计简答题（二） - GuYing&summary=面向对象的程序设计"><img src="https://fastly.jsdelivr.net/gh/cdn-x/placeholder@1.0.1/social/80c07e4dbb303.svg"/></a><a class="social share-item email" href="mailto:?subject=C++程序设计简答题（二） - GuYing&amp;body=https://guyinga.top/dddeac14c9ae/"><img src="https://fastly.jsdelivr.net/gh/cdn-x/placeholder@1.0.1/social/a1b00e20f425d.svg"/></a><a class="social share-item link" onclick="util.copy(&quot;copy-link&quot;, &quot;复制成功&quot;)"><img src="https://fastly.jsdelivr.net/gh/cdn-x/placeholder@1.0.1/social/8411ed322ced6.svg"/></a></div><div class="qrcode" id="qrcode-wechat" style="visibility:hidden;height:0"><img src="https://api.qrserver.com/v1/create-qr-code/?size=256x256&data=https://guyinga.top/dddeac14c9ae/index.html"/></div></div></section></div>
+
+</article>
+
+<div class="related-wrap reveal" id="read-next"><section class="body"><div class="item" id="prev"><div class="note">较新文章</div><a href="/f40f194d9411/">基于深度学习的目标检测</a></div><div class="item" id="next"><div class="note">较早文章</div><a href="/60769b04bdeb/">C++程序设计简答题（一）</a></div></section></div>
+
+
+<div class="related-wrap reveal" id="related-posts">
+    <section class='header'>
+      <div class='title cap theme'>您可能感兴趣的文章</div>
+    </section>
+    <section class='body'>
+    <div class="related-posts"><a class="item" href="/48f90e18fc3d/" title="CRC码计算及校验原理的最通俗诠释"><span class="title">CRC码计算及校验原理的最通俗诠释</span><span class="excerpt">CRC校验原理看起来比较复杂，好难懂，因为大多数书上基本上是以二进制的多项式形式来说明的。</span></a><a class="item" href="/60769b04bdeb/" title="C++程序设计简答题（一）"><span class="title">C++程序设计简答题（一）</span><span class="excerpt">面向对象的程序设计</span></a></div></section></div>
+
+
+
+  <div class='related-wrap md-text reveal' id="comments">
+    <div class='cmt-title cap theme'>
+      快来参与讨论吧
+    </div>
+    <div class='cmt-body waline'>
+      
+
+<div id="waline_container" class="waline_thread"><svg class="loading" style="vertical-align: middle;fill: currentColor;overflow: hidden;" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2709"><path d="M832 512c0-176-144-320-320-320V128c211.2 0 384 172.8 384 384h-64zM192 512c0 176 144 320 320 320v64C300.8 896 128 723.2 128 512h64z" p-id="2710"></path></svg></div>
+
+    </div>
+  </div>
+
+
+
+      
+<footer class="page-footer reveal fs12"><hr><div class="sitemap"><div class="sitemap-group"><span class="fs14">博客</span><a href="/">近期</a><a href="/categories/">分类</a><a href="/tags/">标签</a><a href="/archives/">归档</a><a href="/shiping/">收藏</a></div><div class="sitemap-group"><span class="fs14">项目</span><a href="/wiki/tags/%E8%84%9A%E6%9C%AC/">脚本</a><a href="/wiki/tags/%E5%85%B6%E4%BB%96/">其他</a></div><div class="sitemap-group"><span class="fs14">友链</span><a href="/friends/">友链</a><a href="/about/#comments">留言板</a></div><div class="sitemap-group"><span class="fs14">关于</span><a href="/about/">关于本站</a><a target="_blank" rel="noopener" href="https://github.com/guyingd">GitHub</a></div></div><div class="text"><hr><p align="center"><a target="_blank" rel="noopener" href="https://aws.amazon.com/cn/campaigns/cloudfront"><img src="/images/网站图片/内容分发-CloudFront-orange.svg" width="143" height="20" /></a>&nbsp&nbsp<a target="_blank" rel="noopener" href="https://github.com/guyingd"><img src="/images/网站图片/网站部署-GitHub-5DADE2.svg" width="119" height="20"/></a>&nbsp&nbsp<a target="_blank" rel="noopener" href="https://hexo.io"><img src="/images/网站图片/强力驱动-Hexo-blue.svg" width="111" height="20"/></a>&nbsp&nbsp<a target="_blank" rel="noopener" href="https://cloudflare.com"><img src="/images/网站图片/域名解析-CloudFlare-f38020.svg"></a></p>
+</div></footer>
+
+      <div class='float-panel mobile-only blur' style='display:none'>
+  <button type='button' class='sidebar-toggle mobile' onclick='sidebar.toggle()'>
+    <svg class="icon" style="width: 1em; height: 1em;vertical-align: middle;fill: currentColor;overflow: hidden;" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="15301"><path d="M566.407 808.3c26.9-0.1 49.3-20.8 51.6-47.6-1.9-27.7-23.9-49.7-51.6-51.6h-412.6c-28.2-1.4-52.6 19.5-55.5 47.6 2.3 26.8 24.6 47.5 51.6 47.6h416.5v4z m309.3-249.9c26.9-0.1 49.3-20.8 51.6-47.6-2.2-26.8-24.6-47.5-51.6-47.6h-721.9c-27.7-2.8-52.5 17.4-55.3 45.1-0.1 0.8-0.1 1.7-0.2 2.5 0.9 27.2 23.6 48.5 50.7 47.6H875.707z m-103.1-245.9c26.9-0.1 49.3-20.8 51.6-47.6-0.4-28.3-23.2-51.1-51.5-51.6h-618.9c-29.5-1.1-54.3 21.9-55.5 51.4v0.2c1.4 27.8 25.2 49.2 53 47.8 0.8 0 1.7-0.1 2.5-0.2h618.8z" p-id="15302"></path><path d="M566.407 808.3c26.9-0.1 49.3-20.8 51.6-47.6-1.9-27.7-23.9-49.7-51.6-51.6h-412.6c-28.2-1.4-52.6 19.5-55.5 47.6 1.9 27.7 23.9 49.7 51.6 51.6h416.5z m309.3-249.9c26.9-0.1 49.3-20.8 51.6-47.6-2.2-26.8-24.6-47.5-51.6-47.6h-721.9c-27.7-2.8-52.5 17.4-55.3 45.1-0.1 0.8-0.1 1.7-0.2 2.5 0.9 27.2 23.6 48.5 50.7 47.6H875.707z m-103.1-245.9c26.9-0.1 49.3-20.8 51.6-47.6-0.4-28.3-23.2-51.1-51.5-51.6h-618.9c-29.5-1.1-54.3 21.9-55.5 51.4v0.2c1.4 27.8 25.2 49.2 53 47.8 0.8 0 1.7-0.1 2.5-0.2h618.8z" p-id="15303"></path></svg>
+  </button>
+</div>
+
+    </div>
+  </div>
+  <div class='scripts'>
+    <script type="text/javascript">
+  stellar = {
+    // 懒加载 css https://github.com/filamentgroup/loadCSS
+    loadCSS: (href, before, media, attributes) => {
+      var doc = window.document;
+      var ss = doc.createElement("link");
+      var ref;
+      if (before) {
+        ref = before;
+      } else {
+        var refs = (doc.body || doc.getElementsByTagName("head")[0]).childNodes;
+        ref = refs[refs.length - 1];
+      }
+      var sheets = doc.styleSheets;
+      if (attributes) {
+        for (var attributeName in attributes) {
+          if (attributes.hasOwnProperty(attributeName)) {
+            ss.setAttribute(attributeName, attributes[attributeName]);
+          }
+        }
+      }
+      ss.rel = "stylesheet";
+      ss.href = href;
+      ss.media = "only x";
+      function ready(cb) {
+        if (doc.body) {
+          return cb();
+        }
+        setTimeout(function () {
+          ready(cb);
+        });
+      }
+      ready(function () {
+        ref.parentNode.insertBefore(ss, before ? ref : ref.nextSibling);
+      });
+      var onloadcssdefined = function (cb) {
+        var resolvedHref = ss.href;
+        var i = sheets.length;
+        while (i--) {
+          if (sheets[i].href === resolvedHref) {
+            return cb();
+          }
+        }
+        setTimeout(function () {
+          onloadcssdefined(cb);
+        });
+      };
+      function loadCB() {
+        if (ss.addEventListener) {
+          ss.removeEventListener("load", loadCB);
+        }
+        ss.media = media || "all";
+      }
+      if (ss.addEventListener) {
+        ss.addEventListener("load", loadCB);
+      }
+      ss.onloadcssdefined = onloadcssdefined;
+      onloadcssdefined(loadCB);
+      return ss;
+    },
+
+    // 从 butterfly 和 volantis 获得灵感
+    loadScript: (src, opt) => new Promise((resolve, reject) => {
+      var script = document.createElement('script');
+      script.src = src;
+      if (opt) {
+        for (let key of Object.keys(opt)) {
+          script[key] = opt[key]
+        }
+      } else {
+        // 默认异步，如果需要同步，第二个参数传入 {} 即可
+        script.async = true
+      }
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    }),
+
+    // https://github.com/jerryc127/hexo-theme-butterfly
+    jQuery: (fn) => {
+      if (typeof jQuery === 'undefined') {
+        stellar.loadScript(stellar.plugins.jQuery).then(fn)
+      } else {
+        fn()
+      }
+    }
+  };
+  stellar.version = '1.15.1';
+  stellar.github = 'https://github.com/xaoxuu/hexo-theme-stellar/tree/1.15.1';
+  stellar.config = {
+    date_suffix: {
+      just: '刚刚',
+      min: '分钟前',
+      hour: '小时前',
+      day: '天前',
+      month: '个月前',
+    },
+  };
+
+  // required plugins (only load if needs)
+  stellar.plugins = {
+    jQuery: 'https://fastly.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js'
+  };
+
+  // stellar js
+  stellar.plugins.stellar = Object.assign({"sites":"/js/plugins/sites.js","friends":"/js/plugins/friends.js","ghinfo":"/js/plugins/ghinfo.js","timeline":"/js/plugins/timeline.js","linkcard":"/js/plugins/linkcard.js","fcircle":"/js/plugins/fcircle.js"});
+
+  stellar.plugins.marked = Object.assign("https://cdn.bootcdn.net/ajax/libs/marked/4.0.18/marked.min.js");
+  // optional plugins
+  if ('false' == 'true') {
+    stellar.plugins.lazyload = Object.assign({"enable":false,"js":"https://fastly.jsdelivr.net/npm/vanilla-lazyload@17.3.1/dist/lazyload.min.js","transition":"blur"});
+  }
+  if ('true' == 'true') {
+    stellar.plugins.swiper = Object.assign({"enable":true,"css":"https://unpkg.com/swiper@6/swiper-bundle.min.css","js":"https://unpkg.com/swiper@6/swiper-bundle.min.js"});
+  }
+  if ('true' == 'true') {
+    stellar.plugins.scrollreveal = Object.assign({"enable":true,"js":"https://fastly.jsdelivr.net/npm/scrollreveal@4.0.9/dist/scrollreveal.min.js","distance":"8px","duration":500,"interval":100,"scale":1});
+  }
+  if ('true' == 'true') {
+    stellar.plugins.preload = Object.assign({"enable":true,"service":"flying_pages","instant_page":"https://fastly.jsdelivr.net/gh/volantis-x/cdn-volantis@4.1.2/js/instant_page.js","flying_pages":"https://fastly.jsdelivr.net/gh/gijo-varghese/flying-pages@2.1.2/flying-pages.min.js"});
+  }
+  if ('true' == 'true') {
+    stellar.plugins.fancybox = Object.assign({"enable":true,"js":"https://fastly.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.umd.js","css":"https://fastly.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.css","selector":".swiper-slide img"});
+  }
+  if ('false' == 'true') {
+    stellar.plugins.heti = Object.assign({"enable":false,"css":"https://unpkg.com/heti/umd/heti.min.css","js":"https://unpkg.com/heti/umd/heti-addon.min.js"});
+  }
+</script>
+
+<!-- required -->
+
+  
+<script src="/js/main.js" async></script>
+
+
+
+<!-- optional -->
+
+  <script>
+  function load_comment(){
+    if(!document.getElementById("waline_container"))return;
+    stellar.loadCSS('https://unpkg.com/@waline/client@v2/dist/waline.css');
+    stellar.loadScript('https://unpkg.com/@waline/client@v2/dist/waline.js', {defer:true}).then(function () {
+      const el = document.getElementById("waline_container");
+      var path = el.getAttribute('comment_id');
+      if (!path) {
+        path = decodeURI(window.location.pathname);
+      }
+      Waline.init(Object.assign({"js":"https://unpkg.com/@waline/client@v2/dist/waline.js","css":"https://unpkg.com/@waline/client@v2/dist/waline.css","serverURL":"https://pl.guyinga.top","commentCount":true,"pageview":false,"locale":{"placeholder":"ꉂ(ˊᗜˋ*) 请输入内容"},"emoji":["https://gcore.jsdelivr.net/gh/norevi/waline-blobcatemojis@1.0/blobs","https://unpkg.com/@waline/emojis@1.1.0/bilibili","https://unpkg.com/@waline/emojis@1.1.0/qq"],"lang":"zh-CN","wordLimit":0,"pageSize":10}, {
+        el: '#waline_container',
+        path: path,
+      }));
+    });
+  }
+  window.addEventListener('DOMContentLoaded', (event) => {
+    console.log('DOM fully loaded and parsed');
+    load_comment();
+  });
+
+</script>
+
+
+
+
+<!-- inject -->
+
+
+  </div>
+</body>
+</html>

@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang='zh-CN'>
+
+<head>
+  <meta name="generator" content="Hexo 6.3.0">
+  <meta name="hexo-theme" content="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.16.2">
+  <meta charset="utf-8">
+  
+
+  <meta http-equiv='x-dns-prefetch-control' content='on' />
+  <link rel='dns-prefetch' href='https://fastly.jsdelivr.net'>
+  <link rel="preconnect" href="https://fastly.jsdelivr.net" crossorigin>
+  <link rel='dns-prefetch' href='//unpkg.com'>
+
+  <meta name="renderer" content="webkit">
+  <meta name="force-rendering" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta name="HandheldFriendly" content="True" >
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="theme-color" content="#f8f8f8">
+  
+  <title>Microsoft 365 E5 开发者 - GuYing</title>
+
+  
+    <meta name="description" content="立即加入 Microsoft 365 开发人员计划，获取免费、可续订的 90 天 Microsoft 365 E5 开发人员订阅。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Microsoft 365 E5 开发者">
+<meta property="og:url" content="https://guyinga.top/f4756d7a12fe/">
+<meta property="og:site_name" content="GuYing">
+<meta property="og:description" content="立即加入 Microsoft 365 开发人员计划，获取免费、可续订的 90 天 Microsoft 365 E5 开发人员订阅。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://guyinga.top/images/%E6%96%87%E7%AB%A0%E5%9B%BE%E7%89%87/20210426-Microsoft365/365renew.png">
+<meta property="article:published_time" content="2021-04-26T06:12:39.000Z">
+<meta property="article:modified_time" content="2022-11-14T07:34:57.000Z">
+<meta property="article:author" content="guyingd">
+<meta property="article:tag" content="onedrive">
+<meta property="article:tag" content="microsoft">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://guyinga.top/images/%E6%96%87%E7%AB%A0%E5%9B%BE%E7%89%87/20210426-Microsoft365/365renew.png">
+  
+  
+
+  <!-- feed -->
+  
+    <link rel="alternate" href="/atom.xml" title="GuYing" type="application/atom+xml">
+  
+
+  
+    
+<link rel="stylesheet" href="/css/main.css">
+
+  
+
+  
+
+  
+
+  
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.css" integrity="sha384-Xi8rHCmBmhbuyyhbI88391ZKP2dmfnOl4rT9ZfRI7mLTdk1wblIUnrIq35nqwEvC" crossorigin="anonymous">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.js" integrity="sha384-X/XCfMm41VSsqRNQgDerQczD69XqmjOOOwYQvr/uuC+j4OPoNhVgjdGFwhvN02Ja" crossorigin="anonymous"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/auto-render.min.js" integrity="sha384-+XBljXPPiv+OzfbB3cVmLHf4hdUFHlWNZN5spNQ7rmHTXpd7WvJum6fIACpNNfIR" crossorigin="anonymous"onload="renderMathInElement(document.body);"></script>
+  
+
+
+  
+    
+      <link rel="stylesheet" href="https://fastly.jsdelivr.net/npm/lxgw-wenkai-screen-webfont@1.1.0/style.css" />
+    
+      <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon/apple-touch-icon.png">
+    
+      <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon/favicon-32x32.png">
+    
+      <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon/favicon-16x16.png">
+    
+      <link rel="manifest" href="/images/favicon/site.webmanifest">
+    
+      <link rel="mask-icon" href="/images/logo.svg" color="#5bbad5">
+    
+      <link rel="shortcut icon" href="/images/favicon/favicon.ico">
+    
+      <meta name="msapplication-TileColor" content="#2d89ef">
+    
+      <meta name="msapplication-config" content="#2d89ef">
+    
+      <meta name="theme-color" content="#ffffff">
+    
+  
+</head>
+
+<body>
+  
+
+
+
+
+  <div class='l_body' id='start'>
+    <aside class='l_left' layout='post'>
+    
+
+  
+
+<header class="header"><div class="logo-wrap"><a class="avatar" href="/about/"><div class="bg" style="opacity:0;background-image:url(https://fastly.jsdelivr.net/gh/cdn-x/placeholder@1.0.2/avatar/round/rainbow64@3x.webp);"></div><img no-lazy class="avatar" src="/images/网站图片/logo.svg" onerror="javascript:this.classList.add('error');this.src='/images/网站图片/default_image.svg';"></a><a class="title" href="/"><div class="main" ff="title">GuYing</div><div class="sub normal cap">「Stay Hungry.Stay Foolish.」</div><div class="sub hover cap" style="opacity:0">求知若饥，虚心若愚</div></a></div>
+
+<nav class="menu dis-select"><a class="nav-item active" href="/">博客</a><a class="nav-item" href="/wiki/">项目</a><a class="nav-item" href="/friends/">友链</a><a class="nav-item" href="/about/">关于</a></nav>
+</header>
+
+
+<div class="widgets">
+
+<widget class="widget-wrapper toc single" id="toc"><div class="widget-header cap dis-select"><span class="name">Microsoft 365 E5 开发者</span></div><div class="widget-body fs14"><div class="doc-tree active"><ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AB%8B%E5%8D%B3%E5%8A%A0%E5%85%A5-microsoft-365-%E5%BC%80%E5%8F%91%E4%BA%BA%E5%91%98%E8%AE%A1%E5%88%92"><span class="toc-text"> 立即加入 Microsoft 365 开发人员计划</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BD%91%E7%9B%98%E6%89%A9%E5%AE%B9"><span class="toc-text"> 网盘扩容</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BF%AE%E6%94%B9%E5%85%A8%E5%B1%80%E7%AE%A1%E7%90%86%E5%91%98%E8%87%AA%E8%BA%AB%E7%9A%845t%E5%AE%B9%E9%87%8F"><span class="toc-text"> 修改全局管理员自身的5T容量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BE%AE%E8%BD%AFonedrive%E7%BD%91%E7%9B%98%E5%85%8D%E8%B4%B9%E5%8D%87%E7%BA%A7%E5%88%B025t%E5%AE%B9%E9%87%8F%E6%95%99%E7%A8%8B"><span class="toc-text"> 微软OneDrive网盘免费升级到25T容量教程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%94%B3%E8%AF%B7%E6%96%B9%E6%B3%95%E6%9C%AA%E8%AF%95"><span class="toc-text"> 申请方法（未试）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#microsoft-365-e5-%E5%BC%80%E5%8F%91%E8%80%85-%E5%BC%80%E6%BA%90%E8%87%AA%E5%8A%A8%E8%AE%A2%E9%98%85%E7%A8%8B%E5%BA%8F"><span class="toc-text"> Microsoft 365 E5 开发者 开源自动订阅程序</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-text"> 总结</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%90%8E%E7%BB%AD%E8%A1%A5%E5%85%85"><span class="toc-text"> 后续补充</span></a></li></ol></div></div></widget>
+
+
+
+
+
+
+</div>
+<footer class="footer dis-select"><div class="social-wrap"><a class="social" href="/atom.xml" rel="noopener noreferrer"><img src="/images/网站图片/rss.svg"/></a><a class="social" href="mailto:2739218253@qq.com" rel="noopener noreferrer"><img src="/images/网站图片/gmail.svg"/></a><a class="social" href="https://github.com/guyingd" target="_blank" rel="external nofollow noopener noreferrer"><img src="/images/网站图片/github.svg"/></a><a class="social" href="https://guyinga.top" target="_blank" rel="external nofollow noopener noreferrer"><img src="/images/网站图片/volantis.svg"/></a><a class="social" href="/" rel="noopener noreferrer"><img src="/images/网站图片/OneDrive.svg"/></a></div></footer>
+
+    </aside>
+    <div class='l_main'>
+      
+
+      
+
+
+<div class="bread-nav fs12"><div id="breadcrumb"><a class="cap breadcrumb" href="/">主页</a><span class="sep"></span><a class="cap breadcrumb" href="/">文章</a><span class="sep"></span><a class="cap breadcrumb-link" href="/categories/%E6%8A%98%E8%85%BE/">折腾</a></div><div id="post-meta">发布于&nbsp;<time datetime="2021-04-26T06:12:39.000Z">2021-04-26</time></div></div>
+
+<article class='md-text content post reveal'>
+<h1 class="article-title"><span>Microsoft 365 E5 开发者</span></h1>
+<h3 id="立即加入-microsoft-365-开发人员计划"><a class="markdownIt-Anchor" href="#立即加入-microsoft-365-开发人员计划"></a> 立即加入 Microsoft 365 开发人员计划</h3>
+<ul>
+<li>获取免费、可续订的 90 天 Microsoft 365 E5 开发人员订阅;</li>
+<li>包括SharePoint、OneDrive、Outlook、Exchange、Teams、Planner、Word、Excel、PowerPoint；</li>
+<li>订阅包含 25 个用于所有 Microsoft 365 应用的许可证</li>
+<li>OneDrive每个用户的网盘容量上限为 5TB；</li>
+</ul>
+<p>申请链接：<a target="_blank" rel="noopener" href="https://developer.microsoft.com/zh-cn/office/dev-program">https://developer.microsoft.com/zh-cn/office/dev-program</a><br />
+Microsoft 365 E5 开发者管理页： <a target="_blank" rel="noopener" href="https://admin.microsoft.com/">https://admin.microsoft.com/</a></p>
+<h3 id="网盘扩容"><a class="markdownIt-Anchor" href="#网盘扩容"></a> 网盘扩容</h3>
+<p>打开 <a target="_blank" rel="noopener" href="https://admin.onedrive.com">https://admin.onedrive.com</a> 登录之后在左方菜单中选择「存储」该项，将默认存储改为 5120，即 5TB。<br />
+但是管理员账号的容量此刻依旧为1TB，接下来更改管理员容量。</p>
+<h3 id="修改全局管理员自身的5t容量"><a class="markdownIt-Anchor" href="#修改全局管理员自身的5t容量"></a> 修改全局管理员自身的5T容量</h3>
+<ul>
+<li>我们先安装最新的 SharePoint Online Management Shell → <a target="_blank" rel="noopener" href="https://www.microsoft.com/zh-cn/download/details.aspx?id=35588">下载地址</a>；</li>
+<li>点击电脑左下角开始按钮，搜索PowerShell，然后单击Windows PowerShell，此时会弹出一个命令框。<br />
+依次输入命令：</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#adminUPN为管理员邮箱，orgName为你设置的组织名</span><br><span class="line">$adminUPN=&quot;admin@weijiajin.onmicrosoft.com&quot;</span><br><span class="line">$orgName=&quot;weijiajin&quot;</span><br><span class="line">#该步会弹出一个窗口，会要求你输入邮箱密码</span><br><span class="line">$userCredential = Get-Credential -UserName $adminUPN -Message &quot;Type the password.&quot;</span><br><span class="line">Connect-SPOService -Url https://$orgName-admin.sharepoint.com -Credential $userCredential</span><br><span class="line">#这里默认修改为5T，如果你要修改为其它的可自行修改，单位为M，最大可修改为5T</span><br><span class="line">Set-SPOTenant -OneDriveStorageQuota 5242880</span><br><span class="line">#将后面的地址修改成你的OneDrive网盘地址，地址仿照下面的即可</span><br><span class="line">Set-SPOSite -Identity https://weijiajin-my.sharepoint.com/personal/admin_weijiajin_onmicrosoft_com -StorageQuota 5242880</span><br></pre></td></tr></table></figure>
+<p><strong>如果你要修改现有用户的容量的话，将最后一步的OneDrive网盘地址替换成你想修改的用户地址即可。</strong></p>
+<h3 id="微软onedrive网盘免费升级到25t容量教程"><a class="markdownIt-Anchor" href="#微软onedrive网盘免费升级到25t容量教程"></a> 微软OneDrive网盘免费升级到25T容量教程</h3>
+<p>如果OneDrive 5T不够用，这里分享个免费升级25T的方法，也是微软很早就出的一个政策，部分订阅的OneDrive网盘使用量超过90%的可免费申请提高容量到25T，有需求的可以升级下。</p>
+<h3 id="申请方法未试"><a class="markdownIt-Anchor" href="#申请方法未试"></a> 申请方法（未试）</h3>
+<p>提示：以下申请操作都需要全局管理员操作，如果需求大，也可以给自己其它的账号也升级到25T。</p>
+<ul>
+<li>
+<p>管理员登录后台→<a target="_blank" rel="noopener" href="https://admin.microsoft.com/Adminportal/Home">传送门</a>，点击左侧支持-新建服务请求；</p>
+</li>
+<li>
+<p>然后在帮助框写下： 请帮助我吧 <a href="mailto:admin@weijiajin.onmicrosoft.com">admin@weijiajin.onmicrosoft.com</a> 账户的 onedrive 容量升级至25T；</p>
+</li>
+<li>
+<p>然后填上管理员邮箱，附件上传几张该账号容量超过90%的截图，包括账户信息；</p>
+</li>
+<li>
+<p>最后发送即可，截图不规范的，中途可能会有工作人员打电话要你重新发图片给他；</p>
+</li>
+<li>
+<p>最后等一天，成功的邮件就会发给你，然后这时候你就照着邮件给的方法自行升级到25T。</p>
+</li>
+</ul>
+<h3 id="microsoft-365-e5-开发者-开源自动订阅程序"><a class="markdownIt-Anchor" href="#microsoft-365-e5-开发者-开源自动订阅程序"></a> Microsoft 365 E5 开发者 开源自动订阅程序</h3>
+<p>教程地址：<a target="_blank" rel="noopener" href="https://qyi.io/archives/687.html">https://qyi.io/archives/687.html</a><br />
+项目地址：<a target="_blank" rel="noopener" href="https://github.com/luoye663/e5">https://github.com/luoye663/e5</a><br />
+自动订阅程序： <a target="_blank" rel="noopener" href="https://e5.qyi.io/">https://e5.qyi.io/</a></p>
+<h3 id="总结"><a class="markdownIt-Anchor" href="#总结"></a> 总结</h3>
+<p>Microsoft 365 E5 开发者 主要可以白嫖Office与onedrive 5T大容量还可以存储一些大文件，下载也很方便，如果可以一直自动续费那是相当不错的，值得推荐使用。比国内的网盘好太多，速度也很不错！office也没有广告，一些想用正版Office也很推荐。</p>
+<h3 id="后续补充"><a class="markdownIt-Anchor" href="#后续补充"></a> 后续补充</h3>
+<div class="tag-plugin timeline"><div class="timenode" index="0"><div class="header"><p>2021 年 6 月 16 日</p></div><div class="body fs14"><p>续订成功</p><div class="tag-plugin image"><div class="image-bg"><img src="/images/文章图片/20210426-Microsoft365/365renew.png" fancybox="true" style="width:500px;"/></div></div></div></div></div>
+
+
+<div class="article-footer reveal fs14"><section id="license"><div class="header"><span>许可协议</span></div><div class="body"><p>本文采用<a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">署名-非商业性使用-相同方式共享 4.0 国际</a>许可协议，转载请注明出处。</p>
+</div></section><section id="share"><div class="header"><span>分享文章</span></div><div class="body"><div class="link"><input class="copy-area" readonly="true" id="copy-link" value="https://guyinga.top/f4756d7a12fe/" /></div><div class="social-wrap dis-select"><a class="social share-item wechat" onclick="util.toggle(&quot;qrcode-wechat&quot)"><img src="https://fastly.jsdelivr.net/gh/cdn-x/placeholder@1.0.1/social/b32ef3da1162a.svg"/></a><a class="social share-item weibo" target="_blank" rel="external nofollow noopener noreferrer" href="https://service.weibo.com/share/share.php?url=https://guyinga.top/f4756d7a12fe/&title=Microsoft 365 E5 开发者 - GuYing&summary=立即加入 Microsoft 365 开发人员计划，获取免费、可续订的 90 天 Microsoft 365 E5 开发人员订阅。"><img src="https://fastly.jsdelivr.net/gh/cdn-x/placeholder@1.0.1/social/80c07e4dbb303.svg"/></a><a class="social share-item email" href="mailto:?subject=Microsoft 365 E5 开发者 - GuYing&amp;body=https://guyinga.top/f4756d7a12fe/"><img src="https://fastly.jsdelivr.net/gh/cdn-x/placeholder@1.0.1/social/a1b00e20f425d.svg"/></a><a class="social share-item link" onclick="util.copy(&quot;copy-link&quot;, &quot;复制成功&quot;)"><img src="https://fastly.jsdelivr.net/gh/cdn-x/placeholder@1.0.1/social/8411ed322ced6.svg"/></a></div><div class="qrcode" id="qrcode-wechat" style="visibility:hidden;height:0"><img src="https://api.qrserver.com/v1/create-qr-code/?size=256x256&data=https://guyinga.top/f4756d7a12fe/index.html"/></div></div></section></div>
+
+</article>
+
+<div class="related-wrap reveal" id="read-next"><section class="body"><div class="item" id="prev"><div class="note">较新文章</div><a href="/9a2ddb4f1c5f/">Linux 磁盘扩容</a></div><div class="item" id="next"><div class="note">较早文章</div><a href="/940556775882/">GitHub Actions 实现 Hexo 自动部署</a></div></section></div>
+
+
+<div class="related-wrap reveal" id="related-posts">
+    <section class='header'>
+      <div class='title cap theme'>您可能感兴趣的文章</div>
+    </section>
+    <section class='body'>
+    <div class="related-posts"><a class="item" href="/05d8712a0c40/" title="海明校验码是怎么实现的"><span class="title">海明校验码是怎么实现的</span><span class="excerpt">如何一步步推导出海明码</span></a></div></section></div>
+
+
+
+  <div class='related-wrap md-text reveal' id="comments">
+    <div class='cmt-title cap theme'>
+      快来参与讨论吧
+    </div>
+    <div class='cmt-body waline'>
+      
+
+<div id="waline_container" class="waline_thread"><svg class="loading" style="vertical-align: middle;fill: currentColor;overflow: hidden;" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2709"><path d="M832 512c0-176-144-320-320-320V128c211.2 0 384 172.8 384 384h-64zM192 512c0 176 144 320 320 320v64C300.8 896 128 723.2 128 512h64z" p-id="2710"></path></svg></div>
+
+    </div>
+  </div>
+
+
+
+      
+<footer class="page-footer reveal fs12"><hr><div class="sitemap"><div class="sitemap-group"><span class="fs14">博客</span><a href="/">近期</a><a href="/categories/">分类</a><a href="/tags/">标签</a><a href="/archives/">归档</a><a href="/shiping/">收藏</a></div><div class="sitemap-group"><span class="fs14">项目</span><a href="/wiki/tags/%E8%84%9A%E6%9C%AC/">脚本</a><a href="/wiki/tags/%E5%85%B6%E4%BB%96/">其他</a></div><div class="sitemap-group"><span class="fs14">友链</span><a href="/friends/">友链</a><a href="/about/#comments">留言板</a></div><div class="sitemap-group"><span class="fs14">关于</span><a href="/about/">关于本站</a><a target="_blank" rel="noopener" href="https://github.com/guyingd">GitHub</a></div></div><div class="text"><hr><p align="center"><a target="_blank" rel="noopener" href="https://aws.amazon.com/cn/campaigns/cloudfront"><img src="/images/网站图片/内容分发-CloudFront-orange.svg" width="143" height="20" /></a>&nbsp&nbsp<a target="_blank" rel="noopener" href="https://github.com/guyingd"><img src="/images/网站图片/网站部署-GitHub-5DADE2.svg" width="119" height="20"/></a>&nbsp&nbsp<a target="_blank" rel="noopener" href="https://hexo.io"><img src="/images/网站图片/强力驱动-Hexo-blue.svg" width="111" height="20"/></a>&nbsp&nbsp<a target="_blank" rel="noopener" href="https://cloudflare.com"><img src="/images/网站图片/域名解析-CloudFlare-f38020.svg"></a></p>
+</div></footer>
+
+      <div class='float-panel mobile-only blur' style='display:none'>
+  <button type='button' class='sidebar-toggle mobile' onclick='sidebar.toggle()'>
+    <svg class="icon" style="width: 1em; height: 1em;vertical-align: middle;fill: currentColor;overflow: hidden;" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="15301"><path d="M566.407 808.3c26.9-0.1 49.3-20.8 51.6-47.6-1.9-27.7-23.9-49.7-51.6-51.6h-412.6c-28.2-1.4-52.6 19.5-55.5 47.6 2.3 26.8 24.6 47.5 51.6 47.6h416.5v4z m309.3-249.9c26.9-0.1 49.3-20.8 51.6-47.6-2.2-26.8-24.6-47.5-51.6-47.6h-721.9c-27.7-2.8-52.5 17.4-55.3 45.1-0.1 0.8-0.1 1.7-0.2 2.5 0.9 27.2 23.6 48.5 50.7 47.6H875.707z m-103.1-245.9c26.9-0.1 49.3-20.8 51.6-47.6-0.4-28.3-23.2-51.1-51.5-51.6h-618.9c-29.5-1.1-54.3 21.9-55.5 51.4v0.2c1.4 27.8 25.2 49.2 53 47.8 0.8 0 1.7-0.1 2.5-0.2h618.8z" p-id="15302"></path><path d="M566.407 808.3c26.9-0.1 49.3-20.8 51.6-47.6-1.9-27.7-23.9-49.7-51.6-51.6h-412.6c-28.2-1.4-52.6 19.5-55.5 47.6 1.9 27.7 23.9 49.7 51.6 51.6h416.5z m309.3-249.9c26.9-0.1 49.3-20.8 51.6-47.6-2.2-26.8-24.6-47.5-51.6-47.6h-721.9c-27.7-2.8-52.5 17.4-55.3 45.1-0.1 0.8-0.1 1.7-0.2 2.5 0.9 27.2 23.6 48.5 50.7 47.6H875.707z m-103.1-245.9c26.9-0.1 49.3-20.8 51.6-47.6-0.4-28.3-23.2-51.1-51.5-51.6h-618.9c-29.5-1.1-54.3 21.9-55.5 51.4v0.2c1.4 27.8 25.2 49.2 53 47.8 0.8 0 1.7-0.1 2.5-0.2h618.8z" p-id="15303"></path></svg>
+  </button>
+</div>
+
+    </div>
+  </div>
+  <div class='scripts'>
+    <script type="text/javascript">
+  stellar = {
+    // 懒加载 css https://github.com/filamentgroup/loadCSS
+    loadCSS: (href, before, media, attributes) => {
+      var doc = window.document;
+      var ss = doc.createElement("link");
+      var ref;
+      if (before) {
+        ref = before;
+      } else {
+        var refs = (doc.body || doc.getElementsByTagName("head")[0]).childNodes;
+        ref = refs[refs.length - 1];
+      }
+      var sheets = doc.styleSheets;
+      if (attributes) {
+        for (var attributeName in attributes) {
+          if (attributes.hasOwnProperty(attributeName)) {
+            ss.setAttribute(attributeName, attributes[attributeName]);
+          }
+        }
+      }
+      ss.rel = "stylesheet";
+      ss.href = href;
+      ss.media = "only x";
+      function ready(cb) {
+        if (doc.body) {
+          return cb();
+        }
+        setTimeout(function () {
+          ready(cb);
+        });
+      }
+      ready(function () {
+        ref.parentNode.insertBefore(ss, before ? ref : ref.nextSibling);
+      });
+      var onloadcssdefined = function (cb) {
+        var resolvedHref = ss.href;
+        var i = sheets.length;
+        while (i--) {
+          if (sheets[i].href === resolvedHref) {
+            return cb();
+          }
+        }
+        setTimeout(function () {
+          onloadcssdefined(cb);
+        });
+      };
+      function loadCB() {
+        if (ss.addEventListener) {
+          ss.removeEventListener("load", loadCB);
+        }
+        ss.media = media || "all";
+      }
+      if (ss.addEventListener) {
+        ss.addEventListener("load", loadCB);
+      }
+      ss.onloadcssdefined = onloadcssdefined;
+      onloadcssdefined(loadCB);
+      return ss;
+    },
+
+    // 从 butterfly 和 volantis 获得灵感
+    loadScript: (src, opt) => new Promise((resolve, reject) => {
+      var script = document.createElement('script');
+      script.src = src;
+      if (opt) {
+        for (let key of Object.keys(opt)) {
+          script[key] = opt[key]
+        }
+      } else {
+        // 默认异步，如果需要同步，第二个参数传入 {} 即可
+        script.async = true
+      }
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    }),
+
+    // https://github.com/jerryc127/hexo-theme-butterfly
+    jQuery: (fn) => {
+      if (typeof jQuery === 'undefined') {
+        stellar.loadScript(stellar.plugins.jQuery).then(fn)
+      } else {
+        fn()
+      }
+    }
+  };
+  stellar.version = '1.15.1';
+  stellar.github = 'https://github.com/xaoxuu/hexo-theme-stellar/tree/1.15.1';
+  stellar.config = {
+    date_suffix: {
+      just: '刚刚',
+      min: '分钟前',
+      hour: '小时前',
+      day: '天前',
+      month: '个月前',
+    },
+  };
+
+  // required plugins (only load if needs)
+  stellar.plugins = {
+    jQuery: 'https://fastly.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js'
+  };
+
+  // stellar js
+  stellar.plugins.stellar = Object.assign({"sites":"/js/plugins/sites.js","friends":"/js/plugins/friends.js","ghinfo":"/js/plugins/ghinfo.js","timeline":"/js/plugins/timeline.js","linkcard":"/js/plugins/linkcard.js","fcircle":"/js/plugins/fcircle.js"});
+
+  stellar.plugins.marked = Object.assign("https://cdn.bootcdn.net/ajax/libs/marked/4.0.18/marked.min.js");
+  // optional plugins
+  if ('false' == 'true') {
+    stellar.plugins.lazyload = Object.assign({"enable":false,"js":"https://fastly.jsdelivr.net/npm/vanilla-lazyload@17.3.1/dist/lazyload.min.js","transition":"blur"});
+  }
+  if ('true' == 'true') {
+    stellar.plugins.swiper = Object.assign({"enable":true,"css":"https://unpkg.com/swiper@6/swiper-bundle.min.css","js":"https://unpkg.com/swiper@6/swiper-bundle.min.js"});
+  }
+  if ('true' == 'true') {
+    stellar.plugins.scrollreveal = Object.assign({"enable":true,"js":"https://fastly.jsdelivr.net/npm/scrollreveal@4.0.9/dist/scrollreveal.min.js","distance":"8px","duration":500,"interval":100,"scale":1});
+  }
+  if ('true' == 'true') {
+    stellar.plugins.preload = Object.assign({"enable":true,"service":"flying_pages","instant_page":"https://fastly.jsdelivr.net/gh/volantis-x/cdn-volantis@4.1.2/js/instant_page.js","flying_pages":"https://fastly.jsdelivr.net/gh/gijo-varghese/flying-pages@2.1.2/flying-pages.min.js"});
+  }
+  if ('true' == 'true') {
+    stellar.plugins.fancybox = Object.assign({"enable":true,"js":"https://fastly.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.umd.js","css":"https://fastly.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.css","selector":".swiper-slide img"});
+  }
+  if ('false' == 'true') {
+    stellar.plugins.heti = Object.assign({"enable":false,"css":"https://unpkg.com/heti/umd/heti.min.css","js":"https://unpkg.com/heti/umd/heti-addon.min.js"});
+  }
+</script>
+
+<!-- required -->
+
+  
+<script src="/js/main.js" async></script>
+
+
+
+<!-- optional -->
+
+  <script>
+  function load_comment(){
+    if(!document.getElementById("waline_container"))return;
+    stellar.loadCSS('https://unpkg.com/@waline/client@v2/dist/waline.css');
+    stellar.loadScript('https://unpkg.com/@waline/client@v2/dist/waline.js', {defer:true}).then(function () {
+      const el = document.getElementById("waline_container");
+      var path = el.getAttribute('comment_id');
+      if (!path) {
+        path = decodeURI(window.location.pathname);
+      }
+      Waline.init(Object.assign({"js":"https://unpkg.com/@waline/client@v2/dist/waline.js","css":"https://unpkg.com/@waline/client@v2/dist/waline.css","serverURL":"https://pl.guyinga.top","commentCount":true,"pageview":false,"locale":{"placeholder":"ꉂ(ˊᗜˋ*) 请输入内容"},"emoji":["https://gcore.jsdelivr.net/gh/norevi/waline-blobcatemojis@1.0/blobs","https://unpkg.com/@waline/emojis@1.1.0/bilibili","https://unpkg.com/@waline/emojis@1.1.0/qq"],"lang":"zh-CN","wordLimit":0,"pageSize":10}, {
+        el: '#waline_container',
+        path: path,
+      }));
+    });
+  }
+  window.addEventListener('DOMContentLoaded', (event) => {
+    console.log('DOM fully loaded and parsed');
+    load_comment();
+  });
+
+</script>
+
+
+
+
+<!-- inject -->
+
+
+  </div>
+</body>
+</html>

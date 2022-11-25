@@ -1,0 +1,9 @@
+if test $1 = 'pull'
+then
+    echo '代码更新：' $(date '+%Y-%m-%d %H:%M:%S')
+    cd /www/wwwroot/baidu.com
+    git pull origin master
+    chown -R www:www ./
+    chmod -R 755 ./
+    echo ""
+fi

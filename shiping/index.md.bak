@@ -1,0 +1,87 @@
+---
+menu_id: post
+toc_title: shiping
+comment_title: 我的视频集
+comment_id: '我的视频集'
+comments: false
+sidebar: [welcome, recent, timeline]
+post_list: true
+---
+
+{% about %}
+<img height="64px" alt="guyingd" src="https://avatars.githubusercontent.com/u/79262296?s=80&v=4">
+<center>{% quot 如此暗淡的我，一切繁华与我无关 %}</center>
+{% endabout %}
+
+{% quot  我的视频收藏 icon:hashtag %}
+<center>{% sup 以下视频资源来自网络，侵删！ color:red %}</center>
+
+
+
+{% frame iphone11 img:/assets/wiki/prohud/toast/demo-loading.png video:https://guyinga.top/视频/3.mp4 focus:top %}
+
+{% split bg:block %}
+<!-- cell left-->
+{% mark 动 color:light %}{% mark 漫 color:dark %}{% mark 剪 color:red %}{% mark 辑 color:orange %}
+<center><div style="position: relative; width: 100%; height: 0; padding-bottom: 100%;"><iframe 
+src="https://guyinga.top/视频/150.mp4" scrolling="no" border="0" 
+frameborder="no" framespacing="0" allowfullscreen="true" style="position: absolute; width: 100%; 
+height: 100%; left: 0; top: 0;"> </iframe></div>
+</center>
+
+<!-- cell right-->
+{% mark 动 color:light %}{% mark 漫 color:dark %}{% mark 剪 color:red %}{% mark 辑 color:orange %}
+<center><div style="position: relative; width: 100%; height: 0; padding-bottom: 100%;"><iframe 
+src="https://guyinga.top/视频/1.mp4" scrolling="no" border="0" 
+frameborder="no" framespacing="0" allowfullscreen="true" style="position: absolute; width: 100%; 
+height: 100%; left: 0; top: 0;"> </iframe></div>
+
+</center>
+{% endsplit %}
+
+
+{% split bg:block %}
+<!-- cell -->
+{% mark 动 color:light %}{% mark 漫 color:dark %}{% mark 剪 color:red %}{% mark 辑 color:orange %}
+<center><div style="position: relative; width: 100%; height: 0; padding-bottom: 100%;"><iframe 
+src="https://guyinga.top/视频/5.mp4" scrolling="no" border="0" 
+frameborder="no" framespacing="0" allowfullscreen="true" style="position: absolute; width: 100%; 
+height: 100%; left: 0; top: 0;"> </iframe></div>
+</center>
+
+<!-- cell -->
+{% mark 动 color:light %}{% mark 漫 color:dark %}{% mark 剪 color:red %}{% mark 辑 color:orange %}
+<center><div style="position: relative; width: 100%; height: 0; padding-bottom: 100%;"><iframe 
+src="https://guyinga.top/视频/4.mp4" scrolling="no" border="0" 
+frameborder="no" framespacing="0" allowfullscreen="true" style="position: absolute; width: 100%; 
+height: 100%; left: 0; top: 0;"> </iframe></div>
+
+</center>
+{% endsplit %}
+
+{% split bg:block %}
+<!-- cell -->
+{% mark 动 color:light %}{% mark 漫 color:dark %}{% mark 剪 color:red %}{% mark 辑 color:orange %}
+<center><div style="position: relative; width: 100%; height: 0; padding-bottom: 100%;"><iframe 
+src="https://guyinga.top/视频/6.mp4" scrolling="no" border="0" 
+frameborder="no" framespacing="0" allowfullscreen="true" style="position: absolute; width: 100%; 
+height: 100%; left: 0; top: 0;"> </iframe></div>
+</center>
+
+<!-- cell -->
+{% mark 动 color:light %}{% mark 漫 color:dark %}{% mark 剪 color:red %}{% mark 辑 color:orange %}
+<center><div style="position: relative; width: 100%; height: 0; padding-bottom: 100%;"><iframe 
+src="https://guyinga.top/视频/7.mp4" scrolling="no" border="0" 
+frameborder="no" framespacing="0" allowfullscreen="true" style="position: absolute; width: 100%; 
+height: 100%; left: 0; top: 0;"> </iframe></div>
+
+</center>
+{% endsplit %}
+
+{% poetry 游山西村 author:陆游 footer:诗词节选 %}
+莫笑农家腊酒浑，丰年留客足鸡豚。
+**山重水复疑无路，柳暗花明又一村。**
+箫鼓追随春社近，衣冠简朴古风存。
+从今若许闲乘月，拄杖无时夜叩门。
+{% endpoetry %}
+

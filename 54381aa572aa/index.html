@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang='zh-CN'>
+
+<head>
+  <meta name="generator" content="Hexo 6.3.0">
+  <meta name="hexo-theme" content="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.16.2">
+  <meta charset="utf-8">
+  
+
+  <meta http-equiv='x-dns-prefetch-control' content='on' />
+  <link rel='dns-prefetch' href='https://fastly.jsdelivr.net'>
+  <link rel="preconnect" href="https://fastly.jsdelivr.net" crossorigin>
+  <link rel='dns-prefetch' href='//unpkg.com'>
+
+  <meta name="renderer" content="webkit">
+  <meta name="force-rendering" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta name="HandheldFriendly" content="True" >
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="theme-color" content="#f8f8f8">
+  
+  <title>YOLO算法python实现 - GuYing</title>
+
+  
+    <meta name="description" content="介绍其基本原理及实现细节">
+<meta property="og:type" content="article">
+<meta property="og:title" content="YOLO算法python实现">
+<meta property="og:url" content="https://guyinga.top/54381aa572aa/">
+<meta property="og:site_name" content="GuYing">
+<meta property="og:description" content="介绍其基本原理及实现细节">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://guyinga.top/images/%E6%96%87%E7%AB%A0%E5%9B%BE%E7%89%87/20220819-YOLO%E7%AE%97%E6%B3%95python%E5%AE%9E%E7%8E%B0/005.png">
+<meta property="og:image" content="https://guyinga.top/images/%E6%96%87%E7%AB%A0%E5%9B%BE%E7%89%87/20220819-YOLO%E7%AE%97%E6%B3%95python%E5%AE%9E%E7%8E%B0/006.png">
+<meta property="og:image" content="https://guyinga.top/images/%E6%96%87%E7%AB%A0%E5%9B%BE%E7%89%87/20220819-YOLO%E7%AE%97%E6%B3%95python%E5%AE%9E%E7%8E%B0/007.png">
+<meta property="og:image" content="https://guyinga.top/images/%E6%96%87%E7%AB%A0%E5%9B%BE%E7%89%87/20220819-YOLO%E7%AE%97%E6%B3%95python%E5%AE%9E%E7%8E%B0/008.png">
+<meta property="og:image" content="https://guyinga.top/images/%E6%96%87%E7%AB%A0%E5%9B%BE%E7%89%87/20220819-YOLO%E7%AE%97%E6%B3%95python%E5%AE%9E%E7%8E%B0/009.png">
+<meta property="og:image" content="https://guyinga.top/images/%E6%96%87%E7%AB%A0%E5%9B%BE%E7%89%87/20220819-YOLO%E7%AE%97%E6%B3%95python%E5%AE%9E%E7%8E%B0/010.png">
+<meta property="og:image" content="https://guyinga.top/images/%E6%96%87%E7%AB%A0%E5%9B%BE%E7%89%87/20220819-YOLO%E7%AE%97%E6%B3%95python%E5%AE%9E%E7%8E%B0/011.png">
+<meta property="og:image" content="https://guyinga.top/images/%E6%96%87%E7%AB%A0%E5%9B%BE%E7%89%87/20220819-YOLO%E7%AE%97%E6%B3%95python%E5%AE%9E%E7%8E%B0/012.png">
+<meta property="og:image" content="https://guyinga.top/images/%E6%96%87%E7%AB%A0%E5%9B%BE%E7%89%87/20220819-YOLO%E7%AE%97%E6%B3%95python%E5%AE%9E%E7%8E%B0/013.png">
+<meta property="og:image" content="https://guyinga.top/images/%E6%96%87%E7%AB%A0%E5%9B%BE%E7%89%87/20220819-YOLO%E7%AE%97%E6%B3%95python%E5%AE%9E%E7%8E%B0/014.png">
+<meta property="og:image" content="https://guyinga.top/images/%E6%96%87%E7%AB%A0%E5%9B%BE%E7%89%87/20220819-YOLO%E7%AE%97%E6%B3%95python%E5%AE%9E%E7%8E%B0/015.png">
+<meta property="og:image" content="https://guyinga.top/images/%E6%96%87%E7%AB%A0%E5%9B%BE%E7%89%87/20220819-YOLO%E7%AE%97%E6%B3%95python%E5%AE%9E%E7%8E%B0/016.png">
+<meta property="og:image" content="https://guyinga.top/images/%E6%96%87%E7%AB%A0%E5%9B%BE%E7%89%87/20220819-YOLO%E7%AE%97%E6%B3%95python%E5%AE%9E%E7%8E%B0/017.png">
+<meta property="og:image" content="https://guyinga.top/images/%E6%96%87%E7%AB%A0%E5%9B%BE%E7%89%87/20220819-YOLO%E7%AE%97%E6%B3%95python%E5%AE%9E%E7%8E%B0/018.png">
+<meta property="og:image" content="https://guyinga.top/images/%E6%96%87%E7%AB%A0%E5%9B%BE%E7%89%87/20220819-YOLO%E7%AE%97%E6%B3%95python%E5%AE%9E%E7%8E%B0/019.png">
+<meta property="og:image" content="https://guyinga.top/images/%E6%96%87%E7%AB%A0%E5%9B%BE%E7%89%87/20220819-YOLO%E7%AE%97%E6%B3%95python%E5%AE%9E%E7%8E%B0/020.png">
+<meta property="og:image" content="https://guyinga.top/images/%E6%96%87%E7%AB%A0%E5%9B%BE%E7%89%87/20220819-YOLO%E7%AE%97%E6%B3%95python%E5%AE%9E%E7%8E%B0/021.png">
+<meta property="og:image" content="https://guyinga.top/images/%E6%96%87%E7%AB%A0%E5%9B%BE%E7%89%87/20220819-YOLO%E7%AE%97%E6%B3%95python%E5%AE%9E%E7%8E%B0/022.png">
+<meta property="og:image" content="https://guyinga.top/images/%E6%96%87%E7%AB%A0%E5%9B%BE%E7%89%87/20220819-YOLO%E7%AE%97%E6%B3%95python%E5%AE%9E%E7%8E%B0/023.png">
+<meta property="og:image" content="https://guyinga.top/images/%E6%96%87%E7%AB%A0%E5%9B%BE%E7%89%87/20220819-YOLO%E7%AE%97%E6%B3%95python%E5%AE%9E%E7%8E%B0/024.png">
+<meta property="og:image" content="https://guyinga.top/images/%E6%96%87%E7%AB%A0%E5%9B%BE%E7%89%87/20220819-YOLO%E7%AE%97%E6%B3%95python%E5%AE%9E%E7%8E%B0/025.png">
+<meta property="og:image" content="https://guyinga.top/images/%E6%96%87%E7%AB%A0%E5%9B%BE%E7%89%87/20220819-YOLO%E7%AE%97%E6%B3%95python%E5%AE%9E%E7%8E%B0/026.png">
+<meta property="og:image" content="https://guyinga.top/images/%E6%96%87%E7%AB%A0%E5%9B%BE%E7%89%87/20220819-YOLO%E7%AE%97%E6%B3%95python%E5%AE%9E%E7%8E%B0/027.png">
+<meta property="og:image" content="https://guyinga.top/images/%E6%96%87%E7%AB%A0%E5%9B%BE%E7%89%87/20220819-YOLO%E7%AE%97%E6%B3%95python%E5%AE%9E%E7%8E%B0/028.png">
+<meta property="og:image" content="https://guyinga.top/images/%E6%96%87%E7%AB%A0%E5%9B%BE%E7%89%87/20220819-YOLO%E7%AE%97%E6%B3%95python%E5%AE%9E%E7%8E%B0/029.png">
+<meta property="og:image" content="https://guyinga.top/images/%E6%96%87%E7%AB%A0%E5%9B%BE%E7%89%87/20220819-YOLO%E7%AE%97%E6%B3%95python%E5%AE%9E%E7%8E%B0/030.png">
+<meta property="og:image" content="https://guyinga.top/images/%E6%96%87%E7%AB%A0%E5%9B%BE%E7%89%87/20220819-YOLO%E7%AE%97%E6%B3%95python%E5%AE%9E%E7%8E%B0/031.png">
+<meta property="og:image" content="https://guyinga.top/images/%E6%96%87%E7%AB%A0%E5%9B%BE%E7%89%87/20220819-YOLO%E7%AE%97%E6%B3%95python%E5%AE%9E%E7%8E%B0/032.png">
+<meta property="og:image" content="https://guyinga.top/images/%E6%96%87%E7%AB%A0%E5%9B%BE%E7%89%87/20220819-YOLO%E7%AE%97%E6%B3%95python%E5%AE%9E%E7%8E%B0/033.png">
+<meta property="article:published_time" content="2022-08-18T16:00:00.000Z">
+<meta property="article:modified_time" content="2022-11-14T07:34:57.000Z">
+<meta property="article:author" content="guyingd">
+<meta property="article:tag" content="深度学习">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://guyinga.top/images/%E6%96%87%E7%AB%A0%E5%9B%BE%E7%89%87/20220819-YOLO%E7%AE%97%E6%B3%95python%E5%AE%9E%E7%8E%B0/005.png">
+  
+  
+
+  <!-- feed -->
+  
+    <link rel="alternate" href="/atom.xml" title="GuYing" type="application/atom+xml">
+  
+
+  
+    
+<link rel="stylesheet" href="/css/main.css">
+
+  
+
+  
+
+  
+
+  
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.css" integrity="sha384-Xi8rHCmBmhbuyyhbI88391ZKP2dmfnOl4rT9ZfRI7mLTdk1wblIUnrIq35nqwEvC" crossorigin="anonymous">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.js" integrity="sha384-X/XCfMm41VSsqRNQgDerQczD69XqmjOOOwYQvr/uuC+j4OPoNhVgjdGFwhvN02Ja" crossorigin="anonymous"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/auto-render.min.js" integrity="sha384-+XBljXPPiv+OzfbB3cVmLHf4hdUFHlWNZN5spNQ7rmHTXpd7WvJum6fIACpNNfIR" crossorigin="anonymous"onload="renderMathInElement(document.body);"></script>
+  
+
+
+  
+    
+      <link rel="stylesheet" href="https://fastly.jsdelivr.net/npm/lxgw-wenkai-screen-webfont@1.1.0/style.css" />
+    
+      <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon/apple-touch-icon.png">
+    
+      <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon/favicon-32x32.png">
+    
+      <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon/favicon-16x16.png">
+    
+      <link rel="manifest" href="/images/favicon/site.webmanifest">
+    
+      <link rel="mask-icon" href="/images/logo.svg" color="#5bbad5">
+    
+      <link rel="shortcut icon" href="/images/favicon/favicon.ico">
+    
+      <meta name="msapplication-TileColor" content="#2d89ef">
+    
+      <meta name="msapplication-config" content="#2d89ef">
+    
+      <meta name="theme-color" content="#ffffff">
+    
+  
+</head>
+
+<body>
+  
+
+
+
+
+  <div class='l_body' id='start'>
+    <aside class='l_left' layout='post'>
+    
+
+  
+
+<header class="header"><div class="logo-wrap"><a class="avatar" href="/about/"><div class="bg" style="opacity:0;background-image:url(https://fastly.jsdelivr.net/gh/cdn-x/placeholder@1.0.2/avatar/round/rainbow64@3x.webp);"></div><img no-lazy class="avatar" src="/images/网站图片/logo.svg" onerror="javascript:this.classList.add('error');this.src='/images/网站图片/default_image.svg';"></a><a class="title" href="/"><div class="main" ff="title">GuYing</div><div class="sub normal cap">「Stay Hungry.Stay Foolish.」</div><div class="sub hover cap" style="opacity:0">求知若饥，虚心若愚</div></a></div>
+
+<nav class="menu dis-select"><a class="nav-item active" href="/">博客</a><a class="nav-item" href="/wiki/">项目</a><a class="nav-item" href="/friends/">友链</a><a class="nav-item" href="/about/">关于</a></nav>
+</header>
+
+
+<div class="widgets">
+
+<widget class="widget-wrapper toc single" id="toc"><div class="widget-header cap dis-select"><span class="name">YOLO算法python实现</span></div><div class="widget-body fs14"><div class="doc-tree active"><ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#yolo%E6%A1%86%E6%9E%B6%E5%A6%82%E4%BD%95%E8%BF%90%E4%BD%9C"><span class="toc-text"> YOLO框架如何运作</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#yolo%E7%94%A8%E4%BA%8E%E6%A3%80%E6%B5%8B%E7%BB%99%E5%AE%9A%E5%9B%BE%E5%83%8F%E4%B8%AD%E7%9A%84%E5%AF%B9%E8%B1%A1%E7%9A%84%E5%A4%84%E7%90%86%E6%AD%A5%E9%AA%A4"><span class="toc-text"> YOLO用于检测给定图像中的对象的处理步骤</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E7%BC%96%E7%A0%81%E8%BE%B9%E7%95%8C%E6%A1%86"><span class="toc-text"> 如何编码边界框</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%9D%9E%E6%9E%81%E5%A4%A7%E5%80%BC%E6%8A%91%E5%88%B6non-max-suppression"><span class="toc-text"> 非极大值抑制|Non-Max Suppression</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#anchor-boxes"><span class="toc-text"> Anchor Boxes</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%93%E5%90%88%E6%80%9D%E6%83%B3"><span class="toc-text"> 结合思想</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%AE%AD%E7%BB%83"><span class="toc-text"> 训练</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B5%8B%E8%AF%95"><span class="toc-text"> 测试</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#yolo%E7%AE%97%E6%B3%95%E5%AE%9E%E7%8E%B0"><span class="toc-text"> YOLO算法实现</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#yolo%E7%AE%97%E6%B3%95darknet%E7%9A%84%E5%AE%98%E7%BD%91"><span class="toc-text"> YOLO算法darknet的官网</span></a></li></ol></li></ol></div></div></widget>
+
+
+
+
+
+
+</div>
+<footer class="footer dis-select"><div class="social-wrap"><a class="social" href="/atom.xml" rel="noopener noreferrer"><img src="/images/网站图片/rss.svg"/></a><a class="social" href="mailto:2739218253@qq.com" rel="noopener noreferrer"><img src="/images/网站图片/gmail.svg"/></a><a class="social" href="https://github.com/guyingd" target="_blank" rel="external nofollow noopener noreferrer"><img src="/images/网站图片/github.svg"/></a><a class="social" href="https://guyinga.top" target="_blank" rel="external nofollow noopener noreferrer"><img src="/images/网站图片/volantis.svg"/></a><a class="social" href="/" rel="noopener noreferrer"><img src="/images/网站图片/OneDrive.svg"/></a></div></footer>
+
+    </aside>
+    <div class='l_main'>
+      
+
+      
+
+
+<div class="bread-nav fs12"><div id="breadcrumb"><a class="cap breadcrumb" href="/">主页</a><span class="sep"></span><a class="cap breadcrumb" href="/">文章</a><span class="sep"></span><a class="cap breadcrumb-link" href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/">深度学习</a></div><div id="post-meta">发布于&nbsp;<time datetime="2022-08-18T16:00:00.000Z">2022-08-19</time></div></div>
+
+<article class='md-text content post reveal'>
+<h1 class="article-title"><span>YOLO算法python实现</span></h1>
+<p></p>
+<h3 id="yolo框架如何运作"><a class="markdownIt-Anchor" href="#yolo框架如何运作"></a> YOLO框架如何运作</h3>
+<h4 id="yolo用于检测给定图像中的对象的处理步骤"><a class="markdownIt-Anchor" href="#yolo用于检测给定图像中的对象的处理步骤"></a> YOLO用于检测给定图像中的对象的处理步骤</h4>
+<ul>
+<li>首先，输入图像：</li>
+</ul>
+<div class="tag-plugin image"><div class="image-bg"><img src="/images/文章图片/20220819-YOLO算法python实现/005.png" fancybox="true"/></div></div>
+<ul>
+<li>然后，YOLO将输入图像划分为网格形式（例如3 X 3）：</li>
+</ul>
+<div class="tag-plugin image"><div class="image-bg"><img src="/images/文章图片/20220819-YOLO算法python实现/006.png" fancybox="true"/></div></div>
+<ul>
+<li>最后，对每个网格应用图像分类和定位处理，获得预测对象的边界框及其对应的类概率。</li>
+</ul>
+<p>整个过程是不是很清晰，下面逐一详细介绍。首先需要将标记数据传递给模型以进行训练。假设已将图像划分为大小为3 X 3的网格，且总共只有3个类别，分别是行人（c1）、汽车（c2）和摩托车（c3）。因此，对于每个单元格，标签y将是一个八维向量：</p>
+<div class="tag-plugin image"><div class="image-bg"><img src="/images/文章图片/20220819-YOLO算法python实现/007.png" fancybox="true"/></div></div>
+<p>其中：</p>
+<ul>
+<li>pc定义对象是否存在于网格中（存在的概率）；</li>
+<li>bx、by、bh、bw指定边界框；</li>
+<li>c1、c2、c3代表类别。如果检测对象是汽车，则c2位置处的值将为1，c1和c3处的值将为0；</li>
+</ul>
+<p>假设从上面的例子中选择第一个网格：</p>
+<div class="tag-plugin image"><div class="image-bg"><img src="/images/文章图片/20220819-YOLO算法python实现/008.png" fancybox="true"/></div></div>
+<p>由于此网格中没有对象，因此pc将为零，此网格的y标签将为：</p>
+<div class="tag-plugin image"><div class="image-bg"><img src="/images/文章图片/20220819-YOLO算法python实现/009.png" fancybox="true"/></div></div>
+<p>？意味着其它值是什么并不重要，因为网格中没有对象。下面举例另一个有车的网格（c2=1）：</p>
+<div class="tag-plugin image"><div class="image-bg"><img src="/images/文章图片/20220819-YOLO算法python实现/010.png" fancybox="true"/></div></div>
+<p>在为此网格编写y标签之前，首先要了解YOLO如何确定网格中是否存在实际对象。大图中有两个物体（两辆车），因此YOLO将取这两个物体的中心点，物体将被分配到包含这些物体中心的网格中。中心点左侧网格的y标签会是这样的：</p>
+<div class="tag-plugin image"><div class="image-bg"><img src="/images/文章图片/20220819-YOLO算法python实现/011.png" fancybox="true"/></div></div>
+<p>由于此网格中存在对象，因此pc将等于1，bx、by、bh、bw将相对于正在处理的特定网格单元计算。由于检测出的对象是汽车，所以c2=1，c1和c3均为0。对于9个网格中的每一个单元格，都具有八维输出向量。最终的输出形状为3X3X8。</p>
+<p>使用上面的例子（输入图像：100X100X3，输出：3X3X8），模型将按如下方式进行训练：</p>
+<div class="tag-plugin image"><div class="image-bg"><img src="/images/文章图片/20220819-YOLO算法python实现/012.png" fancybox="true"/></div></div>
+<p>使用经典的CNN网络构建模型，并进行模型训练。在测试阶段，将图像传递给模型，经过一次前向传播就得到输出y。为了简单起见，使用3X3网格解释这一点，但通常在实际场景中会采用更大的网格（比如19X19）。</p>
+<p>即使一个对象跨越多个网格，它也只会被分配到其中点所在的单个网格。可以通过增加更多网格来减少多个对象出现在同一网格单元中的几率。</p>
+<h4 id="如何编码边界框"><a class="markdownIt-Anchor" href="#如何编码边界框"></a> 如何编码边界框</h4>
+<p>如前所述，bx、by、bh和bw是相对于正在处理的网格单元计算而言的。下面通过一个例子来说明这一点。以包含汽车的右边网格为例：</p>
+<div class="tag-plugin image"><div class="image-bg"><img src="/images/文章图片/20220819-YOLO算法python实现/013.png" fancybox="true"/></div></div>
+<p>由于bx、by、bh和bw将仅相对于该网格计算。此网格的y标签将为：</p>
+<div class="tag-plugin image"><div class="image-bg"><img src="/images/文章图片/20220819-YOLO算法python实现/014.png" fancybox="true"/></div></div>
+<p>由于这个网格中有一个对象汽车，所以pc=1、c2=1。现在，看看如何决定bx、by、bh和bw的取值。在YOLO中，分配给所有网格的坐标都如下图所示：</p>
+<div class="tag-plugin image"><div class="image-bg"><img src="/images/文章图片/20220819-YOLO算法python实现/015.png" fancybox="true"/></div></div>
+<p>bx、by是对象相对于该网格的中心点的x和y坐标。在例子中，近似bx=0.4和by=0.3：</p>
+<div class="tag-plugin image"><div class="image-bg"><img src="/images/文章图片/20220819-YOLO算法python实现/016.png" fancybox="true"/></div></div>
+<p>bh是边界框的高度与相应单元网格的高度之比，在例子中约为0.9：bh=0.9，bw是边界框的宽度与网格单元的宽度之比，bw=0.5。此网格的y标签将为：</p>
+<div class="tag-plugin image"><div class="image-bg"><img src="/images/文章图片/20220819-YOLO算法python实现/017.png" fancybox="true"/></div></div>
+<p>请注意，bx和by将始终介于0和1之间，因为中心点始终位于网格内，而在边界框的尺寸大于网格尺寸的情况下，bh和bw可以大于1。</p>
+<h4 id="非极大值抑制non-max-suppression"><a class="markdownIt-Anchor" href="#非极大值抑制non-max-suppression"></a> 非极大值抑制|Non-Max Suppression</h4>
+<p>这里有一些思考的问题——如何判断预测的边界框是否是一个好结果（或一个坏结果）？单元格之间的交叉点，计算实际边界框和预测的边界框的并集交集。假设汽车的实际和预测边界框如下所示：</p>
+<div class="tag-plugin image"><div class="image-bg"><img src="/images/文章图片/20220819-YOLO算法python实现/018.png" fancybox="true"/></div></div>
+<p>其中，红色框是实际的边界框，蓝色框是预测的边界框。如何判断它是否是一个好的预测呢？IoU将计算这两个框的并集交叉区域：</p>
+<div class="tag-plugin image"><div class="image-bg"><img src="/images/文章图片/20220819-YOLO算法python实现/019.png" fancybox="true"/></div></div>
+<ul>
+<li>IoU =交叉面积/联合的面积；</li>
+<li>在本例中：IoU =黄色面积/绿色面积；</li>
+</ul>
+<p>如果IoU大于0.5，就可以说预测足够好。0.5是在这里采取的任意阈值，也可以根据具体问题进行更改。阈值越大，预测就越准确。</p>
+<p>还有一种技术可以显着提高YOLO的效果——非极大值抑制。</p>
+<p>对象检测算法最常见的问题之一是，它不是一次仅检测出一次对象，而可能获得多次检测结果。假设：</p>
+<div class="tag-plugin image"><div class="image-bg"><img src="/images/文章图片/20220819-YOLO算法python实现/020.png" fancybox="true"/></div></div>
+<p>上图中，汽车不止一次被识别，那么如何判定边界框呢。非极大值抑可以解决这个问题，使得每个对象只能进行一次检测。下面了解该方法的工作原理。</p>
+<ol>
+<li>它首先查看与每次检测相关的概率并取最大的概率。在上图中，0.9是最高概率，因此首先选择概率为0.9的方框：</li>
+</ol>
+<div class="tag-plugin image"><div class="image-bg"><img src="/images/文章图片/20220819-YOLO算法python实现/021.png" fancybox="true"/></div></div>
+<ol start="2">
+<li>现在，它会查看图像中的所有其他框。与当前边界框较高的IoU的边界框将被抑制。因此，在示例中，0.6和0.7概率的边界框将被抑制：</li>
+</ol>
+<div class="tag-plugin image"><div class="image-bg"><img src="/images/文章图片/20220819-YOLO算法python实现/022.png" fancybox="true"/></div></div>
+<ol start="3">
+<li>在部分边界框被抑制后，它会从概率最高的所有边界框中选择下一个，在例子中为0.8的边界框：</li>
+</ol>
+<div class="tag-plugin image"><div class="image-bg"><img src="/images/文章图片/20220819-YOLO算法python实现/023.png" fancybox="true"/></div></div>
+<ol start="4">
+<li>再次计算与该边界框相连边界框的IoU，去掉较高IoU值的边界框：</li>
+</ol>
+<div class="tag-plugin image"><div class="image-bg"><img src="/images/文章图片/20220819-YOLO算法python实现/024.png" fancybox="true"/></div></div>
+<ol start="5">
+<li>重复这些步骤，得到最后的边界框：</li>
+</ol>
+<div class="tag-plugin image"><div class="image-bg"><img src="/images/文章图片/20220819-YOLO算法python实现/025.png" fancybox="true"/></div></div>
+<p>以上就是非极大值抑制的全部内容，总结一下关于非极大值抑制算法的要点：</p>
+<ul>
+<li>丢弃概率小于或等于预定阈值（例如0.5）的所有方框；</li>
+<li>对于剩余的边界框：</li>
+<li>选择具有最高概率的边界框并将其作为输出预测；</li>
+<li>计算相关联的边界框的IoU值，舍去IoU大于阈值的边界框；</li>
+<li>重复步骤2，直到所有边界框都被视为输出预测或被舍弃；</li>
+</ul>
+<h4 id="anchor-boxes"><a class="markdownIt-Anchor" href="#anchor-boxes"></a> Anchor Boxes</h4>
+<p>在上述内容中，每个网格只能识别一个对象。但是如果单个网格中有多个对象呢？这就行需要了解 Anchor Boxes的概念。假设将下图按照3X3网格划分：</p>
+<div class="tag-plugin image"><div class="image-bg"><img src="/images/文章图片/20220819-YOLO算法python实现/026.png" fancybox="true"/></div></div>
+<p>获取对象的中心点，并根据其位置将对象分配给相应的网格。在上面的示例中，两个对象的中心点位于同一网格中：</p>
+<div class="tag-plugin image"><div class="image-bg"><img src="/images/文章图片/20220819-YOLO算法python实现/027.png" fancybox="true"/></div></div>
+<p>上述方法只会获得两个边界框其中的一个，但是如果使用Anchor Boxes，可能会输出两个边界框！我们该怎么做呢？首先，预先定义两种不同的形状，称为Anchor Boxes。对于每个网格将有两个输出。这里为了易于理解，这里选取两个Anchor Boxes，也可以根据实际情况增加Anchor Boxes的数量：</p>
+<div class="tag-plugin image"><div class="image-bg"><img src="/images/文章图片/20220819-YOLO算法python实现/028.png" fancybox="true"/></div></div>
+<ul>
+<li>没有Anchor Boxes的YOLO输出标签如下所示：</li>
+</ul>
+<div class="tag-plugin image"><div class="image-bg"><img src="/images/文章图片/20220819-YOLO算法python实现/029.png" fancybox="true"/></div></div>
+<ul>
+<li>有Anchor Boxes的YOLO输出标签如下所示：</li>
+</ul>
+<div class="tag-plugin image"><div class="image-bg"><img src="/images/文章图片/20220819-YOLO算法python实现/030.png" fancybox="true"/></div></div>
+<p>前8行属于Anchor Boxes1，其余8行属于Anchor Boxes2。基于边界框和框形状的相似性将对象分配给Anchor Boxes。由于Anchor Boxes1的形状类似于人的边界框，后者将被分配给Anchor Boxes1，并且车将被分配给Anchor Boxes2.在这种情况下的输出，将是3X3X16大小。</p>
+<p>因此，对于每个网格，可以根据Anchor Boxes的数量检测两个或更多个对象。</p>
+<h3 id="结合思想"><a class="markdownIt-Anchor" href="#结合思想"></a> 结合思想</h3>
+<p>首先介绍如何训练YOLO模型，然后是新的图像进行预测。</p>
+<h4 id="训练"><a class="markdownIt-Anchor" href="#训练"></a> 训练</h4>
+<p>训练模型时，输入数据是由图像及其相应的y标签构成。样例如下：</p>
+<div class="tag-plugin image"><div class="image-bg"><img src="/images/文章图片/20220819-YOLO算法python实现/031.png" fancybox="true"/></div></div>
+<p>假设每个网格有两个Anchor Boxes，并划分为3X3网格，并且有3个不同的类别。因此，相应的y标签具有3X3X16的形状。训练过程的完成方式就是将特定形状的图像映射到对应3X3X16大小的目标。</p>
+<h4 id="测试"><a class="markdownIt-Anchor" href="#测试"></a> 测试</h4>
+<p>对于每个网格，模型将预测·3X3X16·大小的输出。该预测中的16个值将与训练标签的格式相同。前8个值将对应于Anchor Boxes1，其中第一个值将是该网络中对象的概率，2-5的值将是该对象的边界框坐标，最后三个值表明对象属于哪个类。以此类推。</p>
+<p>最后，非极大值抑制方法将应用于预测框以获得每个对象的单个预测结果。</p>
+<p>以下是YOLO算法遵循的确切维度和步骤：</p>
+<ul>
+<li>准备对应的图像（608,608,3）;</li>
+<li>将图像传递给卷积神经网络（CNN），该网络返回（19,19,5,85）维输出;</li>
+<li>输出的最后两个维度被展平以获得（19,19,425）的输出量：
+<ul>
+<li>19×19网格的每个单元返回425个数字;</li>
+<li>425=5 * 85，其中5是每个网格的Anchor Boxes数量；</li>
+<li>85= 5+80，其中5表示（pc、bx、by、bh、bw），80是检测的类别数；</li>
+</ul>
+</li>
+<li>最后，使用IoU和非极大值抑制去除重叠框；</li>
+</ul>
+<h3 id="yolo算法实现"><a class="markdownIt-Anchor" href="#yolo算法实现"></a> YOLO算法实现</h3>
+<p>首先定义一些函数，这些函数将用来选择高于某个阈值的边界框，并对其应用非极大值抑制。首先，导入所需的库：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">from</span> matplotlib.pyplot <span class="keyword">import</span> imshow</span><br><span class="line"><span class="keyword">import</span> scipy.io</span><br><span class="line"><span class="keyword">import</span> scipy.misc</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">import</span> PIL</span><br><span class="line"><span class="keyword">import</span> tensorflow <span class="keyword">as</span> tf</span><br><span class="line"><span class="keyword">from</span> skimage.transform <span class="keyword">import</span> resize</span><br><span class="line"><span class="keyword">from</span> keras <span class="keyword">import</span> backend <span class="keyword">as</span> K</span><br><span class="line"><span class="keyword">from</span> keras.layers <span class="keyword">import</span> Input, Lambda, Conv2D</span><br><span class="line"><span class="keyword">from</span> keras.models <span class="keyword">import</span> load_model, Model</span><br><span class="line"><span class="keyword">from</span> yolo_utils <span class="keyword">import</span> read_classes, read_anchors, generate_colors, preprocess_image, draw_boxes, scale_boxes</span><br><span class="line"><span class="keyword">from</span> yad2k.models.keras_yolo <span class="keyword">import</span> yolo_head, yolo_boxes_to_corners, preprocess_true_boxes, yolo_loss, yolo_body</span><br></pre></td></tr></table></figure>
+<p>然后，实现基于概率和阈值过滤边界框的函数：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">yolo_filter_boxes</span>(<span class="params">box_confidence, boxes, box_class_probs, threshold = <span class="number">.6</span></span>):</span><br><span class="line">    box_scores = box_confidence*box_class_probs</span><br><span class="line">    box_classes = K.argmax(box_scores,-<span class="number">1</span>)</span><br><span class="line">    box_class_scores = K.<span class="built_in">max</span>(box_scores,-<span class="number">1</span>)</span><br><span class="line">    filtering_mask = box_class_scores&gt;threshold</span><br><span class="line">    scores = tf.boolean_mask(box_class_scores,filtering_mask)</span><br><span class="line">    boxes = tf.boolean_mask(boxes,filtering_mask)</span><br><span class="line">    classes = tf.boolean_mask(box_classes,filtering_mask)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> scores, boxes, classes</span><br></pre></td></tr></table></figure>
+<p>之后，实现计算IoU的函数：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">iou</span>(<span class="params">box1, box2</span>):</span><br><span class="line">    xi1 = <span class="built_in">max</span>(box1[<span class="number">0</span>],box2[<span class="number">0</span>])</span><br><span class="line">    yi1 = <span class="built_in">max</span>(box1[<span class="number">1</span>],box2[<span class="number">1</span>])</span><br><span class="line">    xi2 = <span class="built_in">min</span>(box1[<span class="number">2</span>],box2[<span class="number">2</span>])</span><br><span class="line">    yi2 = <span class="built_in">min</span>(box1[<span class="number">3</span>],box2[<span class="number">3</span>])</span><br><span class="line">    inter_area = (yi2-yi1)*(xi2-xi1)</span><br><span class="line">    box1_area = (box1[<span class="number">3</span>]-box1[<span class="number">1</span>])*(box1[<span class="number">2</span>]-box1[<span class="number">0</span>])</span><br><span class="line">    box2_area = (box2[<span class="number">3</span>]-box2[<span class="number">1</span>])*(box2[<span class="number">2</span>]-box2[<span class="number">0</span>])</span><br><span class="line">    union_area = box1_area+box2_area-inter_area</span><br><span class="line">    iou = inter_area/union_area</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> iou</span><br></pre></td></tr></table></figure>
+<p>然后，实现非极大值抑制的函数：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">yolo_non_max_suppression</span>(<span class="params">scores, boxes, classes, max_boxes = <span class="number">10</span>, iou_threshold = <span class="number">0.5</span></span>):</span><br><span class="line">    max_boxes_tensor = K.variable(max_boxes, dtype=<span class="string">&#x27;int32&#x27;</span>)</span><br><span class="line">    K.get_session().run(tf.variables_initializer([max_boxes_tensor]))</span><br><span class="line">    nms_indices = tf.image.non_max_suppression(boxes,scores,max_boxes,iou_threshold)</span><br><span class="line">    scores = K.gather(scores,nms_indices)</span><br><span class="line">    boxes = K.gather(boxes,nms_indices)</span><br><span class="line">    classes = K.gather(classes,nms_indices)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> scores, boxes, classes</span><br></pre></td></tr></table></figure>
+<p>随机初始化下大小为（19,19,5,85）的输出向量：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">yolo_outputs = (tf.random_normal([19, 19, 5, 1], mean=1, stddev=4, seed = 1),</span><br><span class="line">                   tf.random_normal([19, 19, 5, 2], mean=1, stddev=4, seed = 1),</span><br><span class="line">                   tf.random_normal([19, 19, 5, 2], mean=1, stddev=4, seed = 1),</span><br><span class="line">                   tf.random_normal([19, 19, 5, 80], mean=1, stddev=4, seed = 1))</span><br></pre></td></tr></table></figure>
+<p>最后，实现一个将CNN的输出作为输入并返回被抑制的边界框的函数：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">def yolo_eval(yolo_outputs, image_shape = (720., 1280.), max_boxes=10, score_threshold=.6, iou_threshold=.5):</span><br><span class="line">    box_confidence, box_xy, box_wh, box_class_probs = yolo_outputs</span><br><span class="line">    boxes = yolo_boxes_to_corners(box_xy, box_wh)</span><br><span class="line">    scores, boxes, classes = yolo_filter_boxes(box_confidence, boxes, box_class_probs, threshold = score_threshold)</span><br><span class="line">    boxes = scale_boxes(boxes, image_shape)</span><br><span class="line">    scores, boxes, classes = yolo_non_max_suppression(scores, boxes, classes, max_boxes, iou_threshold)</span><br><span class="line"></span><br><span class="line">    return scores, boxes, classes</span><br></pre></td></tr></table></figure>
+<p>使用yolo_eval函数对之前创建的随机输出向量进行预测：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">scores, boxes, classes = yolo_eval(yolo_outputs)</span><br><span class="line">with tf.Session() as test_b:</span><br><span class="line">    print(&quot;scores[2] = &quot; + str(scores[2].eval()))</span><br><span class="line">    print(&quot;boxes[2] = &quot; + str(boxes[2].eval()))</span><br><span class="line">    print(&quot;classes[2] = &quot; + str(classes[2].eval()))</span><br></pre></td></tr></table></figure>
+<div class="tag-plugin image"><div class="image-bg"><img src="/images/文章图片/20220819-YOLO算法python实现/032.png" fancybox="true"/></div></div>
+<p>score表示对象在图像中的可能性，boxes返回检测到的对象的（x1，y1，x2，y2）坐标，classes表示识别对象所属的类。<br />
+现在，在新的图像上使用预训练的YOLO算法，看看其工作效果：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sess = K.get_session()</span><br><span class="line">class_names = read_classes(&quot;model_data/coco_classes.txt&quot;)</span><br><span class="line">anchors = read_anchors(&quot;model_data/yolo_anchors.txt&quot;)</span><br><span class="line"></span><br><span class="line">yolo_model = load_model(&quot;model_data/yolo.h5&quot;)</span><br></pre></td></tr></table></figure>
+<p>在加载类别信息和预训练模型之后，使用上面定义的函数来获取 yolo_outputs</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">yolo_outputs = yolo_head(yolo_model.output, anchors, len(class_names))</span><br></pre></td></tr></table></figure>
+<p>之后，定义一个函数来预测边界框并在图像上标记边界框：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">def predict(sess, image_file):</span><br><span class="line">    image, image_data = preprocess_image(&quot;images/&quot; + image_file, model_image_size = (608, 608))</span><br><span class="line">    out_scores, out_boxes, out_classes = sess.run([scores, boxes, classes], feed_dict=&#123;yolo_model.input: image_data, K.learning_phase(): 0&#125;)</span><br><span class="line"></span><br><span class="line">    print(&#x27;Found &#123;&#125; boxes for &#123;&#125;&#x27;.format(len(out_boxes), image_file))</span><br><span class="line"></span><br><span class="line">    # Generate colors for drawing bounding boxes.</span><br><span class="line">    colors = generate_colors(class_names)</span><br><span class="line"></span><br><span class="line">    # Draw bounding boxes on the image file</span><br><span class="line">    draw_boxes(image, out_scores, out_boxes, out_classes, class_names, colors)</span><br><span class="line"></span><br><span class="line">    # Save the predicted bounding box on the image</span><br><span class="line">    image.save(os.path.join(&quot;out&quot;, image_file), quality=90)</span><br><span class="line"></span><br><span class="line">    # Display the results in the notebook</span><br><span class="line">    output_image = scipy.misc.imread(os.path.join(&quot;out&quot;, image_file))</span><br><span class="line"></span><br><span class="line">    plt.figure(figsize=(12,12))</span><br><span class="line">    imshow(output_image)</span><br><span class="line"></span><br><span class="line">    return out_scores, out_boxes, out_classes</span><br></pre></td></tr></table></figure>
+<p>接下来，将使用预测函数读取图像并进行预测：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">img = plt.imread(&#x27;images/img.jpg&#x27;)</span><br><span class="line">image_shape = float(img.shape[0]), float(img.shape[1])</span><br><span class="line">scores, boxes, classes = yolo_eval(yolo_outputs, image_shape)</span><br></pre></td></tr></table></figure>
+<p>最后，输出预测结果：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">out_scores, out_boxes, out_classes = predict(sess, &quot;img.jpg&quot;)</span><br></pre></td></tr></table></figure>
+<div class="tag-plugin image"><div class="image-bg"><img src="/images/文章图片/20220819-YOLO算法python实现/033.png" fancybox="true"/></div></div>
+<h4 id="yolo算法darknet的官网"><a class="markdownIt-Anchor" href="#yolo算法darknet的官网"></a> YOLO算法darknet的官网</h4>
+<p><a target="_blank" rel="noopener" href="https://pjreddie.com/darknet/yolo/">https://pjreddie.com/darknet/yolo/</a></p>
+
+
+<div class="article-footer reveal fs14"><section id="license"><div class="header"><span>许可协议</span></div><div class="body"><p>本文采用<a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">署名-非商业性使用-相同方式共享 4.0 国际</a>许可协议，转载请注明出处。</p>
+</div></section><section id="share"><div class="header"><span>分享文章</span></div><div class="body"><div class="link"><input class="copy-area" readonly="true" id="copy-link" value="https://guyinga.top/54381aa572aa/" /></div><div class="social-wrap dis-select"><a class="social share-item wechat" onclick="util.toggle(&quot;qrcode-wechat&quot)"><img src="https://fastly.jsdelivr.net/gh/cdn-x/placeholder@1.0.1/social/b32ef3da1162a.svg"/></a><a class="social share-item weibo" target="_blank" rel="external nofollow noopener noreferrer" href="https://service.weibo.com/share/share.php?url=https://guyinga.top/54381aa572aa/&title=YOLO算法python实现 - GuYing&summary=介绍其基本原理及实现细节"><img src="https://fastly.jsdelivr.net/gh/cdn-x/placeholder@1.0.1/social/80c07e4dbb303.svg"/></a><a class="social share-item email" href="mailto:?subject=YOLO算法python实现 - GuYing&amp;body=https://guyinga.top/54381aa572aa/"><img src="https://fastly.jsdelivr.net/gh/cdn-x/placeholder@1.0.1/social/a1b00e20f425d.svg"/></a><a class="social share-item link" onclick="util.copy(&quot;copy-link&quot;, &quot;复制成功&quot;)"><img src="https://fastly.jsdelivr.net/gh/cdn-x/placeholder@1.0.1/social/8411ed322ced6.svg"/></a></div><div class="qrcode" id="qrcode-wechat" style="visibility:hidden;height:0"><img src="https://api.qrserver.com/v1/create-qr-code/?size=256x256&data=https://guyinga.top/54381aa572aa/index.html"/></div></div></section></div>
+
+</article>
+
+<div class="related-wrap reveal" id="read-next"><section class="body"><div class="item" id="prev"><div class="note">较新文章</div><a href="/17fd28c9475e/">初等变换和初等矩阵</a></div><div class="item" id="next"><div class="note">较早文章</div><a href="/84b657751b84/">YOLO算法简介</a></div></section></div>
+
+
+<div class="related-wrap reveal" id="related-posts">
+    <section class='header'>
+      <div class='title cap theme'>您可能感兴趣的文章</div>
+    </section>
+    <section class='body'>
+    <div class="related-posts"><a class="item" href="/f40f194d9411/" title="基于深度学习的目标检测"><span class="title">基于深度学习的目标检测</span><span class="excerpt">计算机视觉</span></a><a class="item" href="/84b657751b84/" title="YOLO算法简介"><span class="title">YOLO算法简介</span><span class="excerpt">计算机视觉</span></a></div></section></div>
+
+
+
+  <div class='related-wrap md-text reveal' id="comments">
+    <div class='cmt-title cap theme'>
+      快来参与讨论吧
+    </div>
+    <div class='cmt-body waline'>
+      
+
+<div id="waline_container" class="waline_thread"><svg class="loading" style="vertical-align: middle;fill: currentColor;overflow: hidden;" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2709"><path d="M832 512c0-176-144-320-320-320V128c211.2 0 384 172.8 384 384h-64zM192 512c0 176 144 320 320 320v64C300.8 896 128 723.2 128 512h64z" p-id="2710"></path></svg></div>
+
+    </div>
+  </div>
+
+
+
+      
+<footer class="page-footer reveal fs12"><hr><div class="sitemap"><div class="sitemap-group"><span class="fs14">博客</span><a href="/">近期</a><a href="/categories/">分类</a><a href="/tags/">标签</a><a href="/archives/">归档</a><a href="/shiping/">收藏</a></div><div class="sitemap-group"><span class="fs14">项目</span><a href="/wiki/tags/%E8%84%9A%E6%9C%AC/">脚本</a><a href="/wiki/tags/%E5%85%B6%E4%BB%96/">其他</a></div><div class="sitemap-group"><span class="fs14">友链</span><a href="/friends/">友链</a><a href="/about/#comments">留言板</a></div><div class="sitemap-group"><span class="fs14">关于</span><a href="/about/">关于本站</a><a target="_blank" rel="noopener" href="https://github.com/guyingd">GitHub</a></div></div><div class="text"><hr><p align="center"><a target="_blank" rel="noopener" href="https://aws.amazon.com/cn/campaigns/cloudfront"><img src="/images/网站图片/内容分发-CloudFront-orange.svg" width="143" height="20" /></a>&nbsp&nbsp<a target="_blank" rel="noopener" href="https://github.com/guyingd"><img src="/images/网站图片/网站部署-GitHub-5DADE2.svg" width="119" height="20"/></a>&nbsp&nbsp<a target="_blank" rel="noopener" href="https://hexo.io"><img src="/images/网站图片/强力驱动-Hexo-blue.svg" width="111" height="20"/></a>&nbsp&nbsp<a target="_blank" rel="noopener" href="https://cloudflare.com"><img src="/images/网站图片/域名解析-CloudFlare-f38020.svg"></a></p>
+</div></footer>
+
+      <div class='float-panel mobile-only blur' style='display:none'>
+  <button type='button' class='sidebar-toggle mobile' onclick='sidebar.toggle()'>
+    <svg class="icon" style="width: 1em; height: 1em;vertical-align: middle;fill: currentColor;overflow: hidden;" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="15301"><path d="M566.407 808.3c26.9-0.1 49.3-20.8 51.6-47.6-1.9-27.7-23.9-49.7-51.6-51.6h-412.6c-28.2-1.4-52.6 19.5-55.5 47.6 2.3 26.8 24.6 47.5 51.6 47.6h416.5v4z m309.3-249.9c26.9-0.1 49.3-20.8 51.6-47.6-2.2-26.8-24.6-47.5-51.6-47.6h-721.9c-27.7-2.8-52.5 17.4-55.3 45.1-0.1 0.8-0.1 1.7-0.2 2.5 0.9 27.2 23.6 48.5 50.7 47.6H875.707z m-103.1-245.9c26.9-0.1 49.3-20.8 51.6-47.6-0.4-28.3-23.2-51.1-51.5-51.6h-618.9c-29.5-1.1-54.3 21.9-55.5 51.4v0.2c1.4 27.8 25.2 49.2 53 47.8 0.8 0 1.7-0.1 2.5-0.2h618.8z" p-id="15302"></path><path d="M566.407 808.3c26.9-0.1 49.3-20.8 51.6-47.6-1.9-27.7-23.9-49.7-51.6-51.6h-412.6c-28.2-1.4-52.6 19.5-55.5 47.6 1.9 27.7 23.9 49.7 51.6 51.6h416.5z m309.3-249.9c26.9-0.1 49.3-20.8 51.6-47.6-2.2-26.8-24.6-47.5-51.6-47.6h-721.9c-27.7-2.8-52.5 17.4-55.3 45.1-0.1 0.8-0.1 1.7-0.2 2.5 0.9 27.2 23.6 48.5 50.7 47.6H875.707z m-103.1-245.9c26.9-0.1 49.3-20.8 51.6-47.6-0.4-28.3-23.2-51.1-51.5-51.6h-618.9c-29.5-1.1-54.3 21.9-55.5 51.4v0.2c1.4 27.8 25.2 49.2 53 47.8 0.8 0 1.7-0.1 2.5-0.2h618.8z" p-id="15303"></path></svg>
+  </button>
+</div>
+
+    </div>
+  </div>
+  <div class='scripts'>
+    <script type="text/javascript">
+  stellar = {
+    // 懒加载 css https://github.com/filamentgroup/loadCSS
+    loadCSS: (href, before, media, attributes) => {
+      var doc = window.document;
+      var ss = doc.createElement("link");
+      var ref;
+      if (before) {
+        ref = before;
+      } else {
+        var refs = (doc.body || doc.getElementsByTagName("head")[0]).childNodes;
+        ref = refs[refs.length - 1];
+      }
+      var sheets = doc.styleSheets;
+      if (attributes) {
+        for (var attributeName in attributes) {
+          if (attributes.hasOwnProperty(attributeName)) {
+            ss.setAttribute(attributeName, attributes[attributeName]);
+          }
+        }
+      }
+      ss.rel = "stylesheet";
+      ss.href = href;
+      ss.media = "only x";
+      function ready(cb) {
+        if (doc.body) {
+          return cb();
+        }
+        setTimeout(function () {
+          ready(cb);
+        });
+      }
+      ready(function () {
+        ref.parentNode.insertBefore(ss, before ? ref : ref.nextSibling);
+      });
+      var onloadcssdefined = function (cb) {
+        var resolvedHref = ss.href;
+        var i = sheets.length;
+        while (i--) {
+          if (sheets[i].href === resolvedHref) {
+            return cb();
+          }
+        }
+        setTimeout(function () {
+          onloadcssdefined(cb);
+        });
+      };
+      function loadCB() {
+        if (ss.addEventListener) {
+          ss.removeEventListener("load", loadCB);
+        }
+        ss.media = media || "all";
+      }
+      if (ss.addEventListener) {
+        ss.addEventListener("load", loadCB);
+      }
+      ss.onloadcssdefined = onloadcssdefined;
+      onloadcssdefined(loadCB);
+      return ss;
+    },
+
+    // 从 butterfly 和 volantis 获得灵感
+    loadScript: (src, opt) => new Promise((resolve, reject) => {
+      var script = document.createElement('script');
+      script.src = src;
+      if (opt) {
+        for (let key of Object.keys(opt)) {
+          script[key] = opt[key]
+        }
+      } else {
+        // 默认异步，如果需要同步，第二个参数传入 {} 即可
+        script.async = true
+      }
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    }),
+
+    // https://github.com/jerryc127/hexo-theme-butterfly
+    jQuery: (fn) => {
+      if (typeof jQuery === 'undefined') {
+        stellar.loadScript(stellar.plugins.jQuery).then(fn)
+      } else {
+        fn()
+      }
+    }
+  };
+  stellar.version = '1.15.1';
+  stellar.github = 'https://github.com/xaoxuu/hexo-theme-stellar/tree/1.15.1';
+  stellar.config = {
+    date_suffix: {
+      just: '刚刚',
+      min: '分钟前',
+      hour: '小时前',
+      day: '天前',
+      month: '个月前',
+    },
+  };
+
+  // required plugins (only load if needs)
+  stellar.plugins = {
+    jQuery: 'https://fastly.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js'
+  };
+
+  // stellar js
+  stellar.plugins.stellar = Object.assign({"sites":"/js/plugins/sites.js","friends":"/js/plugins/friends.js","ghinfo":"/js/plugins/ghinfo.js","timeline":"/js/plugins/timeline.js","linkcard":"/js/plugins/linkcard.js","fcircle":"/js/plugins/fcircle.js"});
+
+  stellar.plugins.marked = Object.assign("https://cdn.bootcdn.net/ajax/libs/marked/4.0.18/marked.min.js");
+  // optional plugins
+  if ('false' == 'true') {
+    stellar.plugins.lazyload = Object.assign({"enable":false,"js":"https://fastly.jsdelivr.net/npm/vanilla-lazyload@17.3.1/dist/lazyload.min.js","transition":"blur"});
+  }
+  if ('true' == 'true') {
+    stellar.plugins.swiper = Object.assign({"enable":true,"css":"https://unpkg.com/swiper@6/swiper-bundle.min.css","js":"https://unpkg.com/swiper@6/swiper-bundle.min.js"});
+  }
+  if ('true' == 'true') {
+    stellar.plugins.scrollreveal = Object.assign({"enable":true,"js":"https://fastly.jsdelivr.net/npm/scrollreveal@4.0.9/dist/scrollreveal.min.js","distance":"8px","duration":500,"interval":100,"scale":1});
+  }
+  if ('true' == 'true') {
+    stellar.plugins.preload = Object.assign({"enable":true,"service":"flying_pages","instant_page":"https://fastly.jsdelivr.net/gh/volantis-x/cdn-volantis@4.1.2/js/instant_page.js","flying_pages":"https://fastly.jsdelivr.net/gh/gijo-varghese/flying-pages@2.1.2/flying-pages.min.js"});
+  }
+  if ('true' == 'true') {
+    stellar.plugins.fancybox = Object.assign({"enable":true,"js":"https://fastly.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.umd.js","css":"https://fastly.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.css","selector":".swiper-slide img"});
+  }
+  if ('false' == 'true') {
+    stellar.plugins.heti = Object.assign({"enable":false,"css":"https://unpkg.com/heti/umd/heti.min.css","js":"https://unpkg.com/heti/umd/heti-addon.min.js"});
+  }
+</script>
+
+<!-- required -->
+
+  
+<script src="/js/main.js" async></script>
+
+
+
+<!-- optional -->
+
+  <script>
+  function load_comment(){
+    if(!document.getElementById("waline_container"))return;
+    stellar.loadCSS('https://unpkg.com/@waline/client@v2/dist/waline.css');
+    stellar.loadScript('https://unpkg.com/@waline/client@v2/dist/waline.js', {defer:true}).then(function () {
+      const el = document.getElementById("waline_container");
+      var path = el.getAttribute('comment_id');
+      if (!path) {
+        path = decodeURI(window.location.pathname);
+      }
+      Waline.init(Object.assign({"js":"https://unpkg.com/@waline/client@v2/dist/waline.js","css":"https://unpkg.com/@waline/client@v2/dist/waline.css","serverURL":"https://pl.guyinga.top","commentCount":true,"pageview":false,"locale":{"placeholder":"ꉂ(ˊᗜˋ*) 请输入内容"},"emoji":["https://gcore.jsdelivr.net/gh/norevi/waline-blobcatemojis@1.0/blobs","https://unpkg.com/@waline/emojis@1.1.0/bilibili","https://unpkg.com/@waline/emojis@1.1.0/qq"],"lang":"zh-CN","wordLimit":0,"pageSize":10}, {
+        el: '#waline_container',
+        path: path,
+      }));
+    });
+  }
+  window.addEventListener('DOMContentLoaded', (event) => {
+    console.log('DOM fully loaded and parsed');
+    load_comment();
+  });
+
+</script>
+
+
+
+
+<!-- inject -->
+
+
+  </div>
+</body>
+</html>

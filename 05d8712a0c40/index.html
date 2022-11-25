@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang='zh-CN'>
+
+<head>
+  <meta name="generator" content="Hexo 6.3.0">
+  <meta name="hexo-theme" content="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.16.2">
+  <meta charset="utf-8">
+  
+
+  <meta http-equiv='x-dns-prefetch-control' content='on' />
+  <link rel='dns-prefetch' href='https://fastly.jsdelivr.net'>
+  <link rel="preconnect" href="https://fastly.jsdelivr.net" crossorigin>
+  <link rel='dns-prefetch' href='//unpkg.com'>
+
+  <meta name="renderer" content="webkit">
+  <meta name="force-rendering" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta name="HandheldFriendly" content="True" >
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="theme-color" content="#f8f8f8">
+  
+  <title>海明校验码是怎么实现的 - GuYing</title>
+
+  
+    <meta name="description" content="如何一步步推导出海明码">
+<meta property="og:type" content="article">
+<meta property="og:title" content="海明校验码是怎么实现的">
+<meta property="og:url" content="https://guyinga.top/05d8712a0c40/">
+<meta property="og:site_name" content="GuYing">
+<meta property="og:description" content="如何一步步推导出海明码">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-04-09T02:09:39.000Z">
+<meta property="article:modified_time" content="2022-11-14T07:34:57.000Z">
+<meta property="article:author" content="guyingd">
+<meta property="article:tag" content="孤影">
+<meta name="twitter:card" content="summary">
+  
+  
+
+  <!-- feed -->
+  
+    <link rel="alternate" href="/atom.xml" title="GuYing" type="application/atom+xml">
+  
+
+  
+    
+<link rel="stylesheet" href="/css/main.css">
+
+  
+
+  
+
+  
+
+  
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.css" integrity="sha384-Xi8rHCmBmhbuyyhbI88391ZKP2dmfnOl4rT9ZfRI7mLTdk1wblIUnrIq35nqwEvC" crossorigin="anonymous">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.js" integrity="sha384-X/XCfMm41VSsqRNQgDerQczD69XqmjOOOwYQvr/uuC+j4OPoNhVgjdGFwhvN02Ja" crossorigin="anonymous"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/auto-render.min.js" integrity="sha384-+XBljXPPiv+OzfbB3cVmLHf4hdUFHlWNZN5spNQ7rmHTXpd7WvJum6fIACpNNfIR" crossorigin="anonymous"onload="renderMathInElement(document.body);"></script>
+  
+
+
+  
+    
+      <link rel="stylesheet" href="https://fastly.jsdelivr.net/npm/lxgw-wenkai-screen-webfont@1.1.0/style.css" />
+    
+      <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon/apple-touch-icon.png">
+    
+      <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon/favicon-32x32.png">
+    
+      <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon/favicon-16x16.png">
+    
+      <link rel="manifest" href="/images/favicon/site.webmanifest">
+    
+      <link rel="mask-icon" href="/images/logo.svg" color="#5bbad5">
+    
+      <link rel="shortcut icon" href="/images/favicon/favicon.ico">
+    
+      <meta name="msapplication-TileColor" content="#2d89ef">
+    
+      <meta name="msapplication-config" content="#2d89ef">
+    
+      <meta name="theme-color" content="#ffffff">
+    
+  
+</head>
+
+<body>
+  
+
+
+
+
+  <div class='l_body' id='start'>
+    <aside class='l_left' layout='post'>
+    
+
+  
+
+<header class="header"><div class="logo-wrap"><a class="avatar" href="/about/"><div class="bg" style="opacity:0;background-image:url(https://fastly.jsdelivr.net/gh/cdn-x/placeholder@1.0.2/avatar/round/rainbow64@3x.webp);"></div><img no-lazy class="avatar" src="/images/网站图片/logo.svg" onerror="javascript:this.classList.add('error');this.src='/images/网站图片/default_image.svg';"></a><a class="title" href="/"><div class="main" ff="title">GuYing</div><div class="sub normal cap">「Stay Hungry.Stay Foolish.」</div><div class="sub hover cap" style="opacity:0">求知若饥，虚心若愚</div></a></div>
+
+<nav class="menu dis-select"><a class="nav-item active" href="/">博客</a><a class="nav-item" href="/wiki/">项目</a><a class="nav-item" href="/friends/">友链</a><a class="nav-item" href="/about/">关于</a></nav>
+</header>
+
+
+<div class="widgets">
+
+
+<widget class="widget-wrapper recent"><div class="widget-header cap theme dis-select"><span class="name">最近更新</span><a class="cap-action" id="rss" title="Subscribe" href="/atom.xml"><svg class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="8938"><path d="M800.966 947.251c0-404.522-320.872-732.448-716.69-732.448V62.785c477.972 0 865.44 395.987 865.44 884.466h-148.75z m-162.273 0h-148.74c0-228.98-181.628-414.598-405.678-414.598v-152.01c306.205 0 554.418 253.68 554.418 566.608z m-446.24-221.12c59.748 0 108.189 49.503 108.189 110.557 0 61.063-48.44 110.563-108.188 110.563-59.747 0-108.18-49.5-108.18-110.563 0-61.054 48.433-110.556 108.18-110.556z" p-id="8939"></path></svg></a></div><div class="widget-body related-posts fs14"><a class="item title" href="/f8c543d89bff/"><span class="title">海棠机器人</span></a><a class="item title" href="/940556775882/"><span class="title">GitHub Actions 实现 Hexo 自动部署</span></a><a class="item title" href="/05d8712a0c40/"><span class="title">海明校验码是怎么实现的</span></a><a class="item title" href="/022ba103b947/"><span class="title">基于深度学习框架Tensorflow的成绩自动查询</span></a><a class="item title" href="/48f90e18fc3d/"><span class="title">CRC码计算及校验原理的最通俗诠释</span></a></div></widget>
+
+
+
+
+
+
+
+</div>
+<footer class="footer dis-select"><div class="social-wrap"><a class="social" href="/atom.xml" rel="noopener noreferrer"><img src="/images/网站图片/rss.svg"/></a><a class="social" href="mailto:2739218253@qq.com" rel="noopener noreferrer"><img src="/images/网站图片/gmail.svg"/></a><a class="social" href="https://github.com/guyingd" target="_blank" rel="external nofollow noopener noreferrer"><img src="/images/网站图片/github.svg"/></a><a class="social" href="https://guyinga.top" target="_blank" rel="external nofollow noopener noreferrer"><img src="/images/网站图片/volantis.svg"/></a><a class="social" href="/" rel="noopener noreferrer"><img src="/images/网站图片/OneDrive.svg"/></a></div></footer>
+
+    </aside>
+    <div class='l_main'>
+      
+
+      
+
+
+<div class="bread-nav fs12"><div id="breadcrumb"><a class="cap breadcrumb" href="/">主页</a><span class="sep"></span><a class="cap breadcrumb" href="/">文章</a><span class="sep"></span><a class="cap breadcrumb-link" href="/categories/%E6%8A%98%E8%85%BE/">折腾</a></div><div id="post-meta">发布于&nbsp;<time datetime="2021-04-09T02:09:39.000Z">2021-04-09</time></div></div>
+
+<article class='md-text content post reveal'>
+<h1 class="article-title"><span>海明校验码是怎么实现的</span></h1>
+<p>如何一步步推导出海明码。</p>
+<p>先提一个基本中的基本，异或。异或是两个数字相异则为1，相同则为0。举例1异或0=1，0异或0=0，1异或1=0。</p>
+<p>为什么要提异或呢，因为异或是校验中最为根本的一个东西。假设我有原码1111和错误传输1110以及正确传输1111，那么我怎么能隐藏数据内容直接更快更好的知道数据是否传输错误了呢？</p>
+<p>按位异或，如果无错，则异或值必全为0。1111与1111的异或为0000，1111与1110的异或为0001，看出来了吧，异或在校验中有着极为基本的作用。</p>
+<p>那么我们为什么要提出海明码？直接用奇偶校验不行吗？</p>
+<p>不行，因为奇偶校验只能发现错误，不能追溯错误。所以我们提出了一个疑问，怎么能校验错误并寻找到错误的根源？（先讨论最基本的情况，即只发生一位错误）</p>
+<p>那么将问题具体化就是：假设我要传输一个四位数据，想要对此数据进行校验并能够定位错误位置，我该如何设计？</p>
+<p>首先考虑校验码的位数问题。</p>
+<p>首先要明确的是校验码的位数加上数据的位数必须能够被校验码表示。即假设数据4位，校验码2位，则共有6位，但校验码2位只能标识4种状态，4&lt;6，不能表示清楚每一个位置。所以要增加校验码至3位。</p>
+<p>但于此同时又有一个问题，假设我有5位数据，我可不可以使用3位校验码？5+3=2^3，看起来刚好能够表示每个位置的数据，但这是不可以的。比如我传输的数据是11111，结果传输错误，传输成了01111，那么这个时候我要表示第一位的数据传输错误，我的校验码应该是001，而不是000。此外，000还表示了数据无错，所以实际操作中我们计算可表示位数的时候是忽略掉全为0的一种情况。故校验码的位数加上数据位数应该小于等于校验码能表示位数（除去全0情况后的）。</p>
+<p>解决了位数的问题，接下来要解决校验码放在哪的问题。</p>
+<p>假设我把校验码放在编码的最前3位，数据放在后面4位。再假设我传输的数据是*** 1111（<em>表示校验码）。那么当我的数据位置传输错误后，如传输成为了</em>** 0111，那么我的校验码应该写成2进制的4，因为第4位出现了传输错误。所以整体表示成100 0111。但此时出现一个致命的问题：数据不出错的情况下，可能单纯的校验码传输错误了。也就是说，如果第1位的校验码传输错误时，传输结果为 100 1111。看到问题的所在了吗？根据我的校验码，我应该追溯第4位的传输错误，但是我的第4位是传输正确的，这也就导致了我无法真正的找到错误位。</p>
+<p>那么该怎么设计呢？我们可以看到，纠错失败是因为歧义的问题，即无法分辨是校验码所表示位置传输错误还是校验码自身传输错误。那么取消掉歧义，让校验码的自身传输错误时恰好其位置表示是他自己，不就解决掉这个问题了吗？按照刚才的例子来讲，我们首先考虑三种校验码出错的情况，分别是001，010，100三种，那么很明显，我们直接把这三位校验码放到他所表示的位置中不就可以了吗？也就是将校验码放置到第1，第2，第4三个位置中，这样位置的表示与校验码的传输错误可以用同一个表示，不会导致前文说的纠错失败的问题。</p>
+<p>好了，到这一步后，我们已经清楚了校验码的设计方式了，但是校验码怎么取值呢？上面所提到的是已知错误去判断校验码的取值，但实际中我们是反过来的过程，所以我们就要去考虑取值的问题。</p>
+<p>先讲我们是怎么进行校验的，也就是校验的流程问题。</p>
+<p>这一步我们先将校验码和数据部分分开，假设校验码是p，数据是d，然后我们的p是根据d在某种规则下得到的，那么我们只需要将接收到的数据部分按照规则重新计算后（即理论传输正确时校验码的值）与其校验码部分（实际传输的校验码的值）做异或运算，我们将这个异或运算的结果记为s，若结果全为0，则表示两者完全相同，若不全为0，我们还希望s恰好为传输错误的位置信息。即我们希望s=011时（s1=1，s2=1，s3=0），第3位的数据确认传输出错。（s1即为s的第一位，s2为第二位，d，p同理）</p>
+<p>这里我们探讨的s其实就是上一阶段讨论校验码位置时的校验码值，因为它的实际意义就是某一位出现了错误，表示位置信息。（而p是实际上校验码位置应该填写的值）</p>
+<p>那么接下来我们先来思考一个问题，s1=1代表什么？</p>
+<p>这代表001，011，101，111位置中有一个必然出错了。也就是1，3，5，7位中有数据传输错误，s1=1。那我们又知道s1=（p1和d在p1下的规则运算后的异或），所以和p1有关的d就是抛开p1自身后的数据位数，即3，5，7位。</p>
+<p>那么问题就简化了，我们需要将3，5，7位进行一种规则运算，使得3，5，7中一旦有一位发生了变化，他的规则运算结果就会由1变0，由0变1。</p>
+<p>那么这种规则就是异或。3，5，7三位的异或将形成p1的值。如果其中1位发生了传输错误（或校验码本身第1位发生了传输错误），则按照异或规则形成的新p1必将与之前的p1相反，从而导致s1=1。</p>
+<p>同样的，按照此理我们可以求出p2，p3的值。</p>
+<p>再举p2的例子好了。s2=1代表着010 011 110 111中一个出错，即2，3，6，7四位中有一个出错。那么p2就应该是除了自己以外的3，6，7位进行异或运算后形成的结果。反过来说，如果3，6，7位发生传输错误（或校验码第2位发生了传输错误），则按照异或规则形成的新p2必与前p2相异，从而导致s2=1。</p>
+<p>到此为止，对海明码的编码过程就结束了。后面举例如何校验码是如何验证的。</p>
+<p>假设我传输的编码是1010010（正确的海明码)，结果传输成为了1110010，那么海明码将如何验证呢？</p>
+<p>1110010 画线部分是校验码，即p1=0，p2=1，p3=0。</p>
+<p>s1：d3异或d5异或d7等于0，0异或p1=0.</p>
+<p>s2：d3异或d6异或d7等于0，0异或p2=1.</p>
+<p>s3：d5异或d6异或d7等于1，1异或p3=1.</p>
+<p>故110位置出错，即第6位出现错误。</p>
+<p>转自知乎：</p>
+<p><a target="_blank" rel="noopener" href="https://www.zhihu.com/question/29169628/answer/837787585">海明校验码是怎么实现的？ - 沐温的回答</a></p>
+<p>2021年04月09日</p>
+
+
+<div class="article-footer reveal fs14"><section id="license"><div class="header"><span>许可协议</span></div><div class="body"><p>本文采用<a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">署名-非商业性使用-相同方式共享 4.0 国际</a>许可协议，转载请注明出处。</p>
+</div></section><section id="share"><div class="header"><span>分享文章</span></div><div class="body"><div class="link"><input class="copy-area" readonly="true" id="copy-link" value="https://guyinga.top/05d8712a0c40/" /></div><div class="social-wrap dis-select"><a class="social share-item wechat" onclick="util.toggle(&quot;qrcode-wechat&quot)"><img src="https://fastly.jsdelivr.net/gh/cdn-x/placeholder@1.0.1/social/b32ef3da1162a.svg"/></a><a class="social share-item weibo" target="_blank" rel="external nofollow noopener noreferrer" href="https://service.weibo.com/share/share.php?url=https://guyinga.top/05d8712a0c40/&title=海明校验码是怎么实现的 - GuYing&summary=如何一步步推导出海明码"><img src="https://fastly.jsdelivr.net/gh/cdn-x/placeholder@1.0.1/social/80c07e4dbb303.svg"/></a><a class="social share-item email" href="mailto:?subject=海明校验码是怎么实现的 - GuYing&amp;body=https://guyinga.top/05d8712a0c40/"><img src="https://fastly.jsdelivr.net/gh/cdn-x/placeholder@1.0.1/social/a1b00e20f425d.svg"/></a><a class="social share-item link" onclick="util.copy(&quot;copy-link&quot;, &quot;复制成功&quot;)"><img src="https://fastly.jsdelivr.net/gh/cdn-x/placeholder@1.0.1/social/8411ed322ced6.svg"/></a></div><div class="qrcode" id="qrcode-wechat" style="visibility:hidden;height:0"><img src="https://api.qrserver.com/v1/create-qr-code/?size=256x256&data=https://guyinga.top/05d8712a0c40/index.html"/></div></div></section></div>
+
+</article>
+
+<div class="related-wrap reveal" id="read-next"><section class="body"><div class="item" id="prev"><div class="note">较新文章</div><a href="/48f90e18fc3d/">CRC码计算及校验原理的最通俗诠释</a></div><div class="item" id="next"><div class="note">较早文章</div><a href="/022ba103b947/">基于深度学习框架Tensorflow的成绩自动查询</a></div></section></div>
+
+
+<div class="related-wrap reveal" id="related-posts">
+    <section class='header'>
+      <div class='title cap theme'>您可能感兴趣的文章</div>
+    </section>
+    <section class='body'>
+    <div class="related-posts"><a class="item" href="/022ba103b947/" title="基于深度学习框架Tensorflow的成绩自动查询"><span class="title">基于深度学习框架Tensorflow的成绩自动查询</span><span class="excerpt">程序自动化操作，简化成绩查询过程，节省时间，提高效率。</span></a></div></section></div>
+
+
+
+  <div class='related-wrap md-text reveal' id="comments">
+    <div class='cmt-title cap theme'>
+      快来参与讨论吧
+    </div>
+    <div class='cmt-body waline'>
+      
+
+<div id="waline_container" class="waline_thread"><svg class="loading" style="vertical-align: middle;fill: currentColor;overflow: hidden;" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2709"><path d="M832 512c0-176-144-320-320-320V128c211.2 0 384 172.8 384 384h-64zM192 512c0 176 144 320 320 320v64C300.8 896 128 723.2 128 512h64z" p-id="2710"></path></svg></div>
+
+    </div>
+  </div>
+
+
+
+      
+<footer class="page-footer reveal fs12"><hr><div class="sitemap"><div class="sitemap-group"><span class="fs14">博客</span><a href="/">近期</a><a href="/categories/">分类</a><a href="/tags/">标签</a><a href="/archives/">归档</a><a href="/shiping/">收藏</a></div><div class="sitemap-group"><span class="fs14">项目</span><a href="/wiki/tags/%E8%84%9A%E6%9C%AC/">脚本</a><a href="/wiki/tags/%E5%85%B6%E4%BB%96/">其他</a></div><div class="sitemap-group"><span class="fs14">友链</span><a href="/friends/">友链</a><a href="/about/#comments">留言板</a></div><div class="sitemap-group"><span class="fs14">关于</span><a href="/about/">关于本站</a><a target="_blank" rel="noopener" href="https://github.com/guyingd">GitHub</a></div></div><div class="text"><hr><p align="center"><a target="_blank" rel="noopener" href="https://aws.amazon.com/cn/campaigns/cloudfront"><img src="/images/网站图片/内容分发-CloudFront-orange.svg" width="143" height="20" /></a>&nbsp&nbsp<a target="_blank" rel="noopener" href="https://github.com/guyingd"><img src="/images/网站图片/网站部署-GitHub-5DADE2.svg" width="119" height="20"/></a>&nbsp&nbsp<a target="_blank" rel="noopener" href="https://hexo.io"><img src="/images/网站图片/强力驱动-Hexo-blue.svg" width="111" height="20"/></a>&nbsp&nbsp<a target="_blank" rel="noopener" href="https://cloudflare.com"><img src="/images/网站图片/域名解析-CloudFlare-f38020.svg"></a></p>
+</div></footer>
+
+      <div class='float-panel mobile-only blur' style='display:none'>
+  <button type='button' class='sidebar-toggle mobile' onclick='sidebar.toggle()'>
+    <svg class="icon" style="width: 1em; height: 1em;vertical-align: middle;fill: currentColor;overflow: hidden;" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="15301"><path d="M566.407 808.3c26.9-0.1 49.3-20.8 51.6-47.6-1.9-27.7-23.9-49.7-51.6-51.6h-412.6c-28.2-1.4-52.6 19.5-55.5 47.6 2.3 26.8 24.6 47.5 51.6 47.6h416.5v4z m309.3-249.9c26.9-0.1 49.3-20.8 51.6-47.6-2.2-26.8-24.6-47.5-51.6-47.6h-721.9c-27.7-2.8-52.5 17.4-55.3 45.1-0.1 0.8-0.1 1.7-0.2 2.5 0.9 27.2 23.6 48.5 50.7 47.6H875.707z m-103.1-245.9c26.9-0.1 49.3-20.8 51.6-47.6-0.4-28.3-23.2-51.1-51.5-51.6h-618.9c-29.5-1.1-54.3 21.9-55.5 51.4v0.2c1.4 27.8 25.2 49.2 53 47.8 0.8 0 1.7-0.1 2.5-0.2h618.8z" p-id="15302"></path><path d="M566.407 808.3c26.9-0.1 49.3-20.8 51.6-47.6-1.9-27.7-23.9-49.7-51.6-51.6h-412.6c-28.2-1.4-52.6 19.5-55.5 47.6 1.9 27.7 23.9 49.7 51.6 51.6h416.5z m309.3-249.9c26.9-0.1 49.3-20.8 51.6-47.6-2.2-26.8-24.6-47.5-51.6-47.6h-721.9c-27.7-2.8-52.5 17.4-55.3 45.1-0.1 0.8-0.1 1.7-0.2 2.5 0.9 27.2 23.6 48.5 50.7 47.6H875.707z m-103.1-245.9c26.9-0.1 49.3-20.8 51.6-47.6-0.4-28.3-23.2-51.1-51.5-51.6h-618.9c-29.5-1.1-54.3 21.9-55.5 51.4v0.2c1.4 27.8 25.2 49.2 53 47.8 0.8 0 1.7-0.1 2.5-0.2h618.8z" p-id="15303"></path></svg>
+  </button>
+</div>
+
+    </div>
+  </div>
+  <div class='scripts'>
+    <script type="text/javascript">
+  stellar = {
+    // 懒加载 css https://github.com/filamentgroup/loadCSS
+    loadCSS: (href, before, media, attributes) => {
+      var doc = window.document;
+      var ss = doc.createElement("link");
+      var ref;
+      if (before) {
+        ref = before;
+      } else {
+        var refs = (doc.body || doc.getElementsByTagName("head")[0]).childNodes;
+        ref = refs[refs.length - 1];
+      }
+      var sheets = doc.styleSheets;
+      if (attributes) {
+        for (var attributeName in attributes) {
+          if (attributes.hasOwnProperty(attributeName)) {
+            ss.setAttribute(attributeName, attributes[attributeName]);
+          }
+        }
+      }
+      ss.rel = "stylesheet";
+      ss.href = href;
+      ss.media = "only x";
+      function ready(cb) {
+        if (doc.body) {
+          return cb();
+        }
+        setTimeout(function () {
+          ready(cb);
+        });
+      }
+      ready(function () {
+        ref.parentNode.insertBefore(ss, before ? ref : ref.nextSibling);
+      });
+      var onloadcssdefined = function (cb) {
+        var resolvedHref = ss.href;
+        var i = sheets.length;
+        while (i--) {
+          if (sheets[i].href === resolvedHref) {
+            return cb();
+          }
+        }
+        setTimeout(function () {
+          onloadcssdefined(cb);
+        });
+      };
+      function loadCB() {
+        if (ss.addEventListener) {
+          ss.removeEventListener("load", loadCB);
+        }
+        ss.media = media || "all";
+      }
+      if (ss.addEventListener) {
+        ss.addEventListener("load", loadCB);
+      }
+      ss.onloadcssdefined = onloadcssdefined;
+      onloadcssdefined(loadCB);
+      return ss;
+    },
+
+    // 从 butterfly 和 volantis 获得灵感
+    loadScript: (src, opt) => new Promise((resolve, reject) => {
+      var script = document.createElement('script');
+      script.src = src;
+      if (opt) {
+        for (let key of Object.keys(opt)) {
+          script[key] = opt[key]
+        }
+      } else {
+        // 默认异步，如果需要同步，第二个参数传入 {} 即可
+        script.async = true
+      }
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    }),
+
+    // https://github.com/jerryc127/hexo-theme-butterfly
+    jQuery: (fn) => {
+      if (typeof jQuery === 'undefined') {
+        stellar.loadScript(stellar.plugins.jQuery).then(fn)
+      } else {
+        fn()
+      }
+    }
+  };
+  stellar.version = '1.15.1';
+  stellar.github = 'https://github.com/xaoxuu/hexo-theme-stellar/tree/1.15.1';
+  stellar.config = {
+    date_suffix: {
+      just: '刚刚',
+      min: '分钟前',
+      hour: '小时前',
+      day: '天前',
+      month: '个月前',
+    },
+  };
+
+  // required plugins (only load if needs)
+  stellar.plugins = {
+    jQuery: 'https://fastly.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js'
+  };
+
+  // stellar js
+  stellar.plugins.stellar = Object.assign({"sites":"/js/plugins/sites.js","friends":"/js/plugins/friends.js","ghinfo":"/js/plugins/ghinfo.js","timeline":"/js/plugins/timeline.js","linkcard":"/js/plugins/linkcard.js","fcircle":"/js/plugins/fcircle.js"});
+
+  stellar.plugins.marked = Object.assign("https://cdn.bootcdn.net/ajax/libs/marked/4.0.18/marked.min.js");
+  // optional plugins
+  if ('false' == 'true') {
+    stellar.plugins.lazyload = Object.assign({"enable":false,"js":"https://fastly.jsdelivr.net/npm/vanilla-lazyload@17.3.1/dist/lazyload.min.js","transition":"blur"});
+  }
+  if ('true' == 'true') {
+    stellar.plugins.swiper = Object.assign({"enable":true,"css":"https://unpkg.com/swiper@6/swiper-bundle.min.css","js":"https://unpkg.com/swiper@6/swiper-bundle.min.js"});
+  }
+  if ('true' == 'true') {
+    stellar.plugins.scrollreveal = Object.assign({"enable":true,"js":"https://fastly.jsdelivr.net/npm/scrollreveal@4.0.9/dist/scrollreveal.min.js","distance":"8px","duration":500,"interval":100,"scale":1});
+  }
+  if ('true' == 'true') {
+    stellar.plugins.preload = Object.assign({"enable":true,"service":"flying_pages","instant_page":"https://fastly.jsdelivr.net/gh/volantis-x/cdn-volantis@4.1.2/js/instant_page.js","flying_pages":"https://fastly.jsdelivr.net/gh/gijo-varghese/flying-pages@2.1.2/flying-pages.min.js"});
+  }
+  if ('true' == 'true') {
+    stellar.plugins.fancybox = Object.assign({"enable":true,"js":"https://fastly.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.umd.js","css":"https://fastly.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.css","selector":".swiper-slide img"});
+  }
+  if ('false' == 'true') {
+    stellar.plugins.heti = Object.assign({"enable":false,"css":"https://unpkg.com/heti/umd/heti.min.css","js":"https://unpkg.com/heti/umd/heti-addon.min.js"});
+  }
+</script>
+
+<!-- required -->
+
+  
+<script src="/js/main.js" async></script>
+
+
+
+<!-- optional -->
+
+  <script>
+  function load_comment(){
+    if(!document.getElementById("waline_container"))return;
+    stellar.loadCSS('https://unpkg.com/@waline/client@v2/dist/waline.css');
+    stellar.loadScript('https://unpkg.com/@waline/client@v2/dist/waline.js', {defer:true}).then(function () {
+      const el = document.getElementById("waline_container");
+      var path = el.getAttribute('comment_id');
+      if (!path) {
+        path = decodeURI(window.location.pathname);
+      }
+      Waline.init(Object.assign({"js":"https://unpkg.com/@waline/client@v2/dist/waline.js","css":"https://unpkg.com/@waline/client@v2/dist/waline.css","serverURL":"https://pl.guyinga.top","commentCount":true,"pageview":false,"locale":{"placeholder":"ꉂ(ˊᗜˋ*) 请输入内容"},"emoji":["https://gcore.jsdelivr.net/gh/norevi/waline-blobcatemojis@1.0/blobs","https://unpkg.com/@waline/emojis@1.1.0/bilibili","https://unpkg.com/@waline/emojis@1.1.0/qq"],"lang":"zh-CN","wordLimit":0,"pageSize":10}, {
+        el: '#waline_container',
+        path: path,
+      }));
+    });
+  }
+  window.addEventListener('DOMContentLoaded', (event) => {
+    console.log('DOM fully loaded and parsed');
+    load_comment();
+  });
+
+</script>
+
+
+
+
+<!-- inject -->
+
+
+  </div>
+</body>
+</html>

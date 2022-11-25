@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang='zh-CN'>
+
+<head>
+  <meta name="generator" content="Hexo 6.3.0">
+  <meta name="hexo-theme" content="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.16.2">
+  <meta charset="utf-8">
+  
+
+  <meta http-equiv='x-dns-prefetch-control' content='on' />
+  <link rel='dns-prefetch' href='https://fastly.jsdelivr.net'>
+  <link rel="preconnect" href="https://fastly.jsdelivr.net" crossorigin>
+  <link rel='dns-prefetch' href='//unpkg.com'>
+
+  <meta name="renderer" content="webkit">
+  <meta name="force-rendering" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta name="HandheldFriendly" content="True" >
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="theme-color" content="#f8f8f8">
+  
+  <title>基于深度学习的目标检测 - GuYing</title>
+
+  
+    <meta name="description" content="计算机视觉">
+<meta property="og:type" content="article">
+<meta property="og:title" content="基于深度学习的目标检测">
+<meta property="og:url" content="https://guyinga.top/f40f194d9411/">
+<meta property="og:site_name" content="GuYing">
+<meta property="og:description" content="计算机视觉">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-08-11T16:00:00.000Z">
+<meta property="article:modified_time" content="2022-11-14T07:34:57.000Z">
+<meta property="article:author" content="guyingd">
+<meta property="article:tag" content="深度学习">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+
+  <!-- feed -->
+  
+    <link rel="alternate" href="/atom.xml" title="GuYing" type="application/atom+xml">
+  
+
+  
+    
+<link rel="stylesheet" href="/css/main.css">
+
+  
+
+  
+
+  
+
+  
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.css" integrity="sha384-Xi8rHCmBmhbuyyhbI88391ZKP2dmfnOl4rT9ZfRI7mLTdk1wblIUnrIq35nqwEvC" crossorigin="anonymous">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.js" integrity="sha384-X/XCfMm41VSsqRNQgDerQczD69XqmjOOOwYQvr/uuC+j4OPoNhVgjdGFwhvN02Ja" crossorigin="anonymous"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/auto-render.min.js" integrity="sha384-+XBljXPPiv+OzfbB3cVmLHf4hdUFHlWNZN5spNQ7rmHTXpd7WvJum6fIACpNNfIR" crossorigin="anonymous"onload="renderMathInElement(document.body);"></script>
+  
+
+
+  
+    
+      <link rel="stylesheet" href="https://fastly.jsdelivr.net/npm/lxgw-wenkai-screen-webfont@1.1.0/style.css" />
+    
+      <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon/apple-touch-icon.png">
+    
+      <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon/favicon-32x32.png">
+    
+      <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon/favicon-16x16.png">
+    
+      <link rel="manifest" href="/images/favicon/site.webmanifest">
+    
+      <link rel="mask-icon" href="/images/logo.svg" color="#5bbad5">
+    
+      <link rel="shortcut icon" href="/images/favicon/favicon.ico">
+    
+      <meta name="msapplication-TileColor" content="#2d89ef">
+    
+      <meta name="msapplication-config" content="#2d89ef">
+    
+      <meta name="theme-color" content="#ffffff">
+    
+  
+</head>
+
+<body>
+  
+
+
+
+
+  <div class='l_body' id='start'>
+    <aside class='l_left' layout='post'>
+    
+
+  
+
+<header class="header"><div class="logo-wrap"><a class="avatar" href="/about/"><div class="bg" style="opacity:0;background-image:url(https://fastly.jsdelivr.net/gh/cdn-x/placeholder@1.0.2/avatar/round/rainbow64@3x.webp);"></div><img no-lazy class="avatar" src="/images/网站图片/logo.svg" onerror="javascript:this.classList.add('error');this.src='/images/网站图片/default_image.svg';"></a><a class="title" href="/"><div class="main" ff="title">GuYing</div><div class="sub normal cap">「Stay Hungry.Stay Foolish.」</div><div class="sub hover cap" style="opacity:0">求知若饥，虚心若愚</div></a></div>
+
+<nav class="menu dis-select"><a class="nav-item active" href="/">博客</a><a class="nav-item" href="/wiki/">项目</a><a class="nav-item" href="/friends/">友链</a><a class="nav-item" href="/about/">关于</a></nav>
+</header>
+
+
+<div class="widgets">
+
+<widget class="widget-wrapper toc single" id="toc"><div class="widget-header cap dis-select"><span class="name">基于深度学习的目标检测</span></div><div class="widget-body fs14"><div class="doc-tree active"><ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9F%BA%E4%BA%8E%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%9A%84%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B"><span class="toc-text"> 基于深度学习的目标检测</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#11%E5%9F%BA%E4%BA%8E%E5%8C%BA%E5%9F%9F%E6%8F%90%E5%90%8D%E7%9A%84%E6%96%B9%E6%B3%95"><span class="toc-text"> 1.1基于区域提名的方法</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#111-r-cnn"><span class="toc-text"> 1.1.1 R-CNN</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#112-spp-net"><span class="toc-text"> 1.1.2 SPP-Net</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#113-fast-r-cnn"><span class="toc-text"> 1.1.3 Fast R-CNN</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#114-faster-r-cnn"><span class="toc-text"> 1.1.4 Faster R-CNN</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#115-r-fcn"><span class="toc-text"> 1.1.5 R-FCN</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#12-%E7%AB%AF%E5%88%B0%E7%AB%AF%E7%9A%84%E6%96%B9%E6%B3%95"><span class="toc-text"> 1.2 端到端的方法</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#121-yolo"><span class="toc-text"> 1.2.1 YOLO</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#122-ssd"><span class="toc-text"> 1.2.2 SSD</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#13-%E6%80%BB%E7%BB%93"><span class="toc-text"> 1.3 总结</span></a></li></ol></div></div></widget>
+
+
+
+
+
+
+</div>
+<footer class="footer dis-select"><div class="social-wrap"><a class="social" href="/atom.xml" rel="noopener noreferrer"><img src="/images/网站图片/rss.svg"/></a><a class="social" href="mailto:2739218253@qq.com" rel="noopener noreferrer"><img src="/images/网站图片/gmail.svg"/></a><a class="social" href="https://github.com/guyingd" target="_blank" rel="external nofollow noopener noreferrer"><img src="/images/网站图片/github.svg"/></a><a class="social" href="https://guyinga.top" target="_blank" rel="external nofollow noopener noreferrer"><img src="/images/网站图片/volantis.svg"/></a><a class="social" href="/" rel="noopener noreferrer"><img src="/images/网站图片/OneDrive.svg"/></a></div></footer>
+
+    </aside>
+    <div class='l_main'>
+      
+
+      
+
+
+<div class="bread-nav fs12"><div id="breadcrumb"><a class="cap breadcrumb" href="/">主页</a><span class="sep"></span><a class="cap breadcrumb" href="/">文章</a><span class="sep"></span><a class="cap breadcrumb-link" href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/">深度学习</a></div><div id="post-meta">发布于&nbsp;<time datetime="2022-08-11T16:00:00.000Z">2022-08-12</time></div></div>
+
+<article class='md-text content post reveal'>
+<h1 class="article-title"><span>基于深度学习的目标检测</span></h1>
+<p></p>
+<h3 id="基于深度学习的目标检测"><a class="markdownIt-Anchor" href="#基于深度学习的目标检测"></a> 基于深度学习的目标检测</h3>
+<p>普通的深度学习监督算法主要用来做分类，分类的目标是要识别出图中所示是一只猫。而在ILSVRC（ImageNet Large Scale Visual Recognition Challenge）竞赛以及实际的应用中，还包括目标定位和目标检测等任务。其中目标定位不仅仅要识别出来是什么物体（即分类），而且还要预测物体的位置，位置一般用边框（bounding box）标记。而目标检测实质是多目标的定位，即要在图片中定位多个目标物体，包括分类和定位。</p>
+<p>简单来说，分类，定位和检测的区别如下：<br />
+1.分类：是什么？<br />
+2.定位：在哪里？是什么？（单个目标）<br />
+3.检测：在哪里？分别是什么？（多个目标）</p>
+<p>目标检测对于人类来说并不困难，通过对图片中不同颜色模块的感知很容易定位并分类出其中的目标物体，但对于计算机来说，面对的是RGB像素矩阵，很难从图像中直接得到“狗”和“猫”这样的抽象概念并定位其位置，再加上有时候多个物体和杂乱的背景混杂在一起，使得目标检测更加困难。在传统视觉领域，目标检测就是一个非常热门的研究方向，一些特定目标的检测，比如人脸检测和行人检测已经有非常成熟的技术了。普通的目标检测也有过很多的尝试，但是效果总是差强人意。</p>
+<p>传统的目标检测一般使用滑动窗口的框架，主要包括三个步骤：<br />
+1.利用不同尺寸的滑动窗口框住图中的某一部分作为候选区域；<br />
+2.提取候选区域相关的视觉特征。比如人脸检测常用的Harr特征；行人检测和普通目标检测常用的HOG特征等；<br />
+3.利用分类器进行识别，比如常用的SVM模型</p>
+<p>传统的目标检测中，多尺度形变部件模型DPM（Deformable Part Model）是出类拔萃的，连续获得VOC（Visual Object Class）2007到2009的检测冠军，DPM把物体看成多个组成部分（比如人脸的鼻子、嘴巴等），用部件间的关系来描述物体，这个特性非常符合自然界很多物体的非刚体特征。DPM可以看做是HOG+SVM的扩展，很好的继承了两者的优势。在人脸检测、行人检测等任务上取得了不错的效果，但是DPM相对复杂，检测速度也很慢，从而也出现了很多改进的方法。正当大家热火朝天的改进DPM性能的时候，基于深度学习的目标检测横空出世，迅速盖过了DPM的风头，很多之前研究传统目标检测算法的研究者也开始转向深度学习。</p>
+<p>基于深度学习的目标检测发展起来以后，其效果也一直难以突破。2013年R-CNN诞生了，VOC2007测试集的mAP被提升至48%,2014年通过修改网络结构又飙升至66%，同时ILSVRC2013测试集的mAP也被提升至31.4%</p>
+<p>R-CNN是Region-based Convolutional Neural Networks的缩写，中文翻译是基于区域的卷积神经网络，是一种结合区域提名（Region Proposal）和卷积神经网络（CNN）的目标检测方法。R-CNN是第一个真正可以工业级应用的解决方案，这也和深度学习本身的发展类似，神经网络、卷积网络都不是什么新概念，但在本世纪突然真正变得可行，而一旦可行之后再迅猛发展也不足为奇了。</p>
+<p>R-CNN这个领域目前研究非常活跃，先后出现了R-CNN，SPP-Net，Fast R-CNN，Faster R-CNN，R-FCN，YOLO，SSD等研究。这些创新工作其实很多时候是把一些传统视觉领域的方法和深度学习结合起来了，比如选择性搜索（Selective Search）和图像金字塔（Pyramid）等</p>
+<p>深度学习相关的目标检测方法大致可以分为两派：<br />
+1.基于区域提名的：如R-CNN，SPP-Net，Fast R-CNN，Faster R-CNN，R-FCN；<br />
+2.端到端（End-to-End）：无需区域提名的，如YOLO，SSD</p>
+<p>目前来说，基于区域提名的方法依然占据上风，但端到端的方法速度上优势明显，后续的发展拭目以待。</p>
+<h3 id="11基于区域提名的方法"><a class="markdownIt-Anchor" href="#11基于区域提名的方法"></a> 1.1基于区域提名的方法</h3>
+<p>本小节主要介绍区域提名的方法，包括R-CNN，SPP-Net，Fast R-CNN，Faster R-CNN，R-FCN</p>
+<h4 id="111-r-cnn"><a class="markdownIt-Anchor" href="#111-r-cnn"></a> 1.1.1 R-CNN</h4>
+<p>如前面所述，早期的目标检测，大都使用滑动窗口的方式进行窗口提名，这种方式本质是穷举法，R-CNN采用的是Selective Search<br />
+以下是R-CNN的主要步骤：</p>
+<p>1.区域提名：通过Selective Search从原始图片提取2000个左右区域候选框；<br />
+2.区域大小归一化：把所有候选框缩放成固定大小（原文采用227×227）；<br />
+3.特征提取：通过CNN网络，提取特征；<br />
+4.分类与回归：在特征层的基础上添加两个全连接层，再用SVM分类来做识别，用线性回归来微调边框位置和大小，其中每个类别单独训练一个边框回归器。</p>
+<p>事实上，R-CNN有许多缺点：<br />
+1.重复计算：R-CNN虽然不再是穷举，但依然有两千个左右的候选框，这些候选框都需要进行CNN操作，计算量依然很大，其中有不少其实是重复计算；<br />
+2.SVM模型：而且是线性模型，在标注数据不缺的时候显然不是最好的选择；<br />
+3.训练测试分为多步：区域提名，特征提取，分类，回归都是断开的训练过程，中间数据还需要单独保存；<br />
+4.训练的空间和时间代价很高：卷积出来的特征需要先存在硬盘上，这些特征需要几百G的存储空间；<br />
+5.慢：前面的缺点导致R-CNN出奇的慢，GPU处理一张图片需要13秒，CPU上则需要53秒。</p>
+<h4 id="112-spp-net"><a class="markdownIt-Anchor" href="#112-spp-net"></a> 1.1.2 SPP-Net</h4>
+<p>SPP-Net,其主要思想是去掉原始图像上的crop/warp等操作，换成了在卷积特征上的空间金字塔池化层（Spatial Pyramid Pooling，SPP），为何要引入SPP层，主要原因是CNN的全连接要求输入图片是大小一致的，而实际的输入图片往往大小不一，如果直接缩放到统一尺寸，很有可能有的物体会充满整个图片，而有的物体可能只能再到图片的一角。传统的解决方案是进行不同位置的裁剪，但这些裁剪技术都可能会导致一些问题的出现，比如crop会导致物体不全，warp导致物体被拉伸后变形严重，SPP就是为了解决这个问题的。SPP对整图提取固定维度的特征，再把图片均分成4份，每份提取相同的维度特征，再把图片均匀分成16份，以此类推，可以看出，无论图片大小如何，提取出来的维度数据都是一致的，这样就可以统一送至全连接层了。SPP的思想在后来的R-CNN模型中也被广泛用到。</p>
+<p>SPP-Net网络，其实实质是在最后一层卷积层后加了一个SPP层，将维度不一的卷积特征转换为维度一致的全连接输入。</p>
+<p>SPP-Net做目标检测的主要步骤为：<br />
+1.区域提名：用Selective Search从原图中生成2000个左右的候选窗口；<br />
+2.区域大小缩放：SPP-Net不再做区域大小归一化，而是缩放到min(w,h)=s,即统一长宽的最短边长度，s选自{480,576,688,864,1200}中的一个，选择的标准是使得缩放后的候选框大小与224×224最接近；<br />
+3.特征提取：利用SPP-Net网络结构提取特征<br />
+4.分类与回归：类似R-CNN，利用SVM基于上面的特征训练分类器模型，用边框回归来微调候选框的位置。</p>
+<p>SPP-Net解决了R-CNN区域提名时crop/warp带来的偏差问题，提出了SPP层，使得输入的候选框可大可小，但其他方面依然和R-CNN一样，因而依然存在不少问题，这就有了后面的Fast R-CNN</p>
+<h4 id="113-fast-r-cnn"><a class="markdownIt-Anchor" href="#113-fast-r-cnn"></a> 1.1.3 Fast R-CNN</h4>
+<p>Fast R-CNN是要解决R-CNN和SPP-Net两千个左右候选框带来的重复计算问题，其主要思想为：<br />
+1.使用一个简化的SPP层——RoI（Region of Interesting）Pooling层，操作与SPP类似<br />
+2.训练和测试是不再分多步：不在需要额外的硬盘来存储中间层的特征，梯度能够通过RoI Pooling层直接传播；此外，分类和回归用Multi-task的方式一起进行；<br />
+3.SVD：使用SVD分解全连接层的参数矩阵，压缩为两个规模小很多的全连接层</p>
+<p>Fast R-CNN的主要步骤如下：<br />
+1.特征提取：以整张图片为输入利用CNN得到图片的特征层；<br />
+2.区域提名：通过Selective Search等方法从原始图片提取区域候选框，并把这些候选框一一投影到最后的特征层；<br />
+3.区域归一化：针对特征曾上的每个区域候选框进行RoI Pooling操作，得到固定大小的特征表示；<br />
+4.分类和回归：然后通过两个全连接层，分别用softmax多分类做目标识别，用回归模型进行边框位置与大小的精确定位和微调。</p>
+<p>Fast R-CNN比R-CNN的训练速度（大模型）快8,8倍，测试时间快213倍，比SPP-Net训练速度快2.6倍，测试速度快10倍左右。</p>
+<h4 id="114-faster-r-cnn"><a class="markdownIt-Anchor" href="#114-faster-r-cnn"></a> 1.1.4 Faster R-CNN</h4>
+<p>Fast R-CNN使用Selective Serach来进行区域提名，速度依然不够快。Faster R-CNN则直接利用RPN（Region Proposal Networks）网络来计算候选框。RPN以一张任意大小的图片为输入，输出一批矩形区域提名，每个区域对应一个目标分数和位置信息。</p>
+<p>Faster R-CNN的主要步骤如下：<br />
+1.特征提取：同Fast R-CNN，以整张图片为输入，利用CNN得到图片的特征层；<br />
+2.区域提名：在最终的卷积特征层上利用k个不同的矩形框（Anchor Box）进行提名，k一般取9；<br />
+3.分类和回归：对每个Anchor Box对应的区域进行object/non-object二分类，并用k个回归模型（各自对应不同的Anchor Box）微调候选框位置与大小，最后进行目标分类。</p>
+<p>总之，Faster R-CNN抛弃了Selective Search，引入了RPN网络，使得区域提名，分类，回归一起共用卷积特征，从而得到了进一步的加速。但是Faster R-CNN需要对两万个Anchor Box先判断是否是目标（目标判定），然后再进行目标识别，分成两步。</p>
+<h4 id="115-r-fcn"><a class="markdownIt-Anchor" href="#115-r-fcn"></a> 1.1.5 R-FCN</h4>
+<p>前面的目标检测方法都可以细分为两个子网络：</p>
+<p>1.共享的全卷积网络；<br />
+2.不共享计算的RoI相关的子网络（比如全连接网络）</p>
+<p>R-FCN则是将最后的全连接层之类换为了一个位置敏感的卷积网络，从而让所有的计算都可以共享。具体来说，先把每个区域提名划分为K×K个网格，比如R-FCN原文中k的取值为3，则对应的九个网格分别表示：左上top-left，上中top-center，右上top-right，…，右下bottom-right，对应的九宫格，每个Grid都有对应的编码，但预测时候会有C+1个输出，C表示类别数目，+1是因为有背景类别，全部的输出通道数量为K^2 * (C+1).需要注意的是九宫格，但是Pooling时候只有一个起作用，比如bottom-right层只有右下角的小块起作用，那么问题来了，这一层的其他8个框有什么作用呢？答案是她们可以作为其他RoI（偏左或者偏上的RoI）的右下角。</p>
+<p>R-FCN的步骤：</p>
+<p>1.区域提名：使用RPN（Region Proposal Network，区域提名网络），RPN本身是全卷积网络结构；<br />
+2.分类和回归：利用和RPN共享的特征进行分类。当做bbox回归时，则将c设置为4</p>
+<h3 id="12-端到端的方法"><a class="markdownIt-Anchor" href="#12-端到端的方法"></a> 1.2 端到端的方法</h3>
+<p>本节介绍端到端（End-to-End）的目标检测方法，这些方法无需区域提名，包括YOLO和SSD</p>
+<h4 id="121-yolo"><a class="markdownIt-Anchor" href="#121-yolo"></a> 1.2.1 YOLO</h4>
+<p>YOLO的全拼是You Only Look Once，顾名思义就是只看一次，进一步把目标判定和目标识别合二为一，所以识别的性能有了很大的提升，达到每秒45帧，而在快速版的YOLO（Fast YOLO，卷积层更少）中，可以达到每秒155帧。</p>
+<p>针对一张图片，YOLO的处理步骤为：<br />
+1.把输入图片缩放到448*448大小<br />
+2.运行卷积网络；<br />
+3.对模型置信度卡阈值，得到目标位置和类别</p>
+<p>YOLO将448<em>448大小的图切成S</em>S的网格，目标中心点所在的搁置负责该目标的相关检测，每个网络预测B个边框及其置信度，以及C种类别的概率。YOLO中S = 7 ，B = 2，C取决于数据集中物体类别数量，比如VOC数据集就是C = 20，对于VOC数据集来说，YOLO就是把图片统一缩放到448<em>448，然后每张图片平均划分为7</em>7=49个小格子，每个格子预测2个矩形框及其置信度，以及20中类别的概率。</p>
+<p>YOLO简化了真个目标检测的流程，速度提升也很大，但是YOLO还是有不少可以改进的地方，比如S*S的网格就是一个比较启发式的策略，如果两个小目标同时落入一个格子中，模型也只能预测一个；另一个问题是Loss函数对不同大小的bbox未做区分。</p>
+<h4 id="122-ssd"><a class="markdownIt-Anchor" href="#122-ssd"></a> 1.2.2 SSD</h4>
+<p>SSD的全拼是Single Shot MultiBox Detector，冲着YOLO的缺点来的。SSD的网络分为两部分，前面是用于图像分类的标准网络，后面的网络是用于检测的多尺度特征映射层，从而达到检测不同大小的目标，SSD在保持YOLO高速的同时效果也提升了很多，主要是借鉴了Faster R-CNN中的Anchor机制，同时使用了多尺度。但是从原理依然可以看出，Default Box的新装以及网格大小是事先固定的，那么对特定图片小目标的提取会不够好。</p>
+<h3 id="13-总结"><a class="markdownIt-Anchor" href="#13-总结"></a> 1.3 总结</h3>
+<p>基于深度学习的目标检测总体上分为两派：<br />
+1.基于区域提名的R-CNN系列；<br />
+2.无需区域提名的YOLO，SSD系列</p>
+
+
+<div class="article-footer reveal fs14"><section id="license"><div class="header"><span>许可协议</span></div><div class="body"><p>本文采用<a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">署名-非商业性使用-相同方式共享 4.0 国际</a>许可协议，转载请注明出处。</p>
+</div></section><section id="share"><div class="header"><span>分享文章</span></div><div class="body"><div class="link"><input class="copy-area" readonly="true" id="copy-link" value="https://guyinga.top/f40f194d9411/" /></div><div class="social-wrap dis-select"><a class="social share-item wechat" onclick="util.toggle(&quot;qrcode-wechat&quot)"><img src="https://fastly.jsdelivr.net/gh/cdn-x/placeholder@1.0.1/social/b32ef3da1162a.svg"/></a><a class="social share-item weibo" target="_blank" rel="external nofollow noopener noreferrer" href="https://service.weibo.com/share/share.php?url=https://guyinga.top/f40f194d9411/&title=基于深度学习的目标检测 - GuYing&summary=计算机视觉"><img src="https://fastly.jsdelivr.net/gh/cdn-x/placeholder@1.0.1/social/80c07e4dbb303.svg"/></a><a class="social share-item email" href="mailto:?subject=基于深度学习的目标检测 - GuYing&amp;body=https://guyinga.top/f40f194d9411/"><img src="https://fastly.jsdelivr.net/gh/cdn-x/placeholder@1.0.1/social/a1b00e20f425d.svg"/></a><a class="social share-item link" onclick="util.copy(&quot;copy-link&quot;, &quot;复制成功&quot;)"><img src="https://fastly.jsdelivr.net/gh/cdn-x/placeholder@1.0.1/social/8411ed322ced6.svg"/></a></div><div class="qrcode" id="qrcode-wechat" style="visibility:hidden;height:0"><img src="https://api.qrserver.com/v1/create-qr-code/?size=256x256&data=https://guyinga.top/f40f194d9411/index.html"/></div></div></section></div>
+
+</article>
+
+<div class="related-wrap reveal" id="read-next"><section class="body"><div class="item" id="prev"><div class="note">较新文章</div><a href="/84b657751b84/">YOLO算法简介</a></div><div class="item" id="next"><div class="note">较早文章</div><a href="/dddeac14c9ae/">C++程序设计简答题（二）</a></div></section></div>
+
+
+<div class="related-wrap reveal" id="related-posts">
+    <section class='header'>
+      <div class='title cap theme'>您可能感兴趣的文章</div>
+    </section>
+    <section class='body'>
+    <div class="related-posts"><a class="item" href="/84b657751b84/" title="YOLO算法简介"><span class="title">YOLO算法简介</span><span class="excerpt">计算机视觉</span></a><a class="item" href="/54381aa572aa/" title="YOLO算法python实现"><span class="title">YOLO算法python实现</span><span class="excerpt">介绍其基本原理及实现细节</span></a></div></section></div>
+
+
+
+  <div class='related-wrap md-text reveal' id="comments">
+    <div class='cmt-title cap theme'>
+      快来参与讨论吧
+    </div>
+    <div class='cmt-body waline'>
+      
+
+<div id="waline_container" class="waline_thread"><svg class="loading" style="vertical-align: middle;fill: currentColor;overflow: hidden;" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2709"><path d="M832 512c0-176-144-320-320-320V128c211.2 0 384 172.8 384 384h-64zM192 512c0 176 144 320 320 320v64C300.8 896 128 723.2 128 512h64z" p-id="2710"></path></svg></div>
+
+    </div>
+  </div>
+
+
+
+      
+<footer class="page-footer reveal fs12"><hr><div class="sitemap"><div class="sitemap-group"><span class="fs14">博客</span><a href="/">近期</a><a href="/categories/">分类</a><a href="/tags/">标签</a><a href="/archives/">归档</a><a href="/shiping/">收藏</a></div><div class="sitemap-group"><span class="fs14">项目</span><a href="/wiki/tags/%E8%84%9A%E6%9C%AC/">脚本</a><a href="/wiki/tags/%E5%85%B6%E4%BB%96/">其他</a></div><div class="sitemap-group"><span class="fs14">友链</span><a href="/friends/">友链</a><a href="/about/#comments">留言板</a></div><div class="sitemap-group"><span class="fs14">关于</span><a href="/about/">关于本站</a><a target="_blank" rel="noopener" href="https://github.com/guyingd">GitHub</a></div></div><div class="text"><hr><p align="center"><a target="_blank" rel="noopener" href="https://aws.amazon.com/cn/campaigns/cloudfront"><img src="/images/网站图片/内容分发-CloudFront-orange.svg" width="143" height="20" /></a>&nbsp&nbsp<a target="_blank" rel="noopener" href="https://github.com/guyingd"><img src="/images/网站图片/网站部署-GitHub-5DADE2.svg" width="119" height="20"/></a>&nbsp&nbsp<a target="_blank" rel="noopener" href="https://hexo.io"><img src="/images/网站图片/强力驱动-Hexo-blue.svg" width="111" height="20"/></a>&nbsp&nbsp<a target="_blank" rel="noopener" href="https://cloudflare.com"><img src="/images/网站图片/域名解析-CloudFlare-f38020.svg"></a></p>
+</div></footer>
+
+      <div class='float-panel mobile-only blur' style='display:none'>
+  <button type='button' class='sidebar-toggle mobile' onclick='sidebar.toggle()'>
+    <svg class="icon" style="width: 1em; height: 1em;vertical-align: middle;fill: currentColor;overflow: hidden;" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="15301"><path d="M566.407 808.3c26.9-0.1 49.3-20.8 51.6-47.6-1.9-27.7-23.9-49.7-51.6-51.6h-412.6c-28.2-1.4-52.6 19.5-55.5 47.6 2.3 26.8 24.6 47.5 51.6 47.6h416.5v4z m309.3-249.9c26.9-0.1 49.3-20.8 51.6-47.6-2.2-26.8-24.6-47.5-51.6-47.6h-721.9c-27.7-2.8-52.5 17.4-55.3 45.1-0.1 0.8-0.1 1.7-0.2 2.5 0.9 27.2 23.6 48.5 50.7 47.6H875.707z m-103.1-245.9c26.9-0.1 49.3-20.8 51.6-47.6-0.4-28.3-23.2-51.1-51.5-51.6h-618.9c-29.5-1.1-54.3 21.9-55.5 51.4v0.2c1.4 27.8 25.2 49.2 53 47.8 0.8 0 1.7-0.1 2.5-0.2h618.8z" p-id="15302"></path><path d="M566.407 808.3c26.9-0.1 49.3-20.8 51.6-47.6-1.9-27.7-23.9-49.7-51.6-51.6h-412.6c-28.2-1.4-52.6 19.5-55.5 47.6 1.9 27.7 23.9 49.7 51.6 51.6h416.5z m309.3-249.9c26.9-0.1 49.3-20.8 51.6-47.6-2.2-26.8-24.6-47.5-51.6-47.6h-721.9c-27.7-2.8-52.5 17.4-55.3 45.1-0.1 0.8-0.1 1.7-0.2 2.5 0.9 27.2 23.6 48.5 50.7 47.6H875.707z m-103.1-245.9c26.9-0.1 49.3-20.8 51.6-47.6-0.4-28.3-23.2-51.1-51.5-51.6h-618.9c-29.5-1.1-54.3 21.9-55.5 51.4v0.2c1.4 27.8 25.2 49.2 53 47.8 0.8 0 1.7-0.1 2.5-0.2h618.8z" p-id="15303"></path></svg>
+  </button>
+</div>
+
+    </div>
+  </div>
+  <div class='scripts'>
+    <script type="text/javascript">
+  stellar = {
+    // 懒加载 css https://github.com/filamentgroup/loadCSS
+    loadCSS: (href, before, media, attributes) => {
+      var doc = window.document;
+      var ss = doc.createElement("link");
+      var ref;
+      if (before) {
+        ref = before;
+      } else {
+        var refs = (doc.body || doc.getElementsByTagName("head")[0]).childNodes;
+        ref = refs[refs.length - 1];
+      }
+      var sheets = doc.styleSheets;
+      if (attributes) {
+        for (var attributeName in attributes) {
+          if (attributes.hasOwnProperty(attributeName)) {
+            ss.setAttribute(attributeName, attributes[attributeName]);
+          }
+        }
+      }
+      ss.rel = "stylesheet";
+      ss.href = href;
+      ss.media = "only x";
+      function ready(cb) {
+        if (doc.body) {
+          return cb();
+        }
+        setTimeout(function () {
+          ready(cb);
+        });
+      }
+      ready(function () {
+        ref.parentNode.insertBefore(ss, before ? ref : ref.nextSibling);
+      });
+      var onloadcssdefined = function (cb) {
+        var resolvedHref = ss.href;
+        var i = sheets.length;
+        while (i--) {
+          if (sheets[i].href === resolvedHref) {
+            return cb();
+          }
+        }
+        setTimeout(function () {
+          onloadcssdefined(cb);
+        });
+      };
+      function loadCB() {
+        if (ss.addEventListener) {
+          ss.removeEventListener("load", loadCB);
+        }
+        ss.media = media || "all";
+      }
+      if (ss.addEventListener) {
+        ss.addEventListener("load", loadCB);
+      }
+      ss.onloadcssdefined = onloadcssdefined;
+      onloadcssdefined(loadCB);
+      return ss;
+    },
+
+    // 从 butterfly 和 volantis 获得灵感
+    loadScript: (src, opt) => new Promise((resolve, reject) => {
+      var script = document.createElement('script');
+      script.src = src;
+      if (opt) {
+        for (let key of Object.keys(opt)) {
+          script[key] = opt[key]
+        }
+      } else {
+        // 默认异步，如果需要同步，第二个参数传入 {} 即可
+        script.async = true
+      }
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    }),
+
+    // https://github.com/jerryc127/hexo-theme-butterfly
+    jQuery: (fn) => {
+      if (typeof jQuery === 'undefined') {
+        stellar.loadScript(stellar.plugins.jQuery).then(fn)
+      } else {
+        fn()
+      }
+    }
+  };
+  stellar.version = '1.15.1';
+  stellar.github = 'https://github.com/xaoxuu/hexo-theme-stellar/tree/1.15.1';
+  stellar.config = {
+    date_suffix: {
+      just: '刚刚',
+      min: '分钟前',
+      hour: '小时前',
+      day: '天前',
+      month: '个月前',
+    },
+  };
+
+  // required plugins (only load if needs)
+  stellar.plugins = {
+    jQuery: 'https://fastly.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js'
+  };
+
+  // stellar js
+  stellar.plugins.stellar = Object.assign({"sites":"/js/plugins/sites.js","friends":"/js/plugins/friends.js","ghinfo":"/js/plugins/ghinfo.js","timeline":"/js/plugins/timeline.js","linkcard":"/js/plugins/linkcard.js","fcircle":"/js/plugins/fcircle.js"});
+
+  stellar.plugins.marked = Object.assign("https://cdn.bootcdn.net/ajax/libs/marked/4.0.18/marked.min.js");
+  // optional plugins
+  if ('false' == 'true') {
+    stellar.plugins.lazyload = Object.assign({"enable":false,"js":"https://fastly.jsdelivr.net/npm/vanilla-lazyload@17.3.1/dist/lazyload.min.js","transition":"blur"});
+  }
+  if ('true' == 'true') {
+    stellar.plugins.swiper = Object.assign({"enable":true,"css":"https://unpkg.com/swiper@6/swiper-bundle.min.css","js":"https://unpkg.com/swiper@6/swiper-bundle.min.js"});
+  }
+  if ('true' == 'true') {
+    stellar.plugins.scrollreveal = Object.assign({"enable":true,"js":"https://fastly.jsdelivr.net/npm/scrollreveal@4.0.9/dist/scrollreveal.min.js","distance":"8px","duration":500,"interval":100,"scale":1});
+  }
+  if ('true' == 'true') {
+    stellar.plugins.preload = Object.assign({"enable":true,"service":"flying_pages","instant_page":"https://fastly.jsdelivr.net/gh/volantis-x/cdn-volantis@4.1.2/js/instant_page.js","flying_pages":"https://fastly.jsdelivr.net/gh/gijo-varghese/flying-pages@2.1.2/flying-pages.min.js"});
+  }
+  if ('true' == 'true') {
+    stellar.plugins.fancybox = Object.assign({"enable":true,"js":"https://fastly.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.umd.js","css":"https://fastly.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.css","selector":".swiper-slide img"});
+  }
+  if ('false' == 'true') {
+    stellar.plugins.heti = Object.assign({"enable":false,"css":"https://unpkg.com/heti/umd/heti.min.css","js":"https://unpkg.com/heti/umd/heti-addon.min.js"});
+  }
+</script>
+
+<!-- required -->
+
+  
+<script src="/js/main.js" async></script>
+
+
+
+<!-- optional -->
+
+  <script>
+  function load_comment(){
+    if(!document.getElementById("waline_container"))return;
+    stellar.loadCSS('https://unpkg.com/@waline/client@v2/dist/waline.css');
+    stellar.loadScript('https://unpkg.com/@waline/client@v2/dist/waline.js', {defer:true}).then(function () {
+      const el = document.getElementById("waline_container");
+      var path = el.getAttribute('comment_id');
+      if (!path) {
+        path = decodeURI(window.location.pathname);
+      }
+      Waline.init(Object.assign({"js":"https://unpkg.com/@waline/client@v2/dist/waline.js","css":"https://unpkg.com/@waline/client@v2/dist/waline.css","serverURL":"https://pl.guyinga.top","commentCount":true,"pageview":false,"locale":{"placeholder":"ꉂ(ˊᗜˋ*) 请输入内容"},"emoji":["https://gcore.jsdelivr.net/gh/norevi/waline-blobcatemojis@1.0/blobs","https://unpkg.com/@waline/emojis@1.1.0/bilibili","https://unpkg.com/@waline/emojis@1.1.0/qq"],"lang":"zh-CN","wordLimit":0,"pageSize":10}, {
+        el: '#waline_container',
+        path: path,
+      }));
+    });
+  }
+  window.addEventListener('DOMContentLoaded', (event) => {
+    console.log('DOM fully loaded and parsed');
+    load_comment();
+  });
+
+</script>
+
+
+
+
+<!-- inject -->
+
+
+  </div>
+</body>
+</html>
